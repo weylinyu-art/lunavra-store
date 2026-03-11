@@ -240,25 +240,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Discreet Packaging + COD Trust */}
+      {/* 8. Why Choose NileChic Trust */}
       <section className="bg-[#FFFEF9] px-4 py-16 md:py-24" aria-labelledby="trust-heading">
         <h2 id="trust-heading" className="font-heading text-center text-2xl font-light tracking-wide text-foreground md:text-3xl">
           {t.trust.title}
         </h2>
-        <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
-          <div className="hover-lift rounded-2xl border border-[#E8C4C4]/50 bg-[#FDF2F4] p-8 text-center transition-all duration-300">
+        <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="hover-lift rounded-2xl border border-[#E8C4C4]/50 bg-[#FDF2F4] p-6 text-center transition-all duration-300">
             <span className="text-4xl">📦</span>
-            <h3 className="font-heading mt-4 text-xl font-medium text-foreground">
-              {t.trust.discreet}
-            </h3>
-            <p className="mt-2 text-foreground/80">{t.trust.discreetDesc}</p>
+            <h3 className="font-heading mt-4 text-lg font-medium text-foreground">{t.trust.discreet}</h3>
+            <p className="mt-2 text-sm text-foreground/80">{t.trust.discreetDesc}</p>
           </div>
-          <div className="hover-lift rounded-2xl border border-[#C9A962]/30 bg-[#FAF8F5] p-8 text-center transition-all duration-300">
+          <div className="hover-lift rounded-2xl border border-[#C9A962]/30 bg-[#FAF8F5] p-6 text-center transition-all duration-300">
             <span className="text-4xl">💵</span>
-            <h3 className="font-heading mt-4 text-xl font-medium text-foreground">
-              {t.trust.cod}
-            </h3>
-            <p className="mt-2 text-foreground/80">{t.trust.codDesc}</p>
+            <h3 className="font-heading mt-4 text-lg font-medium text-foreground">{t.trust.cod}</h3>
+            <p className="mt-2 text-sm text-foreground/80">{t.trust.codDesc}</p>
+          </div>
+          <div className="hover-lift rounded-2xl border border-[#E8C4C4]/50 bg-[#FDF2F4] p-6 text-center transition-all duration-300">
+            <span className="text-4xl">📋</span>
+            <h3 className="font-heading mt-4 text-lg font-medium text-foreground">{t.trust.localStock}</h3>
+            <p className="mt-2 text-sm text-foreground/80">{t.trust.localStockDesc}</p>
+          </div>
+          <div className="hover-lift rounded-2xl border border-[#C9A962]/30 bg-[#FAF8F5] p-6 text-center transition-all duration-300">
+            <span className="text-4xl">🚚</span>
+            <h3 className="font-heading mt-4 text-lg font-medium text-foreground">{t.trust.fastDelivery}</h3>
+            <p className="mt-2 text-sm text-foreground/80">{t.trust.fastDeliveryDesc}</p>
+          </div>
+          <div className="hover-lift rounded-2xl border border-[#E8C4C4]/50 bg-[#FDF2F4] p-6 text-center transition-all duration-300 sm:col-span-2 lg:col-span-1">
+            <span className="text-4xl">🌍</span>
+            <h3 className="font-heading mt-4 text-lg font-medium text-foreground">{t.trust.regions}</h3>
+            <p className="mt-2 text-sm text-foreground/80">{t.trust.regionsDesc}</p>
           </div>
         </div>
       </section>

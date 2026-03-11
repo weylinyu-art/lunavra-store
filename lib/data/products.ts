@@ -13,6 +13,10 @@ export interface Product {
   sizes: string[];
   tags: ProductTag[];
   featured?: boolean;
+  material?: string;
+  materialAr?: string;
+  care?: string;
+  careAr?: string;
 }
 
 export const products: Product[] = [
