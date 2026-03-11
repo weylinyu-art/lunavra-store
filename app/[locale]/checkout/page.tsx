@@ -1,20 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
 import Link from "next/link";
 import { WHATSAPP_NUMBER, WHATSAPP_MESSAGES } from "@/lib/config/whatsapp";
+import {
+  countries,
+  getCountryByCode,
+  getRegion,
+  type CountryCode,
+} from "@/lib/data/locations";
+import { detectCountry } from "@/lib/geo/detect-country";
 
 export default function CheckoutPage() {
-  const { t, path } = useLocale();
+  const { t, path, locale } = useLocale();
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [countryDetected, setCountryDetected] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
+    country: "" as CountryCode | "",
+    region: "",
     city: "",
     address: "",
     orderNotes: "",
   });
+
+  useEffect(() => {
+    let cancelled = false;
+    detectCountry().then((code) => {
+      if (cancelled || !code) return;
+      setFormData((prev) => {
+        if (prev.country) return prev;
+        return { ...prev, country: code };
+      });
+      setCountryDetected(true);
+    });
+    return () => { cancelled = true; };
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,8 +53,48 @@ export default function CheckoutPage() {
     }));
   };
 
-  const getWhatsAppUrl = () =>
-    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGES.orderConfirmation)}`;
+  const handleSelect = (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    field: "country" | "region" | "city"
+  ) => {
+    const value = e.target.value;
+    if (field === "country") {
+      setFormData((prev) => ({
+        ...prev,
+        country: value as CountryCode | "",
+        region: "",
+        city: "",
+      }));
+    } else if (field === "region") {
+      setFormData((prev) => ({
+        ...prev,
+        region: value,
+        city: "",
+      }));
+    } else {
+      setFormData((prev) => ({ ...prev, city: value }));
+    }
+  };
+
+  const country = formData.country ? getCountryByCode(formData.country) : null;
+  const region = formData.country && formData.region
+    ? getRegion(formData.country, formData.region)
+    : null;
+
+  const getName = (o: { nameEn: string; nameAr: string }) =>
+    locale === "ar" ? o.nameAr : o.nameEn;
+
+  const getWhatsAppUrl = () => {
+    const countryName = country ? getName(country) : "";
+    const regionName = region ? getName(region) : "";
+    const cityName = region?.cities.find((c) => c.id === formData.city);
+    const cityLabel = cityName ? getName(cityName) : formData.city;
+    const details = [countryName, regionName, cityLabel, formData.address]
+      .filter(Boolean)
+      .join(" | ");
+    const msg = WHATSAPP_MESSAGES.orderConfirmation + (details ? "\n\nAddress: " + details : "");
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  };
 
   if (orderPlaced) {
     return (
@@ -108,19 +171,77 @@ export default function CheckoutPage() {
         </div>
 
         <div>
-          <label htmlFor="city" className="block text-sm font-medium text-foreground">
-            {t.checkout.city}
-          </label>
-          <input
-            id="city"
-            name="city"
-            type="text"
-            required
-            value={formData.city}
-            onChange={handleChange}
-            className="mt-2 w-full min-h-[48px] rounded-lg border border-foreground/20 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
-          />
+          <div className="flex items-center justify-between gap-2">
+            <label htmlFor="country" className="block text-sm font-medium text-foreground">
+              {t.checkout.country}
+            </label>
+            {countryDetected && formData.country && (
+              <span className="text-xs text-foreground/60">{t.checkout.countryDetected}</span>
+            )}
+          </div>
+          <div className="mt-2 flex gap-2">
+            <select
+              id="country"
+              required
+              value={formData.country}
+              onChange={(e) => handleSelect(e, "country")}
+              className="flex-1 min-h-[48px] rounded-lg border border-foreground/20 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
+            >
+              <option value="">{t.checkout.country} —</option>
+              {countries.map((c) => (
+                <option key={c.code} value={c.code}>
+                  {getName(c)}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
+
+        {country && (
+          <>
+            <div>
+              <label htmlFor="region" className="block text-sm font-medium text-foreground">
+                {t.checkout.region}
+              </label>
+              <select
+                id="region"
+                required
+                value={formData.region}
+                onChange={(e) => handleSelect(e, "region")}
+                className="mt-2 w-full min-h-[48px] rounded-lg border border-foreground/20 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
+              >
+                <option value="">{t.checkout.region} —</option>
+                {country.regions.map((r) => (
+                  <option key={r.id} value={r.id}>
+                    {getName(r)}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {region && (
+              <div>
+                <label htmlFor="city" className="block text-sm font-medium text-foreground">
+                  {t.checkout.city}
+                </label>
+                <select
+                  id="city"
+                  required
+                  value={formData.city}
+                  onChange={(e) => handleSelect(e, "city")}
+                  className="mt-2 w-full min-h-[48px] rounded-lg border border-foreground/20 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
+                >
+                  <option value="">{t.checkout.city} —</option>
+                  {region.cities.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {getName(c)}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+          </>
+        )}
 
         <div>
           <label htmlFor="address" className="block text-sm font-medium text-foreground">
@@ -133,6 +254,7 @@ export default function CheckoutPage() {
             required
             value={formData.address}
             onChange={handleChange}
+            placeholder={locale === "ar" ? "الشارع، المبنى، الطابق..." : "Street, building, floor..."}
             className="mt-2 w-full min-h-[48px] rounded-lg border border-foreground/20 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
           />
         </div>
