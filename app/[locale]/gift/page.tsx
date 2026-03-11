@@ -20,13 +20,16 @@ export default function GiftPage() {
 
   return (
     <div className="bg-[#FDF2F4]">
-      {/* Hero - mobile: compact */}
+      {/* Hero - full romantic copy restored */}
       <section className="bg-gradient-to-b from-[#FAE8EC] via-[#FDF2F4] to-[#FFFEF9] px-4 py-12 text-center sm:py-20">
         <h1 className="font-heading text-2xl font-light tracking-wide text-foreground sm:text-3xl md:text-5xl">
           {t.gift.heroTitle}
         </h1>
-        <p className="mt-4 max-w-xl mx-auto text-sm text-foreground/80 sm:mt-6 sm:text-base">
-          {t.gift.heroSubtitle}
+        <p className="mt-4 max-w-xl mx-auto text-base text-foreground/85 sm:mt-6 sm:text-lg">
+          {t.romanticGifts.banner}
+        </p>
+        <p className="mt-3 max-w-2xl mx-auto text-sm text-foreground/70 sm:mt-4 sm:text-base">
+          {t.romanticGifts.message}
         </p>
       </section>
 
