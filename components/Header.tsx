@@ -40,19 +40,22 @@ export default function Header() {
           </span>
         </Link>
 
-        <div className="hidden min-w-0 max-w-xl flex-1 overflow-hidden sm:block">
-          <div className="promo-ticker mx-auto w-full max-w-[420px]">
-            <div className="promo-ticker-track">
-              <span className="rounded-full bg-[#C9A962]/12 px-3 py-1.5 text-xs font-medium text-[#C9A962]">
+        <div className="hidden min-w-0 max-w-xs flex-1 sm:block">
+          <div className="promo-ticker-single mx-auto w-full">
+            <div className="promo-ticker-single-track">
+              <span className="promo-ticker-single-item rounded-full bg-[#C9A962]/12 px-4 py-1.5 text-xs font-medium text-[#C9A962]">
                 🚚 {t.header.freeShipping}
               </span>
-              <span className="rounded-full bg-[#C9A962]/12 px-3 py-1.5 text-xs font-medium text-[#C9A962]">
+              <span className="promo-ticker-single-item rounded-full bg-[#C9A962]/12 px-4 py-1.5 text-xs font-medium text-[#C9A962]">
                 🚚 {t.header.freeShipping}
               </span>
-              <span className="rounded-full bg-[#C9A962]/12 px-3 py-1.5 text-xs font-medium text-[#C9A962]">
+              <span className="promo-ticker-single-item rounded-full bg-[#C9A962]/12 px-4 py-1.5 text-xs font-medium text-[#C9A962]">
                 🚚 {t.header.freeShipping}
               </span>
-              <span className="rounded-full bg-[#C9A962]/12 px-3 py-1.5 text-xs font-medium text-[#C9A962]">
+              <span className="promo-ticker-single-item rounded-full bg-[#C9A962]/12 px-4 py-1.5 text-xs font-medium text-[#C9A962]">
+                🚚 {t.header.freeShipping}
+              </span>
+              <span className="promo-ticker-single-item rounded-full bg-[#C9A962]/12 px-4 py-1.5 text-xs font-medium text-[#C9A962]">
                 🚚 {t.header.freeShipping}
               </span>
             </div>
