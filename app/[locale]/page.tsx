@@ -34,7 +34,7 @@ export default function HomePage() {
     <>
       {/* 1. Hero Banner */}
       <section
-        className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden px-4 py-24 text-center"
+        className="relative flex min-h-[85vh] flex-col justify-end overflow-hidden px-4 pb-16 pt-24 md:min-h-[88vh] md:justify-center md:pb-24 md:pt-32"
         aria-labelledby="hero-heading"
       >
         <Image
@@ -42,36 +42,36 @@ export default function HomePage() {
           alt=""
           fill
           unoptimized
-          className="object-cover"
+          className="object-cover object-center"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black/40" aria-hidden />
-        <div className="relative z-10">
-          <div className="mb-4 flex justify-center gap-3">
-            <span className="rounded-full bg-[#FFFEF9]/90 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-foreground">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/35 to-transparent md:from-black/50 md:via-black/25 md:to-black/20" aria-hidden />
+        <div className="relative z-10 mx-auto w-full max-w-3xl">
+          <div className="mb-3 flex gap-2">
+            <span className="rounded px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-white/90">
               {t.hero.badgeNew}
             </span>
-            <span className="rounded-full bg-[#C9A962]/90 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-white">
+            <span className="rounded px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-[#C9A962]">
               {t.hero.badgeTrending}
             </span>
           </div>
-          <h1 id="hero-heading" className="font-heading max-w-3xl text-4xl font-light leading-tight tracking-wide text-white drop-shadow-lg sm:text-5xl md:text-6xl">
+          <h1 id="hero-heading" className="font-heading text-3xl font-light leading-[1.2] tracking-wide text-white sm:text-4xl md:text-5xl md:leading-[1.15] lg:text-6xl">
             {t.hero.headline}
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-white/95 drop-shadow md:text-xl">
+          <p className="mt-4 max-w-md text-base leading-relaxed text-white/90 sm:text-lg md:mt-5 md:text-xl">
             {t.hero.subheadline}
           </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap gap-3 sm:mt-10 sm:gap-4">
             <Link
               href={path("/shop")}
-              className="rounded-lg bg-[#FFFEF9] px-8 py-3.5 text-sm font-medium text-foreground shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#FFFEF9]/95 hover:shadow-xl"
+              className="inline-flex rounded-lg bg-[#FFFEF9] px-6 py-3 text-sm font-medium text-foreground transition-all duration-300 hover:bg-white hover:shadow-lg"
             >
               {t.hero.shopNow}
             </Link>
             <Link
               href={path("/gift")}
-              className="rounded-lg border-2 border-[#C9A962] bg-transparent px-8 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C9A962]/20"
+              className="inline-flex rounded-lg border border-white/60 px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:border-white hover:bg-white/10"
             >
               {t.hero.giftForWife}
             </Link>

@@ -1,22 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
 import { useLocale } from "@/contexts/LocaleContext";
-import { pathWithoutLocale, pathWithLocale } from "@/lib/i18n/paths";
 import { useState } from "react";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Header() {
-  const { t, locale, path } = useLocale();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const { t, path } = useLocale();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const basePath = pathWithoutLocale(pathname);
-  const queryString = searchParams.toString();
-  const fullPath = queryString ? `${basePath}?${queryString}` : basePath;
-  const switchToEn = pathWithLocale("en", fullPath);
-  const switchToAr = pathWithLocale("ar", fullPath);
 
   const categories = [
     { slug: "lingerie-sets", name: t.categories.lingerieSets },
@@ -51,20 +42,7 @@ export default function Header() {
           >
             {t.nav.cart}
           </Link>
-          <div className="flex gap-1 border-s border-foreground/20 ps-2">
-            <Link
-              href={switchToEn}
-              className={`px-2 py-1 text-sm ${locale === "en" ? "font-semibold text-[#C9A962]" : "text-foreground/60 hover:text-foreground"}`}
-            >
-              EN
-            </Link>
-            <Link
-              href={switchToAr}
-              className={`px-2 py-1 text-sm ${locale === "ar" ? "font-semibold text-[#C9A962]" : "text-foreground/60 hover:text-foreground"}`}
-            >
-              AR
-            </Link>
-          </div>
+          <LanguageSwitcher />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="flex flex-col gap-1.5 p-2 md:hidden"
@@ -140,13 +118,9 @@ export default function Header() {
             <Link href={path("/checkout")} onClick={() => setMobileMenuOpen(false)}>
               {t.nav.cart}
             </Link>
-            <div className="mt-4 flex gap-4 border-t border-rose-200/30 pt-4">
-              <Link href={switchToEn} onClick={() => setMobileMenuOpen(false)} className={locale === "en" ? "font-semibold text-[#C9A962]" : ""}>
-                EN
-              </Link>
-              <Link href={switchToAr} onClick={() => setMobileMenuOpen(false)} className={locale === "ar" ? "font-semibold text-[#C9A962]" : ""}>
-                AR
-              </Link>
+            <div className="mt-4 flex items-center gap-2 border-t border-rose-200/30 pt-4">
+              <span className="text-xs text-foreground/50">Language</span>
+              <LanguageSwitcher onNavigate={() => setMobileMenuOpen(false)} />
             </div>
           </div>
         </div>

@@ -6,6 +6,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
 import { products } from "@/lib/data/products";
+import SizeGuideModal from "@/components/SizeGuideModal";
+import ShareButtons from "@/components/ShareButtons";
+import ProductReviews from "@/components/ProductReviews";
 
 export default function ProductPage() {
   const params = useParams();
@@ -16,6 +19,7 @@ export default function ProductPage() {
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
 
   if (!product) {
     return (
@@ -33,6 +37,11 @@ export default function ProductPage() {
   const material = product.material ? (locale === "ar" ? product.materialAr : product.material) : t.product.defaultMaterial;
   const care = product.care ? (locale === "ar" ? product.careAr : product.care) : t.product.defaultCare;
   const images = product.images?.length ? product.images : [product.image];
+  const shareUrl =
+    typeof window !== "undefined"
+      ? window.location.href
+      : `https://nilechic.com${path(`/product/${product.id}`)}`;
+  const shareTitle = name;
 
   return (
     <div className="mx-auto max-w-7xl bg-[#FAF8F5] px-4 py-6 sm:px-6 lg:px-8">
@@ -109,7 +118,11 @@ export default function ProductPage() {
           <div className="mt-6">
             <div className="flex items-center justify-between">
               <label className="text-sm font-medium text-foreground">{t.product.selectSize}</label>
-              <button type="button" className="text-xs text-[#C9A962] hover:underline">
+              <button
+                type="button"
+                onClick={() => setSizeGuideOpen(true)}
+                className="text-xs text-[#C9A962] hover:underline"
+              >
                 {t.product.sizeGuide}
               </button>
             </div>
@@ -160,6 +173,11 @@ export default function ProductPage() {
             {t.romanticGifts.exploreGifts}
           </Link>
 
+          {/* Share */}
+          <div className="mt-6">
+            <ShareButtons url={shareUrl} title={shareTitle} />
+          </div>
+
           {/* Product details accordion-style */}
           <div className="mt-8 border-t border-rose-200/50 pt-6">
             <h2 className="text-sm font-semibold uppercase tracking-wider text-foreground/80">
@@ -176,8 +194,13 @@ export default function ProductPage() {
               </div>
             </dl>
           </div>
+
+          {/* Reviews */}
+          <ProductReviews productId={product.id} />
         </div>
       </article>
+
+      <SizeGuideModal isOpen={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />
     </div>
   );
 }
