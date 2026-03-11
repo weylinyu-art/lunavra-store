@@ -108,6 +108,7 @@ export const translations = {
     },
     product: {
       addToCart: "Add to Cart",
+      addedToCart: "✓ Added",
       codNotice: "Cash on Delivery available",
       giftSuggestion: "Perfect as a thoughtful gift",
       shippingInfo: "Free shipping on orders over $100",
@@ -164,6 +165,7 @@ export const translations = {
       shipping: "Shipping Info",
       shippingText: "Free shipping over $100. Cash on delivery available.",
       privacy: "Privacy Policy",
+      faq: "FAQ",
       newsletter: "Newsletter",
       newsletterText: "Join for exclusive offers and new arrivals.",
       newsletterPlaceholder: "Your email",
@@ -187,7 +189,11 @@ export const translations = {
         "NileChic was born from a simple belief: every woman deserves to feel beautiful and confident. We craft elegant lingerie that celebrates femininity with the finest fabrics and timeless designs.",
       story: "Our Story",
       storyText:
-        "Founded with a passion for quality and discretion, we've grown to become a trusted name in intimate apparel. Each piece is thoughtfully designed to combine comfort, style, and sophistication.",
+        "NileChic began where the Nile meets the Gulf—at the crossroads of cultures that value both elegance and discretion. Our founder, inspired by the grace of Middle Eastern women and the luxury of European design, set out to create intimate wear that honours femininity without compromise.",
+      storyPara2:
+        "We started small: a few carefully curated pieces, a commitment to quality fabrics, and an unwavering promise of privacy. Word spread. Mothers told daughters. Friends recommended NileChic to friends. Today we serve women across the GCC and Egypt, each order wrapped in plain packaging, each piece made to celebrate the woman who wears it.",
+      storyPara3:
+        "We believe luxury should be accessible and private. That's why we offer cash on delivery—no upfront payment, no digital trail. Why every box we ship could pass for any ordinary parcel. And why, behind every stitch, is a team that understands what it means to shop for yourself with confidence.",
       values: "Our Values",
       quality: "Quality",
       privacy: "Privacy",
@@ -309,6 +315,7 @@ export const translations = {
     },
     product: {
       addToCart: "أضف للسلة",
+      addedToCart: "✓ تمت الإضافة",
       codNotice: "الدفع عند الاستلام متاح",
       giftSuggestion: "مثالي كهدية مدروسة",
       shippingInfo: "شحن مجاني للطلبات فوق 100$",
@@ -364,6 +371,7 @@ export const translations = {
       shipping: "معلومات الشحن",
       shippingText: "شحن مجاني فوق 100$. الدفع عند الاستلام متاح.",
       privacy: "سياسة الخصوصية",
+      faq: "الأسئلة الشائعة",
       newsletter: "النشرة الإخبارية",
       newsletterText: "انضمي لعروض حصرية ووصول جديد.",
       newsletterPlaceholder: "بريدك الإلكتروني",
@@ -387,7 +395,11 @@ export const translations = {
         "وُلدت NileChic من إيمان بسيط: كل امرأة تستحق أن تشعر بالجمال والثقة. نصنع ملابس داخلية أنيقة تحتفي بالأنوثة بأفضل الأقمشة وتصاميم خالدة.",
       story: "قصتنا",
       storyText:
-        "تأسست بشغف الجودة والسرية، نمونا لنصبح اسماً موثوقاً في الملابس الداخلية. كل قطعة مصممة بعناية لتجمع الراحة والأناقة والفخامة.",
+        "بدأت NileChic حيث يلتقي النيل بالخليج—عند مفترق ثقافات تقدّر الأناقة والسرية. مؤسستنا، مستوحاة من نعمة نساء الشرق الأوسط وفخامة التصميم الأوروبي، سعت لصنع ملابس داخلية تكرم الأنوثة دون تنازل.",
+      storyPara2:
+        "بدأنا صغاراً: قطع قليلة مختارة بعناية، التزام بأقمشة عالية الجودة، ووعد ثابت بالخصوصية. انتشر الكلمة. الأمهات أخبرن البنات. الصديقات أوصين بـ NileChic. اليوم نخدم نساء دول الخليج ومصر، كل طلب مُغلّف بعبوة عادية، كل قطعة مصنوعة للاحتفاء بالمرأة التي ترتديها.",
+      storyPara3:
+        "نؤمن أن الفخامة يجب أن تكون متاحة وخاصة. لذلك نقدم الدفع عند الاستلام—بدون دفع مقدماً، دون أثر رقمي. لماذا كل صندوق نشحنه يبدو كأي طرود عادي. ولماذا، خلف كل غرزة، فريق يفهم ما يعني التسوق لنفسك بثقة.",
       values: "قيمنا",
       quality: "الجودة",
       privacy: "الخصوصية",

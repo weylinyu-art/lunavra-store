@@ -5,7 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
+import { useCart } from "@/contexts/CartContext";
 import { products } from "@/lib/data/products";
+import { getProductSchema } from "@/lib/seo/structured-data";
 import SizeGuideModal from "@/components/SizeGuideModal";
 import ShareButtons from "@/components/ShareButtons";
 import ProductReviews from "@/components/ProductReviews";
@@ -14,12 +16,22 @@ export default function ProductPage() {
   const params = useParams();
   const router = useRouter();
   const { t, locale, path } = useLocale();
+  const { addItem } = useCart();
   const productId = typeof params.id === "string" ? params.id : params.id?.[0];
   const product = products.find((p) => p.id === productId);
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
+  const [addToCartAnimating, setAddToCartAnimating] = useState(false);
+
+  const handleAddToCart = () => {
+    if (!selectedSize) return;
+    setAddToCartAnimating(true);
+    addItem(1);
+    setTimeout(() => setAddToCartAnimating(false), 400);
+    setTimeout(() => router.push(path("/checkout")), 350);
+  };
 
   if (!product) {
     return (
@@ -43,8 +55,14 @@ export default function ProductPage() {
       : `https://nilechic.com${path(`/product/${product.id}`)}`;
   const shareTitle = name;
 
+  const productSchema = getProductSchema(product, locale);
+
   return (
     <div className="mx-auto max-w-7xl bg-[#FAF8F5] px-4 py-6 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       {/* Breadcrumb */}
       <nav className="mb-6 text-sm text-foreground/70">
         <Link href={path("/")} className="transition-colors hover:text-[#C9A962]">
@@ -146,11 +164,13 @@ export default function ProductPage() {
 
           {/* Add to cart */}
           <button
-            onClick={() => router.push(path("/checkout"))}
+            onClick={handleAddToCart}
             disabled={!selectedSize}
-            className="mt-6 w-full rounded-lg bg-foreground py-4 text-sm font-medium text-[#FFFEF9] shadow-sm transition-all hover:-translate-y-0.5 hover:bg-foreground/90 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 sm:w-auto sm:px-12"
+            className={`mt-6 w-full rounded-lg bg-foreground py-4 text-sm font-medium text-[#FFFEF9] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-foreground/90 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 sm:w-auto sm:px-12 ${
+              addToCartAnimating ? "scale-95 animate-add-to-cart" : ""
+            }`}
           >
-            {t.product.addToCart}
+            {addToCartAnimating ? t.product.addedToCart : t.product.addToCart}
           </button>
 
           {/* Trust badges */}

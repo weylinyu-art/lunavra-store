@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { isValidLocale } from "@/lib/i18n/locale";
 import { LocaleProvider } from "@/contexts/LocaleContext";
+import { CartProvider } from "@/contexts/CartContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -26,6 +27,7 @@ export default async function LocaleLayout({
 
   return (
     <LocaleProvider locale={locale}>
+      <CartProvider>
       <Suspense fallback={null}>
         <LocaleInit />
       </Suspense>
@@ -37,6 +39,7 @@ export default async function LocaleLayout({
         <Footer />
         <WhatsAppButton />
       </div>
+      </CartProvider>
     </LocaleProvider>
   );
 }

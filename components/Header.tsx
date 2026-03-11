@@ -2,11 +2,21 @@
 
 import Link from "next/link";
 import { useLocale } from "@/contexts/LocaleContext";
+import { useCart } from "@/contexts/CartContext";
 import { useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
+function CartIcon() {
+  return (
+    <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+    </svg>
+  );
+}
+
 export default function Header() {
   const { t, path } = useLocale();
+  const { count } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const categories = [
@@ -29,18 +39,34 @@ export default function Header() {
           </span>
         </Link>
 
-        <div className="hidden flex-1 items-center justify-center gap-2 sm:flex">
-          <span className="rounded-full bg-[#C9A962]/15 px-4 py-1.5 text-center text-xs font-medium text-[#C9A962]">
-            🚚 {t.header.freeShipping}
-          </span>
+        <div className="hidden flex-1 overflow-hidden sm:flex">
+          <div className="marquee w-full">
+            <div className="marquee-inner flex items-center gap-8 py-1.5">
+              <span className="shrink-0 rounded-full bg-[#C9A962]/15 px-4 py-1 text-xs font-medium text-[#C9A962]">
+                🚚 {t.header.freeShipping}
+              </span>
+              <span className="shrink-0 rounded-full bg-[#C9A962]/15 px-4 py-1 text-xs font-medium text-[#C9A962]">
+                🚚 {t.header.freeShipping}
+              </span>
+              <span className="shrink-0 rounded-full bg-[#C9A962]/15 px-4 py-1 text-xs font-medium text-[#C9A962]">
+                🚚 {t.header.freeShipping}
+              </span>
+            </div>
+          </div>
         </div>
 
         <div className="flex items-center gap-2">
           <Link
             href={path("/checkout")}
-            className="rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962]"
+            className="relative flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962]"
           >
-            {t.nav.cart}
+            <CartIcon />
+            <span className="hidden sm:inline">{t.nav.cart}</span>
+            {count > 0 && (
+              <span className="absolute -top-0.5 -end-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#C9A962] px-1 text-[10px] font-semibold text-white">
+                {count > 99 ? "99+" : count}
+              </span>
+            )}
           </Link>
           <LanguageSwitcher />
           <button
@@ -61,7 +87,7 @@ export default function Header() {
         className="border-t border-rose-200/30 bg-[#FFFEF9]/95"
         aria-label="Categories"
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-center gap-1 px-4 py-2 sm:gap-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-start gap-1 overflow-x-auto px-4 py-2 sm:gap-4 sm:px-6 lg:px-8">
           <Link
             href={path("/")}
             className="rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962]"
@@ -115,8 +141,18 @@ export default function Header() {
             <Link href={path("/about")} onClick={() => setMobileMenuOpen(false)}>
               {t.nav.about}
             </Link>
-            <Link href={path("/checkout")} onClick={() => setMobileMenuOpen(false)}>
+            <Link
+              href={path("/checkout")}
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2"
+            >
+              <CartIcon />
               {t.nav.cart}
+              {count > 0 && (
+                <span className="rounded-full bg-[#C9A962] px-2 py-0.5 text-xs font-semibold text-white">
+                  {count}
+                </span>
+              )}
             </Link>
             <div className="mt-4 flex items-center gap-2 border-t border-rose-200/30 pt-4">
               <span className="text-xs text-foreground/50">Language</span>

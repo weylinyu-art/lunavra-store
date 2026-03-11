@@ -36,6 +36,12 @@ export default function AboutPage() {
         <p className="mt-4 leading-relaxed text-foreground/80">
           {t.about.storyText}
         </p>
+        <p className="mt-4 leading-relaxed text-foreground/80">
+          {t.about.storyPara2}
+        </p>
+        <p className="mt-4 leading-relaxed text-foreground/80">
+          {t.about.storyPara3}
+        </p>
       </section>
 
       <section aria-labelledby="values-heading">

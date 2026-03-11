@@ -47,6 +47,11 @@ export default function Footer() {
                   {t.nav.about}
                 </Link>
               </li>
+              <li>
+                <Link href={path("/faq")} className="text-sm text-foreground/70 hover:text-[#C9A962]">
+                  {t.footer.faq}
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -93,9 +98,14 @@ export default function Footer() {
           <p className="text-xs text-foreground/60">
             © {new Date().getFullYear()} NileChic. {t.footer.rights}
           </p>
-          <Link href={path("/about")} className="text-xs text-foreground/60 hover:text-[#C9A962]">
-            {t.footer.privacy}
-          </Link>
+          <div className="flex gap-6">
+            <Link href={path("/privacy")} className="text-xs text-foreground/60 hover:text-[#C9A962]">
+              {t.footer.privacy}
+            </Link>
+            <Link href={path("/faq")} className="text-xs text-foreground/60 hover:text-[#C9A962]">
+              {t.footer.faq}
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

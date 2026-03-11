@@ -105,3 +105,34 @@ html[dir="rtl"] body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Marquee: horizontal ticker */
+.marquee {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+.marquee-inner {
+  animation: marquee 15s linear infinite;
+  width: max-content;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+/* Add to cart bounce */
+@keyframes add-to-cart {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+}
+.animate-add-to-cart {
+  animation: add-to-cart 0.35s ease-out;
+}

@@ -23,22 +23,42 @@ const notoArabic = Noto_Sans_Arabic({
 export const metadata: Metadata = {
   metadataBase: new URL("https://nilechic.com"),
   title: {
-    default: "NileChic | Elegant Lingerie - nilechic.com",
+    default: "NileChic | Elegant Lingerie - Luxury Intimate Wear | nilechic.com",
     template: "%s | NileChic - nilechic.com",
   },
   description:
-    "Elegant lingerie designed to make every woman feel confident and beautiful. Shop discreet packaging, cash on delivery. nilechic.com",
-  keywords: ["lingerie", "elegant", "feminine", "luxury", "lunavra", "cash on delivery"],
+    "NileChic offers elegant lingerie and intimate wear for women. Free shipping over $100. Discreet packaging. Cash on delivery. Ships to GCC & Egypt. Shop lingerie sets, bras, panties, sleepwear.",
+  keywords: [
+    "NileChic",
+    "lingerie",
+    "elegant lingerie",
+    "luxury intimate wear",
+    "women's underwear",
+    "GCC lingerie",
+    "Egypt lingerie",
+    "cash on delivery",
+    "discreet packaging",
+    "bridal lingerie",
+    "romantic gifts",
+  ],
   openGraph: {
-    title: "NileChic | Elegant Lingerie",
-    description: "Celebrate your femininity with elegant lingerie. Discreet packaging, cash on delivery.",
+    title: "NileChic | Elegant Lingerie - Elegance Inspired by Beauty",
+    description:
+      "Luxury lingerie designed to celebrate femininity and confidence. Discreet packaging. Cash on delivery. Free shipping over $100. Ships to GCC & Egypt.",
     url: "https://nilechic.com",
     siteName: "NileChic",
     type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
   },
   robots: {
     index: true,
     follow: true,
+  },
+  alternates: {
+    canonical: "https://nilechic.com",
   },
 };
 
@@ -50,6 +70,20 @@ export default function RootLayout({
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "NileChic",
+              url: "https://nilechic.com",
+              description:
+                "Elegant lingerie designed to celebrate femininity and confidence. Discreet packaging, cash on delivery. Ships to GCC & Egypt.",
+              sameAs: ["https://www.instagram.com/nilechic"],
+            }),
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
