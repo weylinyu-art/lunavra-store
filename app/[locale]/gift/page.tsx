@@ -49,7 +49,7 @@ export default function GiftPage() {
           <h2 id="gift-products-heading" className="font-heading text-2xl font-light tracking-wide text-foreground">
             {t.romanticGifts.title}
           </h2>
-          <p className="mt-2 text-foreground/70">{t.romanticGifts.message}</p>
+          <p className="mt-2 text-sm text-foreground/70 sm:text-base">{t.romanticGifts.banner}</p>
           <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-6 lg:grid-cols-4">
             {displayProducts.map((product) => (
               <ProductCard key={product.id} product={product} giftMode />

@@ -159,12 +159,11 @@ export default function HomePage() {
       {/* 5. Gift Picks / Gift for Wife */}
       <section className="bg-gradient-to-b from-[#FAF8F5] to-[#FFFEF9] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="gifts-heading">
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-xl bg-[#FDF2F4] p-6 text-center sm:rounded-2xl sm:p-8 md:p-12">
+          <div className="text-center">
             <h2 id="gifts-heading" className="font-heading text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-4xl">
               {t.romanticGifts.title}
             </h2>
-            <p className="mt-3 text-base text-foreground/80 sm:mt-4 sm:text-lg">{t.romanticGifts.banner}</p>
-            <p className="mt-1.5 text-sm text-foreground/70 sm:mt-2 sm:text-base">{t.romanticGifts.message}</p>
+            <p className="mt-2 text-sm text-foreground/70 sm:text-base">{t.romanticGifts.banner}</p>
           </div>
           <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:grid-cols-4">
             {giftProducts.map((product) => (

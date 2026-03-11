@@ -65,12 +65,7 @@ export default function ProductCard({ product, showNewBadge, giftMode }: Product
             className={`object-cover transition-all duration-500 ease-out ${giftMode ? "group-hover:scale-[1.03]" : "group-hover:scale-105"}`}
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
-          <div className={`absolute flex flex-wrap gap-2 ${giftMode ? "top-10 start-3" : "top-3 start-3"}`}>
-            {giftMode && (
-              <span className="rounded-full bg-[#C9A962] px-3 py-1 text-xs font-medium uppercase tracking-wider text-white shadow-sm">
-                {t.romanticGifts.tag}
-              </span>
-            )}
+          <div className={`absolute flex flex-wrap gap-2 ${giftMode ? "top-3 start-3" : "top-3 start-3"}`}>
             {!giftMode && (product.tags?.includes("new") || showNewBadge) && (
               <span className="rounded-full bg-[#E8C4C4] px-3 py-1 text-xs font-medium uppercase tracking-wider text-foreground shadow-sm">
                 {t.newArrivals.tag}
