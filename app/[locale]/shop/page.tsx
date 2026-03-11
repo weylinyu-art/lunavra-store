@@ -19,6 +19,7 @@ function ShopContent() {
   const categoryLabels: Record<string, string> = {
     "lingerie-sets": t.categories.lingerieSets,
     bras: t.categories.bras,
+    panties: t.categories.panties,
     sleepwear: t.categories.sleepwear,
   };
 

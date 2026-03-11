@@ -96,3 +96,12 @@ html[dir="rtl"] body {
   color: var(--accent-gold);
   border-color: var(--accent-gold);
 }
+
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
