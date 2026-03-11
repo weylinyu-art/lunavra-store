@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FDF2F4;
+  --background-alt: #FAE8EC;
+  --foreground: #2C2C2C;
+  --foreground-muted: #5C5C5C;
+  --accent-pink: #E8C4C4;
+  --accent-pink-deep: #D4A5A5;
+  --accent-gold: #C9A962;
+  --accent-gold-light: #E5D4A1;
+  --ivory: #FFFEF9;
+  --ivory-warm: #FAF8F5;
+  --ivory-dark: #F5F0E8;
+  --rose: #F8E8E8;
+  --champagne: #F5E6D3;
+  --font-heading: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-gold: var(--accent-gold);
+  --color-ivory: var(--ivory);
+  --color-rose: var(--rose);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+/* Headings use serif */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* RTL: Use Arabic font for better readability */
+html[dir="rtl"] body {
+  text-align: right;
+  font-family: var(--font-arabic), var(--font-body), sans-serif;
+}
+
+/* Premium hover animations */
+@keyframes subtle-lift {
+  from {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+  to {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(201, 169, 98, 0.12);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(201, 169, 98, 0.12);
+}
+
+.hover-gold {
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.hover-gold:hover {
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+}

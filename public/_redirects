@@ -1,0 +1,7 @@
+# Redirect root and legacy routes to /en (default locale)
+/ /en 302
+/shop /en/shop 302
+/gift /en/gift 302
+/about /en/about 302
+/checkout /en/checkout 302
+/product/* /en/product/:splat 302
