@@ -12,6 +12,12 @@ export default function LocaleInit() {
   const router = useRouter();
 
   useEffect(() => {
+    const isAr = pathname.startsWith("/ar");
+    document.documentElement.lang = isAr ? "ar" : "en";
+    document.documentElement.dir = isAr ? "rtl" : "ltr";
+  }, [pathname]);
+
+  useEffect(() => {
     const currentLocale = pathname.startsWith("/ar") ? "ar" : "en";
     const preferred = getPreferredLocale();
     if (currentLocale !== preferred) {

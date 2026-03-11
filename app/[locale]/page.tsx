@@ -90,6 +90,7 @@ export default function HomePage() {
             { slug: "bras", name: t.categories.bras },
             { slug: "panties", name: t.categories.panties },
             { slug: "sleepwear", name: t.categories.sleepwear },
+            { slug: "bridal", name: t.categories.bridal },
           ].map((cat) => {
             const categoryData = categories.find((c) => c.slug === cat.slug);
             return (

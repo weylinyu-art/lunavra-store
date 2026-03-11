@@ -71,20 +71,6 @@ export default function RootLayout({
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <head>
         <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "NileChic",
-              url: "https://nilechic.com",
-              description:
-                "Elegant lingerie designed to celebrate femininity and confidence. Discreet packaging, cash on delivery. Ships to GCC & Egypt.",
-              sameAs: ["https://www.instagram.com/nilechic"],
-            }),
-          }}
-        />
-        <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
@@ -98,6 +84,20 @@ export default function RootLayout({
                 }
               })();
             `,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "NileChic",
+              url: "https://nilechic.com",
+              description:
+                "Elegant lingerie designed to celebrate femininity and confidence. Discreet packaging, cash on delivery. Ships to GCC & Egypt.",
+              sameAs: ["https://www.instagram.com/nilechic"],
+            }),
           }}
         />
       </head>

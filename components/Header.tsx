@@ -40,11 +40,22 @@ export default function Header() {
           </span>
         </Link>
 
-        <div className="hidden max-w-md flex-1 overflow-hidden sm:block">
-          <div className="marquee-single mx-auto max-w-xs">
-            <span className="marquee-single-inner inline-block whitespace-nowrap text-xs font-medium text-[#C9A962]">
-              🚚 {t.header.freeShipping} &nbsp;·&nbsp; 🚚 {t.header.freeShipping} &nbsp;·&nbsp;
-            </span>
+        <div className="hidden max-w-sm flex-1 overflow-hidden sm:block">
+          <div className="promo-ticker mx-auto max-w-[280px]">
+            <div className="promo-ticker-track">
+              <span className="rounded-full bg-[#C9A962]/12 px-3 py-1.5 text-xs font-medium text-[#C9A962]">
+                🚚 {t.header.freeShipping}
+              </span>
+              <span className="rounded-full bg-[#C9A962]/12 px-3 py-1.5 text-xs font-medium text-[#C9A962]">
+                🚚 {t.header.freeShipping}
+              </span>
+              <span className="rounded-full bg-[#C9A962]/12 px-3 py-1.5 text-xs font-medium text-[#C9A962]">
+                🚚 {t.header.freeShipping}
+              </span>
+              <span className="rounded-full bg-[#C9A962]/12 px-3 py-1.5 text-xs font-medium text-[#C9A962]">
+                🚚 {t.header.freeShipping}
+              </span>
+            </div>
           </div>
         </div>
 

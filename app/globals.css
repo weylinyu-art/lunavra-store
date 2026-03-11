@@ -50,7 +50,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
-/* RTL: Use Arabic font for better readability */
+/* RTL: Arabic layout - mirrored */
 html[dir="rtl"] body {
   text-align: right;
   font-family: var(--font-arabic), var(--font-body), sans-serif;
@@ -106,22 +106,25 @@ html[dir="rtl"] body {
   scrollbar-width: none;
 }
 
-/* Marquee: single-line ticker in contained area */
-.marquee-single {
+/* Promo ticker: subtle horizontal scroll */
+.promo-ticker {
   overflow: hidden;
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  white-space: nowrap;
 }
-.marquee-single-inner {
-  animation: marquee-single 12s linear infinite;
+.promo-ticker-track {
+  display: inline-flex;
+  gap: 2rem;
+  animation: promo-ticker 20s linear infinite;
 }
-@keyframes marquee-single {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+.promo-ticker-track span {
+  flex-shrink: 0;
+}
+@keyframes promo-ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+html[dir="rtl"] .promo-ticker-track {
+  animation-direction: reverse;
 }
 
 /* Add to cart bounce */
