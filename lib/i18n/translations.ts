@@ -35,7 +35,7 @@ export const translations = {
       exploreGifts: "Explore Gifts",
     },
     trust: {
-      title: "Why Choose LUNAVRA",
+      title: "Why Choose NileChic",
       discreet: "Discreet Packaging",
       discreetDesc: "Your privacy is our priority",
       cod: "Cash on Delivery",
@@ -58,16 +58,24 @@ export const translations = {
     reviews: {
       title: "What Our Customers Say",
       review1: {
-        text: "Absolutely love my purchase! The quality exceeded my expectations. Discreet packaging was a huge plus.",
+        text: "Absolutely love my purchase! The quality exceeded my expectations. Discreet packaging was a huge plus. The Ivory Lace Set is now my favorite.",
         author: "Sarah M.",
       },
       review2: {
-        text: "Perfect gift for my wife. She was so delighted. The design is elegant and the fabric feels luxurious.",
+        text: "Perfect gift for my wife. She was so delighted with the Champagne Silk Set. The design is elegant and the fabric feels luxurious against skin.",
         author: "Ahmed K.",
       },
       review3: {
-        text: "Best online lingerie shopping experience. Cash on delivery made it so easy. Will definitely order again!",
+        text: "Best online lingerie shopping experience. Cash on delivery made it so easy. Fast shipping and the Silk Slip Nightgown is dreamy. Will definitely order again!",
         author: "Layla H.",
+      },
+      review4: {
+        text: "The bridal collection is stunning. Ordered for my best friend's wedding. She cried happy tears. NileChic understands what women want.",
+        author: "Emily R.",
+      },
+      review5: {
+        text: "I've tried many brands—NileChic stands out. The fit is perfect, fabrics are premium, and the cash on delivery option gives me peace of mind.",
+        author: "Nora S.",
       },
     },
     instagram: {
@@ -112,10 +120,10 @@ export const translations = {
       birthday: "Birthday Collections",
     },
     about: {
-      title: "About LUNAVRA",
+      title: "About NileChic",
       mission: "Our Mission",
       missionText:
-        "LUNAVRA was born from a simple belief: every woman deserves to feel beautiful and confident. We craft elegant lingerie that celebrates femininity with the finest fabrics and timeless designs.",
+        "NileChic was born from a simple belief: every woman deserves to feel beautiful and confident. We craft elegant lingerie that celebrates femininity with the finest fabrics and timeless designs.",
       story: "Our Story",
       storyText:
         "Founded with a passion for quality and discretion, we've grown to become a trusted name in intimate apparel. Each piece is thoughtfully designed to combine comfort, style, and sophistication.",
@@ -167,7 +175,7 @@ export const translations = {
       exploreGifts: "استكشفي الهدايا",
     },
     trust: {
-      title: "لماذا تختارين لونافرا",
+      title: "لماذا تختارين NileChic",
       discreet: "تغليف سري",
       discreetDesc: "خصوصيتك أولويتنا",
       cod: "الدفع عند الاستلام",
@@ -190,16 +198,24 @@ export const translations = {
     reviews: {
       title: "ماذا يقول عملاؤنا",
       review1: {
-        text: "أحببت شرائي جداً! الجودة تفوق توقعاتي. التغليف السري كان ميزة كبيرة.",
+        text: "أحببت شرائي جداً! الجودة تفوق توقعاتي. التغليف السري كان ميزة كبيرة. الطقم العاجي أصبح المفضل لدي.",
         author: "سارة م.",
       },
       review2: {
-        text: "هدية مثالية لزوجتي. كانت سعيدة جداً. التصميم أنيق والقماش فاخر.",
+        text: "هدية مثالية لزوجتي. كانت سعيدة جداً بالطقم الحريري. التصميم أنيق والقماش فاخر على البشرة.",
         author: "أحمد ك.",
       },
       review3: {
-        text: "أفضل تجربة تسوق ملابس داخلية أونلاين. الدفع عند الاستلام سهل جداً. سأطلب حتماً مرة أخرى!",
+        text: "أفضل تجربة تسوق ملابس داخلية أونلاين. الدفع عند الاستلام سهل جداً. الشحن سريع وقميص النوم الحريري رائع. سأطلب حتماً مرة أخرى!",
         author: "ليلى ح.",
+      },
+      review4: {
+        text: "مجموعة العروس مذهلة. اطلبته لعرس أفضل صديقاتي. بكت من الفرح. NileChic تفهم ما تريده النساء.",
+        author: "إيميلي ر.",
+      },
+      review5: {
+        text: "جربت علامات كثيرة—NileChic تتميز. المقاس مثالي والأقمشة فاخرة وخيار الدفع عند الاستلام يمنحني راحة البال.",
+        author: "نورا س.",
       },
     },
     instagram: {
@@ -243,10 +259,10 @@ export const translations = {
       birthday: "مجموعات أعياد الميلاد",
     },
     about: {
-      title: "عن لونافرا",
+      title: "عن NileChic",
       mission: "مهمتنا",
       missionText:
-        "وُلدت لونافرا من إيمان بسيط: كل امرأة تستحق أن تشعر بالجمال والثقة. نصنع ملابس داخلية أنيقة تحتفي بالأنوثة بأفضل الأقمشة وتصاميم خالدة.",
+        "وُلدت NileChic من إيمان بسيط: كل امرأة تستحق أن تشعر بالجمال والثقة. نصنع ملابس داخلية أنيقة تحتفي بالأنوثة بأفضل الأقمشة وتصاميم خالدة.",
       story: "قصتنا",
       storyText:
         "تأسست بشغف الجودة والسرية، نمونا لنصبح اسماً موثوقاً في الملابس الداخلية. كل قطعة مصممة بعناية لتجمع الراحة والأناقة والفخامة.",

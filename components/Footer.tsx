@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-3">
           <div>
             <Link href={path("/")} className="text-xl font-light tracking-[0.2em] text-foreground">
-              LUNAVRA
+              NileChic
             </Link>
             <p className="mt-3 text-sm text-foreground/70">{t.footer.tagline}</p>
           </div>
@@ -55,7 +55,7 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-rose-200/50 pt-8 sm:flex-row">
           <p className="text-xs text-foreground/60">
-            © {new Date().getFullYear()} LUNAVRA. {t.footer.rights}
+            © {new Date().getFullYear()} NileChic. {t.footer.rights}
           </p>
         </div>
       </div>

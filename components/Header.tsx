@@ -28,7 +28,7 @@ export default function Header() {
           href={path("/")}
           className="text-2xl font-light tracking-[0.2em] text-foreground transition-colors duration-200 hover:text-[#C9A962]"
         >
-          LUNAVRA
+          NileChic
         </Link>
 
         {/* Desktop nav */}

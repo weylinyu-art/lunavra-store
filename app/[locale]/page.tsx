@@ -96,7 +96,7 @@ export default function HomePage() {
             {t.romanticGifts.title}
           </h2>
           <p className="mt-4 text-foreground/80">{t.romanticGifts.subtitle}</p>
-          <p className="mt-4 text-foreground/80/90">{t.romanticGifts.message}</p>
+          <p className="mt-4 text-foreground/70">{t.romanticGifts.message}</p>
           <Link
             href={path("/gift")}
             className="mt-8 inline-block rounded-lg bg-foreground px-8 py-3.5 text-sm font-medium text-[#FFFEF9] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-foreground/90 hover:shadow-md"
@@ -155,7 +155,7 @@ export default function HomePage() {
           {t.reviews.title}
         </h2>
         <div className="mx-auto mt-12 grid max-w-5xl gap-8 md:grid-cols-3">
-          {[t.reviews.review1, t.reviews.review2, t.reviews.review3].map((review, i) => (
+          {[t.reviews.review1, t.reviews.review2, t.reviews.review3, t.reviews.review4, t.reviews.review5].map((review, i) => (
             <blockquote
               key={i}
               className="hover-lift rounded-xl bg-[#FFFEF9] p-6 shadow-sm transition-all duration-300"

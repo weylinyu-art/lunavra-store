@@ -23,17 +23,17 @@ const notoArabic = Noto_Sans_Arabic({
 export const metadata: Metadata = {
   metadataBase: new URL("https://nilechic.com"),
   title: {
-    default: "LUNAVRA | Elegant Lingerie - nilechic.com",
-    template: "%s | LUNAVRA - nilechic.com",
+    default: "NileChic | Elegant Lingerie - nilechic.com",
+    template: "%s | NileChic - nilechic.com",
   },
   description:
     "Elegant lingerie designed to make every woman feel confident and beautiful. Shop discreet packaging, cash on delivery. nilechic.com",
   keywords: ["lingerie", "elegant", "feminine", "luxury", "lunavra", "cash on delivery"],
   openGraph: {
-    title: "LUNAVRA | Elegant Lingerie",
+    title: "NileChic | Elegant Lingerie",
     description: "Celebrate your femininity with elegant lingerie. Discreet packaging, cash on delivery.",
     url: "https://nilechic.com",
-    siteName: "LUNAVRA",
+    siteName: "NileChic",
     type: "website",
   },
   robots: {

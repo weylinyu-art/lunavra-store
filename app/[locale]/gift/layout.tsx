@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Gift",
   description:
-    "The perfect gift for someone special. Explore LUNAVRA romantic gift collections for anniversaries and birthdays.",
+    "The perfect gift for someone special. Explore NileChic romantic gift collections for anniversaries and birthdays.",
 };
 
 export default function GiftLayout({

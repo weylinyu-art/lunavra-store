@@ -166,6 +166,169 @@ export const products: Product[] = [
     tags: ["romantic-gift"],
     featured: false,
   },
+  // Additional Lingerie Sets
+  {
+    id: "9",
+    name: "Black Elegance Set",
+    nameAr: "طقم أناقة أسود",
+    price: 98,
+    category: "lingerie-sets",
+    image: "https://placehold.co/400x500/2C2C2C/C9A962?text=Black+Set",
+    images: ["https://placehold.co/400x500/2C2C2C/C9A962?text=1"],
+    description:
+      "Stunning black lace lingerie set with gold accents. Premium stretch lace hugs curves beautifully. Push-up bra with matching high-waist thong. A bold statement piece for confident evenings.",
+    descriptionAr:
+      "طقم دانتيل أسود مذهل مع لمسات ذهبية. دانتيل ممتد فاخر يلائم المنحنيات بأناقة. حمالة صدر رافع مع ثونج عالي الخصر. قطعة جريئة للأمسيات الواثقة.",
+    sizes: ["XS", "S", "M", "L"],
+    tags: ["romantic-gift"],
+    featured: true,
+  },
+  {
+    id: "10",
+    name: "Bridal White Collection",
+    nameAr: "مجموعة العروس البيضاء",
+    price: 125,
+    category: "lingerie-sets",
+    image: "https://placehold.co/400x500/FFFEF9/D4A5A5?text=Bridal",
+    images: ["https://placehold.co/400x500/FFFEF9/D4A5A5?text=1"],
+    description:
+      "Dreamy bridal lingerie in pure white. Intricate floral lace with pearl embellishments. Longline bra and garter belt included. The ultimate wedding night essential.",
+    descriptionAr:
+      "ملابس داخلية عروس بيضاء نقية. دانتيل زهري مع زخارف لؤلؤية. حمالة طويلة وحزام جارتر. ضروري لليلة العرس.",
+    sizes: ["S", "M", "L"],
+    tags: ["romantic-gift", "best-seller"],
+    featured: true,
+  },
+  {
+    id: "11",
+    name: "Nude Comfort Set",
+    nameAr: "طقم راحة بلون البشرة",
+    price: 68,
+    category: "lingerie-sets",
+    image: "https://placehold.co/400x500/F5E6D3/D4A5A5?text=Nude+Set",
+    images: ["https://placehold.co/400x500/F5E6D3/D4A5A5?text=1"],
+    description:
+      "Skin-tone lingerie that disappears under any outfit. Seamless microfiber fabric. Non-padded wireless bra with matching brief. Perfect for everyday invisibility.",
+    descriptionAr:
+      "ملابس داخلية بلون البشرة تختفي تحت أي لباس. قماش ميكروفايبر سلس. حمالة لاسلكية بدون بطانة مع سروال مطابق. مثالي للاختفاء اليومي.",
+    sizes: ["XS", "S", "M", "L", "XL"],
+    tags: ["best-seller"],
+    featured: false,
+  },
+  // Additional Bras
+  {
+    id: "12",
+    name: "Push-Up Plunge Bra",
+    nameAr: "حمالة صدر غاطسة رافعة",
+    price: 55,
+    category: "bras",
+    image: "https://placehold.co/400x500/F8E8E8/E8C4C4?text=Plunge+Bra",
+    images: ["https://placehold.co/400x500/F8E8E8/E8C4C4?text=1"],
+    description:
+      "Dramatic plunge neckline with enhanced lift. Perfect for low-cut tops and dresses. Contour padding creates natural shape. Available in black, nude, and blush.",
+    descriptionAr:
+      "خط عنق غاطس مع رفع محسّن. مثالي للتيشيرتات والفساتين المفتوحة. بطانة كنتور تعطي شكلاً طبيعياً. متوفر بالأسود واللون الطبيعي والوردي.",
+    sizes: ["32B", "32C", "34B", "34C", "36B", "36C"],
+    tags: ["best-seller"],
+    featured: true,
+  },
+  {
+    id: "13",
+    name: "Sports Comfort Bra",
+    nameAr: "حمالة صدر رياضية مريحة",
+    price: 42,
+    category: "bras",
+    image: "https://placehold.co/400x500/FAF8F5/D4A5A5?text=Sports+Bra",
+    images: ["https://placehold.co/400x500/FAF8F5/D4A5A5?text=1"],
+    description:
+      "Light support bralette ideal for yoga and lounging. Soft bamboo blend fabric. Racerback design. Breathable and comfortable for all-day wear.",
+    descriptionAr:
+      "براليت دعم خفيف مثالي لليوجا والراحة. قماش بامبو ناعم. تصميم راسرباك. منفس ومريح للبس طوال اليوم.",
+    sizes: ["XS", "S", "M", "L"],
+    tags: [],
+    featured: false,
+  },
+  {
+    id: "14",
+    name: "Sheer Mesh Longline",
+    nameAr: "حمالة طويلة شفافة",
+    price: 65,
+    category: "bras",
+    image: "https://placehold.co/400x500/FFFEF9/C9A962?text=Longline",
+    images: ["https://placehold.co/400x500/FFFEF9/C9A962?text=1"],
+    description:
+      "Elegant sheer mesh longline bra with underwire. Extends to waist for a smooth silhouette. Delicate lace cups. A vintage-inspired statement piece.",
+    descriptionAr:
+      "حمالة طويلة شفافة أنيقة مع سلك داعم. تمتد للخصر لظل سلس. كوبات دانتيل رقيقة. قطعة مستوحاة من الفينتاج.",
+    sizes: ["S", "M", "L"],
+    tags: ["romantic-gift"],
+    featured: false,
+  },
+  // Additional Sleepwear
+  {
+    id: "15",
+    name: "Satin Robe",
+    nameAr: "رداء ساتان",
+    price: 78,
+    category: "sleepwear",
+    image: "https://placehold.co/400x500/F8E8E8/C9A962?text=Satin+Robe",
+    images: ["https://placehold.co/400x500/F8E8E8/C9A962?text=1"],
+    description:
+      "Luxurious satin robe with tie waist. Lightweight and perfect for layering over lingerie. Available in blush, champagne, and black. Makes getting ready feel indulgent.",
+    descriptionAr:
+      "رداء ساتان فاخر مع ربط عند الخصر. خفيف ومثالي للطبقات فوق الملابس الداخلية. متوفر بالوردي والشامبانيا والأسود. يجعل الاستعداد ممتعاً.",
+    sizes: ["S", "M", "L", "XL"],
+    tags: ["romantic-gift"],
+    featured: true,
+  },
+  {
+    id: "16",
+    name: "Cotton Pajama Set",
+    nameAr: "طقم بيجاما قطني",
+    price: 58,
+    category: "sleepwear",
+    image: "https://placehold.co/400x500/FAF8F5/E8C4C4?text=Pajama+Set",
+    images: ["https://placehold.co/400x500/FAF8F5/E8C4C4?text=1"],
+    description:
+      "Cozy cotton pajama set with button-down top and relaxed pants. Classic striped design. Breathable for year-round comfort. Perfect for lazy mornings.",
+    descriptionAr:
+      "طقم بيجاما قطني مريح مع بلوزة أزرار وسراويل مريحة. تصميم مخطط كلاسيكي. منفس للراحة طوال السنة. مثالي للصباح البطيء.",
+    sizes: ["XS", "S", "M", "L", "XL"],
+    tags: ["best-seller"],
+    featured: false,
+  },
+  {
+    id: "17",
+    name: "Lace Kimono",
+    nameAr: "كيمونو دانتيل",
+    price: 82,
+    category: "sleepwear",
+    image: "https://placehold.co/400x500/F5E6D3/D4A5A5?text=Lace+Kimono",
+    images: ["https://placehold.co/400x500/F5E6D3/D4A5A5?text=1"],
+    description:
+      "Elegant lace trim kimono in flowing chiffon. Three-quarter sleeves. Floral lace detailing along the front. A versatile piece for at-home glamour.",
+    descriptionAr:
+      "كيمونو دانتيل أنيق بقماش شيفون متدفق. أكمام ثلاثة أرباع. تفاصيل دانتيل زهرية على الأمام. قطعة متعددة الاستخدامات للأناقة المنزلية.",
+    sizes: ["S", "M", "L"],
+    tags: ["romantic-gift"],
+    featured: false,
+  },
+  {
+    id: "18",
+    name: "Velvet Night Dress",
+    nameAr: "فستان نوم مخملي",
+    price: 95,
+    category: "sleepwear",
+    image: "https://placehold.co/400x500/4A4A4A/C9A962?text=Velvet+Dress",
+    images: ["https://placehold.co/400x500/4A4A4A/C9A962?text=1"],
+    description:
+      "Opulent velvet night dress with deep V-neck. Mid-length hem. Gold button accents. A winter-ready piece that feels incredibly luxurious against skin.",
+    descriptionAr:
+      "فستان نوم مخملي فاخر مع خط عنق V عميق. ذيل منتصف الطول. أزرار ذهبية. قطعة شتوية تشعر بالفخامة على البشرة.",
+    sizes: ["S", "M", "L"],
+    tags: ["romantic-gift", "best-seller"],
+    featured: true,
+  },
 ];
 
 export const categories = [
