@@ -72,7 +72,7 @@ export const translations = {
     },
     instagram: {
       title: "Follow Us on Instagram",
-      handle: "@lunavra.shop",
+      handle: "@nilechic",
     },
     product: {
       addToCart: "Add to Cart",
@@ -101,7 +101,7 @@ export const translations = {
       contact: "Contact",
       follow: "Follow Us",
       rights: "All rights reserved.",
-      domain: "lunavra.shop",
+      domain: "nilechic.com",
     },
     gift: {
       heroTitle: "The Perfect Gift",
@@ -204,7 +204,7 @@ export const translations = {
     },
     instagram: {
       title: "تابعينا على إنستغرام",
-      handle: "@lunavra.shop",
+      handle: "@nilechic",
     },
     product: {
       addToCart: "أضف للسلة",
@@ -232,7 +232,7 @@ export const translations = {
       contact: "تواصل",
       follow: "تابعينا",
       rights: "جميع الحقوق محفوظة.",
-      domain: "lunavra.shop",
+      domain: "nilechic.com",
     },
     gift: {
       heroTitle: "الهدية المثالية",

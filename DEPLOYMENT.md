@@ -36,7 +36,7 @@ git push -u origin main
 ## 3. 自定义域名（可选）
 
 - 在 Cloudflare Pages 项目中进入 **Custom domains**
-- 添加 `lunavra.shop`
+- 添加 `nilechic.com`
 - 将域名的 DNS 解析指向 Cloudflare
 
 ## 4. 自动部署

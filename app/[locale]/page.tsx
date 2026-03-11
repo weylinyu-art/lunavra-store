@@ -179,7 +179,7 @@ export default function HomePage() {
           {instagramImages.map((img) => (
             <a
               key={img.id}
-              href="https://instagram.com/lunavra.shop"
+              href="https://instagram.com/nilechic"
               target="_blank"
               rel="noopener noreferrer"
               className="group aspect-square overflow-hidden rounded-lg shadow-sm transition-transform duration-300 hover:scale-[1.02]"
