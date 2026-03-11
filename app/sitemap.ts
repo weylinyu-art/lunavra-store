@@ -7,7 +7,7 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const locales = ["en", "ar"];
-  const staticPaths = ["", "/shop", "/gift", "/about", "/checkout", "/privacy", "/faq"];
+  const staticPaths = ["", "/shop", "/search", "/gift", "/about", "/checkout", "/privacy", "/faq"];
 
   const entries: MetadataRoute.Sitemap = [];
 

@@ -210,6 +210,15 @@ export const translations = {
       filterBy: "Browse by category",
       all: "All",
     },
+    search: {
+      title: "Search",
+      placeholder: "Search lingerie, lace, silk...",
+      resultsFor: "Results for",
+      items: "items",
+      noResults: "No products match your search. Try different keywords.",
+      enterQuery: "Enter a search term above to find products.",
+      browseAll: "Browse all products",
+    },
   },
   ar: {
     nav: {
@@ -420,6 +429,15 @@ export const translations = {
       title: "اكتشفي مجموعتنا",
       filterBy: "تصفحي حسب الفئة",
       all: "الكل",
+    },
+    search: {
+      title: "بحث",
+      placeholder: "ابحثي عن دانتيل، حرير...",
+      resultsFor: "نتائج",
+      items: "منتج",
+      noResults: "لا توجد منتجات تطابق البحث. جربي كلمات مختلفة.",
+      enterQuery: "أدخلي كلمة بحث للعثور على المنتجات.",
+      browseAll: "تصفحي كل المنتجات",
     },
   },
 } as const;

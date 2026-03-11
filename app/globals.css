@@ -122,30 +122,6 @@ html[dir="rtl"] body {
   scrollbar-width: none;
 }
 
-/* Promo ticker: one item visible at a time, scrolls out then next in */
-.promo-ticker-single {
-  overflow: hidden;
-  width: 100%;
-  max-width: 320px;
-}
-.promo-ticker-single-track {
-  display: flex;
-  animation: promo-ticker-single 20s linear infinite;
-}
-.promo-ticker-single-item {
-  flex: 0 0 100%;
-  min-width: 100%;
-  text-align: center;
-  white-space: nowrap;
-}
-@keyframes promo-ticker-single {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-html[dir="rtl"] .promo-ticker-single-track {
-  animation-direction: reverse;
-}
-
 /* Gift card: distinctive product styling in gift context */
 .gift-card-image::after {
   content: "";

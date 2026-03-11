@@ -1,10 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useLocale } from "@/contexts/LocaleContext";
 import { useCart } from "@/contexts/CartContext";
 import { useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+
+function SearchIcon() {
+  return (
+    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>
+  );
+}
 
 function CartIcon() {
   return (
@@ -16,8 +25,16 @@ function CartIcon() {
 
 export default function Header() {
   const { t, path } = useLocale();
+  const router = useRouter();
   const { count } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const q = searchQuery.trim();
+    if (q) router.push(path(`/search?q=${encodeURIComponent(q)}`));
+  };
 
   const categories = [
     { slug: "lingerie-sets", name: t.categories.lingerieSets },
@@ -40,27 +57,26 @@ export default function Header() {
           </span>
         </Link>
 
-        <div className="hidden min-w-0 max-w-xs flex-1 sm:block">
-          <div className="promo-ticker-single mx-auto w-full">
-            <div className="promo-ticker-single-track">
-              <span className="promo-ticker-single-item rounded-full bg-[#C9A962]/12 px-4 py-1.5 text-xs font-medium text-[#C9A962]">
-                🚚 {t.header.freeShipping}
-              </span>
-              <span className="promo-ticker-single-item rounded-full bg-[#C9A962]/12 px-4 py-1.5 text-xs font-medium text-[#C9A962]">
-                🚚 {t.header.freeShipping}
-              </span>
-              <span className="promo-ticker-single-item rounded-full bg-[#C9A962]/12 px-4 py-1.5 text-xs font-medium text-[#C9A962]">
-                🚚 {t.header.freeShipping}
-              </span>
-              <span className="promo-ticker-single-item rounded-full bg-[#C9A962]/12 px-4 py-1.5 text-xs font-medium text-[#C9A962]">
-                🚚 {t.header.freeShipping}
-              </span>
-              <span className="promo-ticker-single-item rounded-full bg-[#C9A962]/12 px-4 py-1.5 text-xs font-medium text-[#C9A962]">
-                🚚 {t.header.freeShipping}
-              </span>
-            </div>
-          </div>
-        </div>
+        <form
+          onSubmit={handleSearch}
+          className="hidden sm:flex flex-1 max-w-md mx-4 items-center gap-0 rounded-lg border border-foreground/20 bg-white overflow-hidden focus-within:border-[#C9A962] focus-within:ring-1 focus-within:ring-[#C9A962]"
+        >
+          <input
+            type="search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder={t.search.placeholder}
+            className="flex-1 min-w-0 px-4 py-2.5 text-sm text-foreground placeholder:text-foreground/50 focus:outline-none"
+            aria-label="Search products"
+          />
+          <button
+            type="submit"
+            className="flex h-10 w-10 shrink-0 items-center justify-center bg-foreground text-[#FFFEF9] transition-colors hover:bg-foreground/90"
+            aria-label="Search"
+          >
+            <SearchIcon />
+          </button>
+        </form>
 
         <div className="flex items-center gap-2">
           <Link
@@ -122,6 +138,24 @@ export default function Header() {
       {/* Mobile menu: touch-optimized */}
       {mobileMenuOpen && (
         <div className="border-t border-rose-200/50 bg-[#FFFEF9] px-4 py-4 md:hidden">
+          <form onSubmit={handleSearch} className="mb-4 flex gap-0 rounded-lg border border-foreground/20 bg-white overflow-hidden">
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={t.search.placeholder}
+              className="flex-1 min-w-0 px-4 py-3 text-base text-foreground placeholder:text-foreground/50 focus:outline-none"
+              aria-label="Search products"
+            />
+            <button
+              type="submit"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex h-12 w-12 shrink-0 items-center justify-center bg-foreground text-[#FFFEF9]"
+              aria-label="Search"
+            >
+              <SearchIcon />
+            </button>
+          </form>
           <div className="flex flex-col gap-1">
             <p className="mb-3 px-1 text-sm text-foreground/70">🚚 {t.header.freeShipping}</p>
             <Link href={path("/")} onClick={() => setMobileMenuOpen(false)} className="touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium text-foreground active:bg-rose-100/50">
