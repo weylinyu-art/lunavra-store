@@ -127,6 +127,15 @@ html[dir="rtl"] .promo-ticker-track {
   animation-direction: reverse;
 }
 
+/* Gift card: distinctive product styling in gift context */
+.gift-card-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(201, 169, 98, 0.08) 0%, transparent 40%);
+  pointer-events: none;
+}
+
 /* Add to cart bounce */
 @keyframes add-to-cart {
   0%, 100% {

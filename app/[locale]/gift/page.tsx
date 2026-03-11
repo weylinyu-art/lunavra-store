@@ -8,6 +8,8 @@ import { products } from "@/lib/data/products";
 export default function GiftPage() {
   const { t, path } = useLocale();
   const featuredProducts = products.filter((p) => p.featured);
+  const giftProducts = products.filter((p) => p.tags?.includes("romantic-gift"));
+  const displayProducts = giftProducts.length >= 4 ? giftProducts : featuredProducts;
 
   const giftCategories = [
     { name: t.gift.forHer, slug: "for-her" },
@@ -42,15 +44,15 @@ export default function GiftPage() {
           ))}
         </div>
 
-        {/* Featured products as gifts */}
+        {/* Gift products with distinctive styling */}
         <section className="mt-16" aria-labelledby="gift-products-heading">
           <h2 id="gift-products-heading" className="font-heading text-2xl font-light tracking-wide text-foreground">
             {t.romanticGifts.title}
           </h2>
           <p className="mt-2 text-foreground/70">{t.romanticGifts.message}</p>
           <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {displayProducts.map((product) => (
+              <ProductCard key={product.id} product={product} giftMode />
             ))}
           </div>
           <div className="mt-10 text-center">
