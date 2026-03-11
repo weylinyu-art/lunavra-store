@@ -5,7 +5,7 @@ export interface Product {
   name: string;
   nameAr: string;
   price: number;
-  category: "lingerie-sets" | "bras" | "sleepwear" | "panties";
+  category: "lingerie-sets" | "bras" | "sleepwear" | "panties" | "bridal";
   image: string;
   images: string[];
   description: string;
@@ -192,7 +192,7 @@ export const products: Product[] = [
     name: "Bridal White Collection",
     nameAr: "مجموعة العروس البيضاء",
     price: 125,
-    category: "lingerie-sets",
+    category: "bridal",
     image: "https://images.unsplash.com/photo-1762195026689-fc8dea166b73?w=400&h=500&fit=crop",
     images: ["https://images.unsplash.com/photo-1762195026689-fc8dea166b73?w=400&h=500&fit=crop"],
     description:
@@ -201,6 +201,38 @@ export const products: Product[] = [
       "ملابس داخلية عروس بيضاء نقية. دانتيل زهري مع زخارف لؤلؤية. حمالة طويلة وحزام جارتر. ضروري لليلة العرس.",
     sizes: ["S", "M", "L"],
     tags: ["romantic-gift", "best-seller", "new"],
+    featured: true,
+  },
+  {
+    id: "35",
+    name: "Pearl Bridal Bodysuit",
+    nameAr: "بدلة عروس لؤلؤية",
+    price: 118,
+    category: "bridal",
+    image: "https://images.unsplash.com/photo-1762195026689-fc8dea166b73?w=400&h=500&fit=crop",
+    images: ["https://images.unsplash.com/photo-1762195026689-fc8dea166b73?w=400&h=500&fit=crop"],
+    description:
+      "Exquisite bridal bodysuit adorned with freshwater pearls and French lace. Designed for your special day with a flattering silhouette. A cherished piece for brides across the GCC and Egypt.",
+    descriptionAr:
+      "بدلة عروس فاخرة مرصعة بلآلئ ودانتيل فرنسي. مصممة ليومك الخاص بظل أنيق. قطعة ثمينة للعروس في دول الخليج ومصر.",
+    sizes: ["XS", "S", "M", "L"],
+    tags: ["romantic-gift", "new"],
+    featured: true,
+  },
+  {
+    id: "36",
+    name: "Nile Rose Bridal Set",
+    nameAr: "طقم عروس ورد النيل",
+    price: 132,
+    category: "bridal",
+    image: "https://images.unsplash.com/photo-1750032542760-d161088a94a8?w=400&h=500&fit=crop",
+    images: ["https://images.unsplash.com/photo-1750032542760-d161088a94a8?w=400&h=500&fit=crop"],
+    description:
+      "Inspired by the timeless elegance of the Nile. Delicate blush silk with gold embroidery—a fusion of tradition and modern luxury. Perfect for Arab brides seeking refined intimacy.",
+    descriptionAr:
+      "مستوحى من أناقة النيل الخالدة. حرير وردي رقيق مع تطريز ذهبي—مزيج من التراث والفخامة العصرية. مثالي للعروس العربية التي تبحث عن أناقة راقية.",
+    sizes: ["S", "M", "L"],
+    tags: ["romantic-gift", "best-seller"],
     featured: true,
   },
   {
@@ -614,5 +646,10 @@ export const categories = [
     id: "sleepwear",
     slug: "sleepwear",
     image: "https://images.unsplash.com/photo-1709422122379-79776f76bd87?w=600&h=600&fit=crop",
+  },
+  {
+    id: "bridal",
+    slug: "bridal",
+    image: "https://images.unsplash.com/photo-1762195026689-fc8dea166b73?w=600&h=600&fit=crop",
   },
 ] as const;

@@ -106,21 +106,21 @@ html[dir="rtl"] body {
   scrollbar-width: none;
 }
 
-/* Marquee: horizontal ticker */
-.marquee {
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+/* Marquee: single-line ticker in contained area */
+.marquee-single {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
-.marquee-inner {
-  animation: marquee 15s linear infinite;
-  width: max-content;
+.marquee-single-inner {
+  animation: marquee-single 12s linear infinite;
 }
-@keyframes marquee {
+@keyframes marquee-single {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-33.333%);
+    transform: translateX(-50%);
   }
 }
 

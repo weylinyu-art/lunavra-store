@@ -24,6 +24,7 @@ export default function Header() {
     { slug: "bras", name: t.categories.bras },
     { slug: "panties", name: t.categories.panties },
     { slug: "sleepwear", name: t.categories.sleepwear },
+    { slug: "bridal", name: t.categories.bridal },
   ];
 
   return (
@@ -39,19 +40,11 @@ export default function Header() {
           </span>
         </Link>
 
-        <div className="hidden flex-1 overflow-hidden sm:flex">
-          <div className="marquee w-full">
-            <div className="marquee-inner flex items-center gap-8 py-1.5">
-              <span className="shrink-0 rounded-full bg-[#C9A962]/15 px-4 py-1 text-xs font-medium text-[#C9A962]">
-                🚚 {t.header.freeShipping}
-              </span>
-              <span className="shrink-0 rounded-full bg-[#C9A962]/15 px-4 py-1 text-xs font-medium text-[#C9A962]">
-                🚚 {t.header.freeShipping}
-              </span>
-              <span className="shrink-0 rounded-full bg-[#C9A962]/15 px-4 py-1 text-xs font-medium text-[#C9A962]">
-                🚚 {t.header.freeShipping}
-              </span>
-            </div>
+        <div className="hidden max-w-md flex-1 overflow-hidden sm:block">
+          <div className="marquee-single mx-auto max-w-xs">
+            <span className="marquee-single-inner inline-block whitespace-nowrap text-xs font-medium text-[#C9A962]">
+              🚚 {t.header.freeShipping} &nbsp;·&nbsp; 🚚 {t.header.freeShipping} &nbsp;·&nbsp;
+            </span>
           </div>
         </div>
 
@@ -109,12 +102,6 @@ export default function Header() {
           >
             {t.nav.gift}
           </Link>
-          <Link
-            href={path("/about")}
-            className="rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962]"
-          >
-            {t.nav.about}
-          </Link>
         </div>
       </nav>
 
@@ -138,9 +125,6 @@ export default function Header() {
             <Link href={path("/gift")} onClick={() => setMobileMenuOpen(false)}>
               {t.nav.gift}
             </Link>
-            <Link href={path("/about")} onClick={() => setMobileMenuOpen(false)}>
-              {t.nav.about}
-            </Link>
             <Link
               href={path("/checkout")}
               onClick={() => setMobileMenuOpen(false)}
@@ -155,7 +139,6 @@ export default function Header() {
               )}
             </Link>
             <div className="mt-4 flex items-center gap-2 border-t border-rose-200/30 pt-4">
-              <span className="text-xs text-foreground/50">Language</span>
               <LanguageSwitcher onNavigate={() => setMobileMenuOpen(false)} />
             </div>
           </div>

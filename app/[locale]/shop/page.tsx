@@ -21,6 +21,7 @@ function ShopContent() {
     bras: t.categories.bras,
     panties: t.categories.panties,
     sleepwear: t.categories.sleepwear,
+    bridal: t.categories.bridal,
   };
 
   return (
