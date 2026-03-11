@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans, Noto_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 
@@ -60,6 +60,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://nilechic.com",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#FFFEF9",
 };
 
 export default function RootLayout({

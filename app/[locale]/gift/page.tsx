@@ -20,24 +20,24 @@ export default function GiftPage() {
 
   return (
     <div className="bg-[#FDF2F4]">
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-[#FAE8EC] via-[#FDF2F4] to-[#FFFEF9] px-4 py-20 text-center">
-        <h1 className="font-heading text-3xl font-light tracking-wide text-foreground md:text-5xl">
+      {/* Hero - mobile: compact */}
+      <section className="bg-gradient-to-b from-[#FAE8EC] via-[#FDF2F4] to-[#FFFEF9] px-4 py-12 text-center sm:py-20">
+        <h1 className="font-heading text-2xl font-light tracking-wide text-foreground sm:text-3xl md:text-5xl">
           {t.gift.heroTitle}
         </h1>
-        <p className="mt-6 max-w-xl mx-auto text-foreground/80">
+        <p className="mt-4 max-w-xl mx-auto text-sm text-foreground/80 sm:mt-6 sm:text-base">
           {t.gift.heroSubtitle}
         </p>
       </section>
 
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        {/* Gift categories */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Gift categories - mobile: 2 cols, touch-friendly */}
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {giftCategories.map((cat) => (
             <Link
               key={cat.slug}
               href={path(`/shop?gift=${cat.slug}`)}
-              className="hover-lift flex flex-col items-center justify-center rounded-xl bg-[#FFFEF9] p-8 shadow-sm transition-all duration-300"
+              className="hover-lift flex min-h-[80px] flex-col items-center justify-center rounded-xl bg-[#FFFEF9] p-6 shadow-sm transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:p-8"
             >
               <span className="font-medium text-foreground">{cat.name}</span>
             </Link>
@@ -45,12 +45,12 @@ export default function GiftPage() {
         </div>
 
         {/* Gift products with distinctive styling */}
-        <section className="mt-16" aria-labelledby="gift-products-heading">
+        <section className="mt-10 sm:mt-16" aria-labelledby="gift-products-heading">
           <h2 id="gift-products-heading" className="font-heading text-2xl font-light tracking-wide text-foreground">
             {t.romanticGifts.title}
           </h2>
           <p className="mt-2 text-foreground/70">{t.romanticGifts.message}</p>
-          <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-6 lg:grid-cols-4">
             {displayProducts.map((product) => (
               <ProductCard key={product.id} product={product} giftMode />
             ))}

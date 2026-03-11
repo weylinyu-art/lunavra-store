@@ -58,7 +58,7 @@ export default function ProductPage() {
   const productSchema = getProductSchema(product, locale);
 
   return (
-    <div className="mx-auto max-w-7xl bg-[#FAF8F5] px-4 py-6 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl bg-[#FAF8F5] px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
@@ -150,7 +150,7 @@ export default function ProductPage() {
                   key={size}
                   type="button"
                   onClick={() => setSelectedSize(size)}
-                  className={`min-w-[2.75rem] rounded-lg border px-4 py-2.5 text-sm font-medium transition-all ${
+                  className={`min-h-[44px] min-w-[2.75rem] rounded-lg border px-4 py-2.5 text-sm font-medium transition-all sm:min-h-0 ${
                     selectedSize === size
                       ? "border-[#C9A962] bg-[#C9A962]/15 text-[#C9A962]"
                       : "border-foreground/25 hover:border-[#C9A962] hover:bg-[#C9A962]/5"
@@ -162,11 +162,11 @@ export default function ProductPage() {
             </div>
           </div>
 
-          {/* Add to cart */}
+          {/* Add to cart - mobile: full width, min 48px height */}
           <button
             onClick={handleAddToCart}
             disabled={!selectedSize}
-            className={`mt-6 w-full rounded-lg bg-foreground py-4 text-sm font-medium text-[#FFFEF9] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-foreground/90 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 sm:w-auto sm:px-12 ${
+            className={`mt-6 flex min-h-[48px] w-full items-center justify-center rounded-lg bg-foreground py-4 text-base font-medium text-[#FFFEF9] shadow-sm transition-all duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-0 sm:w-auto sm:px-12 sm:py-4 sm:text-sm hover:-translate-y-0.5 hover:bg-foreground/90 hover:shadow-md disabled:hover:translate-y-0 ${
               addToCartAnimating ? "scale-95 animate-add-to-cart" : ""
             }`}
           >

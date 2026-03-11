@@ -47,7 +47,7 @@ export default function ProductCard({ product, showNewBadge, giftMode }: Product
     <article className={`group ${giftMode ? "gift-card" : ""}`}>
       <Link
         href={path(`/product/${product.id}`)}
-        className={`block overflow-hidden rounded-lg bg-[#FFFEF9] shadow-sm transition-all duration-300 hover:-translate-y-1 ${
+        className={`block overflow-hidden rounded-lg bg-[#FFFEF9] shadow-sm transition-all duration-300 active:scale-[0.98] sm:hover:-translate-y-1 ${
           giftMode
             ? "border-2 border-[#C9A962]/30 ring-2 ring-[#E8C4C4]/20 hover:border-[#C9A962]/50 hover:shadow-[0_12px_28px_rgba(201,169,98,0.2)]"
             : "hover:shadow-[0_12px_24px_rgba(201,169,98,0.15)]"

@@ -40,8 +40,8 @@ export default function Header() {
           </span>
         </Link>
 
-        <div className="hidden max-w-sm flex-1 overflow-hidden sm:block">
-          <div className="promo-ticker mx-auto max-w-[280px]">
+        <div className="hidden min-w-0 max-w-xl flex-1 overflow-hidden sm:block">
+          <div className="promo-ticker mx-auto w-full max-w-[420px]">
             <div className="promo-ticker-track">
               <span className="rounded-full bg-[#C9A962]/12 px-3 py-1.5 text-xs font-medium text-[#C9A962]">
                 🚚 {t.header.freeShipping}
@@ -91,10 +91,10 @@ export default function Header() {
         className="border-t border-rose-200/30 bg-[#FFFEF9]/95"
         aria-label="Categories"
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-start gap-1 overflow-x-auto px-4 py-2 sm:gap-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-start gap-1 overflow-x-auto px-4 py-2 sm:gap-4 sm:px-6 lg:px-8 scrollbar-hide">
           <Link
             href={path("/")}
-            className="rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962]"
+            className="flex shrink-0 items-center rounded-lg px-3 py-2.5 text-sm font-medium text-foreground/80 transition-colors min-h-[44px] hover:bg-[#C9A962]/10 hover:text-[#C9A962] active:bg-[#C9A962]/10 sm:min-h-0"
           >
             {t.nav.home}
           </Link>
@@ -102,26 +102,26 @@ export default function Header() {
             <Link
               key={cat.slug}
               href={path(`/shop?category=${cat.slug}`)}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962]"
+              className="flex shrink-0 items-center rounded-lg px-3 py-2.5 text-sm font-medium text-foreground/80 transition-colors min-h-[44px] hover:bg-[#C9A962]/10 hover:text-[#C9A962] active:bg-[#C9A962]/10 sm:min-h-0"
             >
               {cat.name}
             </Link>
           ))}
           <Link
             href={path("/gift")}
-            className="rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962]"
+            className="flex shrink-0 items-center rounded-lg px-3 py-2.5 text-sm font-medium text-foreground/80 transition-colors min-h-[44px] hover:bg-[#C9A962]/10 hover:text-[#C9A962] active:bg-[#C9A962]/10 sm:min-h-0"
           >
             {t.nav.gift}
           </Link>
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu: touch-optimized */}
       {mobileMenuOpen && (
         <div className="border-t border-rose-200/50 bg-[#FFFEF9] px-4 py-4 md:hidden">
-          <div className="flex flex-col gap-2">
-            <p className="mb-2 text-xs text-foreground/70">🚚 {t.header.freeShipping}</p>
-            <Link href={path("/")} onClick={() => setMobileMenuOpen(false)}>
+          <div className="flex flex-col gap-1">
+            <p className="mb-3 px-1 text-sm text-foreground/70">🚚 {t.header.freeShipping}</p>
+            <Link href={path("/")} onClick={() => setMobileMenuOpen(false)} className="touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium text-foreground active:bg-rose-100/50">
               {t.nav.home}
             </Link>
             {categories.map((cat) => (
@@ -129,17 +129,18 @@ export default function Header() {
                 key={cat.slug}
                 href={path(`/shop?category=${cat.slug}`)}
                 onClick={() => setMobileMenuOpen(false)}
+                className="touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium text-foreground active:bg-rose-100/50"
               >
                 {cat.name}
               </Link>
             ))}
-            <Link href={path("/gift")} onClick={() => setMobileMenuOpen(false)}>
+            <Link href={path("/gift")} onClick={() => setMobileMenuOpen(false)} className="touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium text-foreground active:bg-rose-100/50">
               {t.nav.gift}
             </Link>
             <Link
               href={path("/checkout")}
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2"
+              className="touch-target flex min-h-[44px] items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-foreground active:bg-rose-100/50"
             >
               <CartIcon />
               {t.nav.cart}
