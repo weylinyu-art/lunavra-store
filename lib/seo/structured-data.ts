@@ -1,4 +1,5 @@
 import type { Product } from "@/lib/data/products";
+import { CONTACT_EMAIL, WHATSAPP_NUMBER } from "@/lib/config/whatsapp";
 
 const BASE_URL = "https://nilechic.com";
 
@@ -17,6 +18,8 @@ export function getOrganizationSchema(locale: string) {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
+      email: CONTACT_EMAIL,
+      telephone: `+${WHATSAPP_NUMBER}`,
       availableLanguage: ["English", "Arabic"],
     },
   };

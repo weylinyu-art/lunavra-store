@@ -1,9 +1,15 @@
 /**
- * WhatsApp integration config.
- * Replace with your actual business number (with country code, no + or spaces).
- * Example: 971501234567 for UAE
+ * Contact & WhatsApp config.
  */
-export const WHATSAPP_NUMBER = "1234567890";
+
+/** WhatsApp: country code + number, no + or spaces. Example: 971582981520 for UAE */
+export const WHATSAPP_NUMBER = "971582981520";
+
+/** WhatsApp number formatted for display (e.g. +971 582981520) */
+export const WHATSAPP_DISPLAY = "+971 582981520";
+
+/** Support email */
+export const CONTACT_EMAIL = "support@nilechic.com";
 
 export const WHATSAPP_MESSAGES = {
   /** Default message when clicking floating button (general inquiry) */

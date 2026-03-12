@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLocale } from "@/contexts/LocaleContext";
-import { WHATSAPP_NUMBER } from "@/lib/config/whatsapp";
+import { CONTACT_EMAIL, WHATSAPP_DISPLAY, WHATSAPP_NUMBER } from "@/lib/config/whatsapp";
 
 export default function Footer() {
   const { t, path } = useLocale();
@@ -62,10 +62,14 @@ export default function Footer() {
             <ul className="mt-4 space-y-2 text-sm text-foreground/70">
               <li>
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#C9A962]">
-                  {t.footer.whatsapp}
+                  {t.footer.whatsapp} {WHATSAPP_DISPLAY}
                 </a>
               </li>
-              <li>{t.footer.domain}</li>
+              <li>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-[#C9A962]">
+                  {CONTACT_EMAIL}
+                </a>
+              </li>
             </ul>
             <h3 className="mt-6 text-sm font-semibold uppercase tracking-wider text-foreground/80">
               {t.footer.shipping}
