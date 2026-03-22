@@ -183,10 +183,26 @@ export const translations = {
       defaultMaterial: "Premium lace, silk blend, and soft stretch fabric",
       defaultCare: "Hand wash or delicate cycle. Lay flat to dry. Do not bleach.",
       relatedTitle: "You may also like",
+      pdpSectionDescription: "Description",
+      pdpSectionDelivery: "Shipping & delivery",
+      pdpSectionFabric: "Material & care",
+      selectSizeFirst: "Please select a size",
       sizeReminder: "Between sizes? Open our size guide for measurements and fit notes before you add to cart.",
       imageAltFront: "Front view",
       imageAltBack: "Back view",
       imageAltDetail: "Detail view",
+      fulfillment: {
+        ksaLocalBadge: "Ships from Saudi Arabia",
+        ksaLocalEta: "Est. 1–3 business days",
+        ksaLocalTitle: "Local fulfillment",
+        ksaLocalDetail:
+          "This item ships from our warehouse in Saudi Arabia. Most orders arrive within 1–3 business days.",
+        intlBadge: "International delivery",
+        intlEta: "Est. 7–10 business days",
+        intlTitle: "International fulfillment",
+        intlDetail:
+          "This item is fulfilled from our international warehouse. Delivery to Saudi Arabia usually takes 7–10 business days after dispatch.",
+      },
     },
     productReviews: {
       title: "Customer Reviews",
@@ -509,10 +525,26 @@ export const translations = {
       defaultMaterial: "دانتيل فاخر وخليط حرير وقماش ممتد ناعم",
       defaultCare: "غسيل يدوي أو دورة delicate. جففي بشكل مسطح. لا تبيض.",
       relatedTitle: "قد يعجبك أيضاً",
+      pdpSectionDescription: "الوصف",
+      pdpSectionDelivery: "الشحن والتوصيل",
+      pdpSectionFabric: "المادة والعناية",
+      selectSizeFirst: "يرجى اختيار المقاس",
       sizeReminder: "بين مقاسين؟ راجعي دليل المقاسات والقياسات قبل الإضافة للسلة.",
       imageAltFront: "من الأمام",
       imageAltBack: "من الخلف",
       imageAltDetail: "تفاصيل",
+      fulfillment: {
+        ksaLocalBadge: "يشحن من السعودية",
+        ksaLocalEta: "تقريباً 1–3 أيام عمل",
+        ksaLocalTitle: "تجهيز محلي",
+        ksaLocalDetail:
+          "يُشحن هذا المنتج من مستودعنا في السعودية. تصل أغلب الطلبات خلال 1–3 أيام عمل.",
+        intlBadge: "توصيل دولي",
+        intlEta: "تقريباً 7–10 أيام عمل",
+        intlTitle: "تجهيز دولي",
+        intlDetail:
+          "يُجهّز هذا المنتج من مستودعنا الدولي. التوصيل إلى السعودية عادةً خلال 7–10 أيام عمل بعد الإرسال.",
+      },
     },
     productReviews: {
       title: "تقييمات العملاء",

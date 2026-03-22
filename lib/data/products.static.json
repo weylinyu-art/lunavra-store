@@ -18,7 +18,11 @@
     "materialAr": "62٪ بولي أميد، 28٪ إيلاستين، 10٪ فيسكوز دانتيل؛ بطانة شبك 82٪ بولي أميد، 18٪ إيلاستين؛ حلقات خالية من النيكل.",
     "care": "Hand wash cold with mild detergent. Do not wring. Lay flat in shade. Cool iron on reverse only, avoiding lace relief.",
     "careAr": "غسيل يدوي بارد بمنظف لطيف. لا تعصري. جففي مسطحة في الظل. كوي بارد من الداخل فقط وتجنبي الضغط على الدانتيل.",
-    "relatedIds": ["3", "5", "7"],
+    "relatedIds": [
+      "3",
+      "5",
+      "7"
+    ],
     "imageNotes": [
       "Editorial front: full ivory lace set on model, soft side light, calm nude-pink backdrop.",
       "Back view: wing lace placement and adjustable hook column, clean shoulder line.",
@@ -37,7 +41,8 @@
       "romantic-gift",
       "new"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "2",
@@ -58,7 +63,11 @@
     "materialAr": "92٪ حرير شارموز، 8٪ إيلاستين للاستعادة؛ أبازيم سبيكة بلون ذهبي؛ بطانة قطن.",
     "care": "Dry clean preferred. If hand washing, use silk-specific detergent, press water out in a towel, dry flat away from direct heat.",
     "careAr": "يفضل التنظيف الجاف. عند الغسيل اليدوي استخدمي منظف حرير، اضغطي الماء داخل منشفة، جففي مسطحة بعيداً عن الحرارة المباشرة.",
-    "relatedIds": ["1", "7", "8"],
+    "relatedIds": [
+      "1",
+      "7",
+      "8"
+    ],
     "imageNotes": [
       "Front three-quarter: champagne silk drape, collarbone highlight, restrained styling.",
       "Back: strap geometry and low scoop, gold hardware detail.",
@@ -73,7 +82,8 @@
     "tags": [
       "romantic-gift"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "3",
@@ -94,7 +104,11 @@
     "materialAr": "دانتيل 75٪ بولي أميد، 25٪ إيلاستين؛ بطانة الكوب 100٪ بوليستر؛ أجنحة شبك 80٪ بولي أميد، 20٪ إيلاستين.",
     "care": "Machine wash cold in mesh bag on delicate; lay flat to dry. Avoid fabric softener on lace.",
     "careAr": "غسيل آلي بارد داخل كيس شبك على برنامج delicate؛ جففي مسطحة. تجنبي منعم الأقمشة على الدانتيل.",
-    "relatedIds": ["1", "4", "6"],
+    "relatedIds": [
+      "1",
+      "4",
+      "6"
+    ],
     "imageNotes": [
       "Front: blush set on model, natural stance, soft shadow falloff.",
       "Back: high-waist brief coverage and band position at mid-back.",
@@ -111,7 +125,8 @@
       "best-seller",
       "popular"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "4",
@@ -141,7 +156,8 @@
       "best-seller",
       "popular"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "5",
@@ -167,7 +183,8 @@
     "tags": [
       "romantic-gift"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "6",
@@ -195,7 +212,8 @@
     "tags": [
       "best-seller"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "7",
@@ -223,7 +241,8 @@
       "best-seller",
       "romantic-gift"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "8",
@@ -248,7 +267,8 @@
     "tags": [
       "romantic-gift"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "9",
@@ -273,7 +293,8 @@
     "tags": [
       "romantic-gift"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "10",
@@ -300,7 +321,8 @@
       "best-seller",
       "new"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "35",
@@ -326,7 +348,8 @@
       "romantic-gift",
       "new"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "36",
@@ -352,7 +375,8 @@
       "romantic-gift",
       "best-seller"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "31",
@@ -379,7 +403,8 @@
       "new",
       "best-seller"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "32",
@@ -402,7 +427,8 @@
       "romantic-gift",
       "popular"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "33",
@@ -425,7 +451,8 @@
     "tags": [
       "best-seller"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "34",
@@ -448,7 +475,8 @@
     "tags": [
       "new"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "11",
@@ -472,7 +500,8 @@
     "tags": [
       "best-seller"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "12",
@@ -500,7 +529,8 @@
     "tags": [
       "best-seller"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "13",
@@ -523,7 +553,8 @@
       "L"
     ],
     "tags": [],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "14",
@@ -547,7 +578,8 @@
     "tags": [
       "romantic-gift"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "15",
@@ -572,7 +604,8 @@
     "tags": [
       "romantic-gift"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "16",
@@ -598,7 +631,8 @@
     "tags": [
       "best-seller"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "17",
@@ -622,7 +656,8 @@
     "tags": [
       "romantic-gift"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "18",
@@ -648,7 +683,8 @@
       "best-seller",
       "new"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "19",
@@ -673,7 +709,8 @@
     "tags": [
       "romantic-gift"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "20",
@@ -697,7 +734,8 @@
     "tags": [
       "best-seller"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "21",
@@ -721,7 +759,8 @@
     "tags": [
       "romantic-gift"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "22",
@@ -750,7 +789,8 @@
     "tags": [
       "best-seller"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "23",
@@ -777,7 +817,8 @@
     "tags": [
       "romantic-gift"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "24",
@@ -804,7 +845,8 @@
     "tags": [
       "best-seller"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "25",
@@ -831,7 +873,8 @@
     "tags": [
       "best-seller"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "26",
@@ -855,7 +898,8 @@
     "tags": [
       "romantic-gift"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "27",
@@ -880,7 +924,8 @@
     "tags": [
       "best-seller"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "28",
@@ -907,7 +952,8 @@
       "romantic-gift",
       "best-seller"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "intl"
   },
   {
     "id": "29",
@@ -931,7 +977,8 @@
     "tags": [
       "romantic-gift"
     ],
-    "featured": false
+    "featured": false,
+    "fulfillmentOrigin": "ksa-local"
   },
   {
     "id": "30",
@@ -958,6 +1005,7 @@
       "romantic-gift",
       "best-seller"
     ],
-    "featured": true
+    "featured": true,
+    "fulfillmentOrigin": "intl"
   }
 ]

@@ -52,6 +52,8 @@ async function fetchFromContentful() {
       materialAr: f.materialAr,
       care: f.care,
       careAr: f.careAr,
+      fulfillmentOrigin:
+        f.fulfillmentOrigin === "intl" || f.fulfillmentOrigin === "ksa-local" ? f.fulfillmentOrigin : undefined,
     };
   });
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
 import type { Product } from "@/lib/data/products";
+import FulfillmentBadge from "@/components/FulfillmentBadge";
 
 interface ProductCardProps {
   product: Product;
@@ -86,6 +87,9 @@ export default function ProductCard({ product, showNewBadge, giftMode }: Product
                 {t.romanticGifts.tag}
               </span>
             )}
+          </div>
+          <div className="absolute bottom-3 start-3 z-[5]">
+            <FulfillmentBadge product={product} placement="card" />
           </div>
         </div>
         <div className={`p-4 ${giftMode ? "border-t border-[#C9A962]/20 bg-gradient-to-b from-[#FFFEF9] to-[#FAF8F5]" : ""}`}>

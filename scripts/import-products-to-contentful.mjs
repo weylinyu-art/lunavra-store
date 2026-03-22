@@ -121,6 +121,7 @@ async function main() {
           materialAr: { [LOCALE]: p.materialAr || "" },
           care: { [LOCALE]: p.care || "" },
           careAr: { [LOCALE]: p.careAr || "" },
+          fulfillmentOrigin: { [LOCALE]: p.fulfillmentOrigin === "intl" ? "intl" : "ksa-local" },
         },
       });
 

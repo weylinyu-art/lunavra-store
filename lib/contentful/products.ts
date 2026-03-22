@@ -1,5 +1,5 @@
 import { getContentfulClient } from "./client";
-import type { Product } from "@/lib/data/products";
+import type { FulfillmentOrigin, Product } from "@/lib/data/products";
 import type { ProductTag } from "@/lib/data/products";
 
 interface ContentfulProduct {
@@ -18,6 +18,7 @@ interface ContentfulProduct {
   materialAr?: string;
   care?: string;
   careAr?: string;
+  fulfillmentOrigin?: string;
 }
 
 function toHttps(url: string): string {
@@ -48,6 +49,10 @@ function toProduct(entry: { sys: { id: string }; fields: Record<string, unknown>
     ["best-seller", "romantic-gift", "new", "popular"].includes(t)
   );
 
+  const fo = f.fulfillmentOrigin;
+  const fulfillmentOrigin: FulfillmentOrigin | undefined =
+    fo === "ksa-local" || fo === "intl" ? fo : undefined;
+
   return {
     id: entry.sys.id,
     name: f.name ?? "",
@@ -65,6 +70,7 @@ function toProduct(entry: { sys: { id: string }; fields: Record<string, unknown>
     materialAr: f.materialAr,
     care: f.care,
     careAr: f.careAr,
+    fulfillmentOrigin,
   };
 }
 

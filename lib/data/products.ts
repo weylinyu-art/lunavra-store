@@ -1,5 +1,8 @@
 export type ProductTag = "best-seller" | "romantic-gift" | "new" | "popular";
 
+/** Saudi warehouse (fast) vs international fulfillment — no specific country named for cross-border. */
+export type FulfillmentOrigin = "ksa-local" | "intl";
+
 export interface Product {
   id: string;
   name: string;
@@ -21,6 +24,14 @@ export interface Product {
   relatedIds?: string[];
   /** SEO / accessibility notes for gallery order (optional) */
   imageNotes?: string[];
+  /** Omitted entries default to Saudi local for backward compatibility. */
+  fulfillmentOrigin?: FulfillmentOrigin;
+}
+
+const DEFAULT_FULFILLMENT: FulfillmentOrigin = "ksa-local";
+
+export function getFulfillmentOrigin(product: Product): FulfillmentOrigin {
+  return product.fulfillmentOrigin ?? DEFAULT_FULFILLMENT;
 }
 
 function loadProducts(): Product[] {
