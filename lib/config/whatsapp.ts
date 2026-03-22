@@ -17,4 +17,7 @@ export const WHATSAPP_MESSAGES = {
 
   /** Pre-filled message after checkout (order confirmation) */
   orderConfirmation: "Hello, I just placed an order on Lunavra. Please confirm my order.",
+
+  /** Login page: WhatsApp has no OAuth; user asks support to verify / link account */
+  accountLogin: "Hi, I'd like to sign in or verify my NileChic account via WhatsApp.",
 } as const;

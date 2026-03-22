@@ -10,6 +10,7 @@ import { useCart } from "@/contexts/CartContext";
 import { products } from "@/lib/data/products";
 import type { OrderSnapshot } from "@/lib/orders/types";
 import { saveOrder } from "@/lib/orders/storage";
+import { reverseGeocode } from "@/lib/geocoding/nominatim";
 
 const SaudiMapPicker = dynamic(() => import("@/components/SaudiMapPicker"), {
   ssr: false,
@@ -25,9 +26,12 @@ export default function CheckoutPage() {
   const router = useRouter();
   const { items, clearCart } = useCart();
   const skipEmptyRedirect = useRef(false);
+  const geocodeAbortRef = useRef<AbortController | null>(null);
 
   const [mapLat, setMapLat] = useState<number | null>(null);
   const [mapLng, setMapLng] = useState<number | null>(null);
+  const [geocodingLoading, setGeocodingLoading] = useState(false);
+  const [geocodingError, setGeocodingError] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     phoneLocal: "",
@@ -42,6 +46,45 @@ export default function CheckoutPage() {
       router.replace(path("/cart"));
     }
   }, [items.length, path, router]);
+
+  useEffect(() => {
+    if (mapLat == null || mapLng == null) return;
+
+    setGeocodingError(false);
+
+    const timer = window.setTimeout(() => {
+      geocodeAbortRef.current?.abort();
+      const ac = new AbortController();
+      geocodeAbortRef.current = ac;
+      setGeocodingLoading(true);
+
+      reverseGeocode(mapLat, mapLng, {
+        signal: ac.signal,
+        acceptLanguage: locale === "ar" ? "ar,en" : "en",
+      })
+        .then((r) => {
+          setFormData((prev) => ({
+            ...prev,
+            city: r.city.trim() || prev.city,
+            addressDetail: r.addressDetail.trim() || prev.addressDetail,
+          }));
+          setGeocodingError(false);
+        })
+        .catch((e: unknown) => {
+          if (e instanceof DOMException && e.name === "AbortError") return;
+          if (e instanceof Error && e.name === "AbortError") return;
+          setGeocodingError(true);
+        })
+        .finally(() => {
+          setGeocodingLoading(false);
+        });
+    }, 650);
+
+    return () => {
+      window.clearTimeout(timer);
+      geocodeAbortRef.current?.abort();
+    };
+  }, [mapLat, mapLng, locale]);
 
   const handlePositionChange = (lat: number, lng: number) => {
     setMapLat(lat);
@@ -124,13 +167,22 @@ export default function CheckoutPage() {
           <section className="rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm sm:p-6">
             <h2 className="font-heading text-base font-semibold text-foreground">{t.checkout.mapSection}</h2>
             <p className="mt-2 text-sm leading-relaxed text-foreground/65">{t.checkout.mapHelp}</p>
+            <p className="mt-1.5 text-xs leading-relaxed text-foreground/50">{t.checkout.mapAddressAuto}</p>
             <div className="mt-4">
               <SaudiMapPicker lat={mapLat} lng={mapLng} onPositionChange={handlePositionChange} />
             </div>
             {mapLat != null && mapLng != null && (
-              <p className="mt-2 text-xs text-foreground/50">
-                {t.checkout.coordsLabel}: {mapLat.toFixed(5)}, {mapLng.toFixed(5)}
-              </p>
+              <div className="mt-2 space-y-1">
+                <p className="text-xs text-foreground/50">
+                  {t.checkout.coordsLabel}: {mapLat.toFixed(5)}, {mapLng.toFixed(5)}
+                </p>
+                {geocodingLoading && (
+                  <p className="text-xs text-[#C9A962]">{t.checkout.geocodingLoading}</p>
+                )}
+                {geocodingError && !geocodingLoading && (
+                  <p className="text-xs text-rose-700/90">{t.checkout.geocodingError}</p>
+                )}
+              </div>
             )}
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               <div className="sm:col-span-2">

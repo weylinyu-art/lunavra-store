@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLocale } from "@/contexts/LocaleContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
 import { useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -43,6 +44,7 @@ export default function Header() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { itemCount } = useCart();
+  const { user, loading: authLoading } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -54,6 +56,7 @@ export default function Header() {
   const isBlog = basePath.startsWith("/blog");
   const isCart = basePath === "/cart";
   const isAccount = basePath === "/account";
+  const isLogin = basePath === "/login";
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -102,6 +105,15 @@ export default function Header() {
         </form>
 
         <div className="flex items-center gap-1 sm:gap-2">
+          {!authLoading && !user && (
+            <Link
+              href={path("/login?return=/account")}
+              aria-current={isLogin ? "page" : undefined}
+              className={`hidden rounded-lg px-2.5 py-2 text-sm font-medium transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962] sm:inline-block ${navTabClass(isLogin)}`}
+            >
+              {t.nav.signIn}
+            </Link>
+          )}
           <Link
             href={path("/account")}
             aria-current={isAccount ? "page" : undefined}
@@ -240,6 +252,16 @@ export default function Header() {
             >
               {t.nav.blog}
             </Link>
+            {!authLoading && !user && (
+              <Link
+                href={path("/login?return=/account")}
+                onClick={() => setMobileMenuOpen(false)}
+                aria-current={isLogin ? "page" : undefined}
+                className={`touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium ${mobileNavClass(isLogin)}`}
+              >
+                {t.nav.signIn}
+              </Link>
+            )}
             <Link
               href={path("/account")}
               onClick={() => setMobileMenuOpen(false)}

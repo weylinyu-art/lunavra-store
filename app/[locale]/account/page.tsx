@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLocale } from "@/contexts/LocaleContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { listOrders, searchOrders } from "@/lib/orders/storage";
 import type { StoredOrder } from "@/lib/orders/types";
 
 export default function AccountPage() {
   const { t, path } = useLocale();
+  const { user, loading: authLoading, signOutUser } = useAuth();
   const [query, setQuery] = useState("");
   const [orders, setOrders] = useState<StoredOrder[]>([]);
 
@@ -19,6 +21,32 @@ export default function AccountPage() {
     <div className="min-h-screen bg-[#eceae6] px-4 py-8">
       <div className="mx-auto max-w-lg sm:max-w-xl">
         <h1 className="font-heading text-center text-xl font-semibold text-foreground">{t.account.title}</h1>
+
+        {!authLoading && user && (
+          <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-[#C9A962]/25 bg-[#C9A962]/8 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-foreground">
+              <span className="text-foreground/70">{t.account.signedInAs}</span>{" "}
+              <span className="font-medium">{user.email ?? user.displayName ?? user.uid}</span>
+            </p>
+            <button
+              type="button"
+              onClick={() => signOutUser()}
+              className="shrink-0 rounded-lg border border-foreground/15 bg-white px-3 py-2 text-sm font-medium text-foreground transition hover:border-[#C9A962]/40"
+            >
+              {t.login.signOut}
+            </button>
+          </div>
+        )}
+
+        {!authLoading && !user && (
+          <p className="mt-4 text-center text-sm text-foreground/65">
+            <Link href={path("/login?return=/account")} className="font-medium text-[#C9A962] hover:underline">
+              {t.nav.signIn}
+            </Link>
+            {" · "}
+            <span className="text-foreground/55">{t.account.localOrdersHint}</span>
+          </p>
+        )}
 
         <section className="mt-8 rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm">
           <div className="flex items-center justify-between gap-2">
