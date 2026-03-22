@@ -131,6 +131,12 @@ async function main() {
       if (imageIds.length > 0) {
         entry.fields.images = { [LOCALE]: imageIds };
       }
+      if (Array.isArray(p.highlights)) {
+        entry.fields.highlights = { [LOCALE]: p.highlights };
+      }
+      if (Array.isArray(p.highlightsAr)) {
+        entry.fields.highlightsAr = { [LOCALE]: p.highlightsAr };
+      }
 
       await entry.update();
       await entry.publish();

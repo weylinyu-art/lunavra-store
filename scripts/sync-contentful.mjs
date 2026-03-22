@@ -54,6 +54,8 @@ async function fetchFromContentful() {
       careAr: f.careAr,
       fulfillmentOrigin:
         f.fulfillmentOrigin === "intl" || f.fulfillmentOrigin === "ksa-local" ? f.fulfillmentOrigin : undefined,
+      highlights: Array.isArray(f.highlights) ? f.highlights : undefined,
+      highlightsAr: Array.isArray(f.highlightsAr) ? f.highlightsAr : undefined,
     };
   });
 }

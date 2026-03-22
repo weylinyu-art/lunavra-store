@@ -19,6 +19,8 @@ interface ContentfulProduct {
   care?: string;
   careAr?: string;
   fulfillmentOrigin?: string;
+  highlights?: string[];
+  highlightsAr?: string[];
 }
 
 function toHttps(url: string): string {
@@ -71,6 +73,8 @@ function toProduct(entry: { sys: { id: string }; fields: Record<string, unknown>
     care: f.care,
     careAr: f.careAr,
     fulfillmentOrigin,
+    highlights: Array.isArray(f.highlights) ? f.highlights : undefined,
+    highlightsAr: Array.isArray(f.highlightsAr) ? f.highlightsAr : undefined,
   };
 }
 

@@ -14,19 +14,27 @@ import ProductCard from "@/components/ProductCard";
 import FulfillmentBadge from "@/components/FulfillmentBadge";
 import ProductPDPGallery from "@/components/ProductPDPGallery";
 import { getFulfillmentOrigin } from "@/lib/data/products";
+import { getKeyFeatureBullets, splitDescriptionParagraphs, type KeyFeatureCopy } from "@/lib/product/pdp-helpers";
 
-function AccordionChevron() {
+function PDPSectionCard({
+  id,
+  title,
+  children,
+}: {
+  id?: string;
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
-    <svg
-      className="h-4 w-4 shrink-0 text-foreground/40 transition-transform duration-200 group-open:rotate-180"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden
+    <section
+      id={id}
+      className="rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm sm:p-8"
     >
-      <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
+      <h2 className="font-heading border-b border-foreground/10 pb-4 text-xl font-semibold tracking-wide text-foreground">
+        {title}
+      </h2>
+      <div className="mt-6">{children}</div>
+    </section>
   );
 }
 
@@ -89,6 +97,25 @@ export default function ProductPage() {
   const fulfillmentPill = isLocalFulfillment ? t.product.fulfillment.ksaLocalBadge : t.product.fulfillment.intlBadge;
   const fulfillmentEta = isLocalFulfillment ? t.product.fulfillment.ksaLocalEta : t.product.fulfillment.intlEta;
 
+  const categoryLabel = {
+    "lingerie-sets": t.categories.lingerieSets,
+    bras: t.categories.bras,
+    panties: t.categories.panties,
+    sleepwear: t.categories.sleepwear,
+    bridal: t.categories.bridal,
+  }[product.category];
+
+  const descriptionParagraphs = splitDescriptionParagraphs(description);
+
+  const keyFeatureT: KeyFeatureCopy = {
+    keyFeatureNew: t.product.keyFeatureNew,
+    keyFeatureBestSeller: t.product.keyFeatureBestSeller,
+    keyFeatureRomanticGift: t.product.keyFeatureRomanticGift,
+    keyFeaturePopular: t.product.keyFeaturePopular,
+    keyFeatureFallback: t.product.keyFeatureFallback,
+  };
+  const featureBullets = getKeyFeatureBullets(product, locale === "ar" ? "ar" : "en", keyFeatureT);
+
   const galleryOverlay = (
     <>
       <span
@@ -123,18 +150,24 @@ export default function ProductPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
 
-      <div className="mx-auto max-w-6xl px-0 sm:px-4 lg:px-6">
-        <nav className="mb-0 hidden px-4 py-4 text-sm text-foreground/65 sm:flex sm:px-0">
-          <Link href={path("/")} className="transition-colors hover:text-[#C9A962]">
-            {t.nav.home}
-          </Link>
-          <span className="mx-2">/</span>
-          <Link href={path("/shop")} className="transition-colors hover:text-[#C9A962]">
-            {t.nav.shop}
-          </Link>
-          <span className="mx-2">/</span>
-          <span className="line-clamp-1 text-foreground/85">{name}</span>
-        </nav>
+      <div className="mx-auto max-w-6xl px-4 sm:px-4 lg:px-6">
+        {/* Top row: breadcrumb + share (reference layout) */}
+        <div className="flex flex-col gap-4 py-4 sm:flex-row sm:items-start sm:justify-between">
+          <nav className="order-2 text-xs text-foreground/65 sm:order-1 sm:text-sm">
+            <Link href={path("/")} className="transition-colors hover:text-[#C9A962]">
+              {t.nav.home}
+            </Link>
+            <span className="mx-1.5 sm:mx-2">/</span>
+            <Link href={path("/shop")} className="transition-colors hover:text-[#C9A962]">
+              {t.nav.shop}
+            </Link>
+            <span className="mx-1.5 sm:mx-2">/</span>
+            <span className="line-clamp-2 text-foreground/85">{name}</span>
+          </nav>
+          <div className="order-1 flex justify-end sm:order-2 sm:shrink-0">
+            <ShareButtons url={shareUrl} title={shareTitle} />
+          </div>
+        </div>
 
         <article className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(300px,400px)] lg:gap-10 lg:items-start xl:grid-cols-[minmax(0,1fr)_420px]">
           <div className="lg:pt-0">
@@ -150,7 +183,6 @@ export default function ProductPage() {
             )}
           </div>
 
-          {/* Buy box — Shein-style dense right column */}
           <div className="mt-0 border-t border-black/[0.06] bg-[#FFFEF9] px-4 py-6 shadow-[0_-4px_24px_rgba(0,0,0,0.04)] sm:mt-0 sm:rounded-2xl sm:border sm:border-black/[0.06] sm:shadow-md lg:mt-0 lg:max-w-none lg:self-start lg:border lg:py-8">
             <h1 className="font-heading text-xl font-medium leading-snug tracking-wide text-foreground sm:text-2xl">
               {name}
@@ -240,51 +272,6 @@ export default function ProductPage() {
               {t.romanticGifts.exploreGifts}
             </Link>
 
-            <div className="mt-6 border-t border-foreground/10 pt-5">
-              <ShareButtons url={shareUrl} title={shareTitle} />
-            </div>
-
-            <div className="mt-2 divide-y divide-foreground/10">
-              <details className="group" open>
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 py-4 text-sm font-semibold text-foreground [&::-webkit-details-marker]:hidden">
-                  <span>{t.product.pdpSectionDescription}</span>
-                  <AccordionChevron />
-                </summary>
-                <div className="pb-4 text-sm leading-relaxed text-foreground/75">{description}</div>
-              </details>
-
-              <details className="group">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 py-4 text-sm font-semibold text-foreground [&::-webkit-details-marker]:hidden">
-                  <span>{t.product.pdpSectionDelivery}</span>
-                  <AccordionChevron />
-                </summary>
-                <div className="pb-4">
-                  <FulfillmentBadge product={product} placement="detail" />
-                </div>
-              </details>
-
-              <details className="group">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 py-4 text-sm font-semibold text-foreground [&::-webkit-details-marker]:hidden">
-                  <span>{t.product.pdpSectionFabric}</span>
-                  <AccordionChevron />
-                </summary>
-                <div className="pb-4 space-y-4 text-sm">
-                  <div>
-                    <p className="font-medium text-foreground/70">{t.product.material}</p>
-                    <p className="mt-1 leading-relaxed text-foreground/75">{material}</p>
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground/70">{t.product.care}</p>
-                    <p className="mt-1 leading-relaxed text-foreground/75">{care}</p>
-                  </div>
-                </div>
-              </details>
-            </div>
-
-            <div className="mt-6 lg:mt-8">
-              <ProductReviews productId={product.id} />
-            </div>
-
             <Link
               href={path("/gift")}
               className="mt-6 block text-center text-sm text-[#C9A962] underline-offset-2 hover:underline lg:hidden"
@@ -294,23 +281,130 @@ export default function ProductPage() {
           </div>
         </article>
 
-        {related.length > 0 && (
-          <section className="mt-10 px-4 pb-8 sm:px-0" aria-labelledby="related-heading">
-            <h2 id="related-heading" className="font-heading text-lg font-medium text-foreground sm:text-xl">
-              {t.product.relatedTitle}
-            </h2>
-            <div className="mt-4 flex gap-3 overflow-x-auto pb-2 scrollbar-hide sm:gap-4 lg:grid lg:grid-cols-3 lg:overflow-visible">
-              {related.map((p) => (
-                <div key={p.id} className="w-[46vw] max-w-[12.5rem] shrink-0 sm:w-44 lg:max-w-none lg:w-auto">
-                  <ProductCard product={p} />
-                </div>
+        {/* Full-width stacked modules */}
+        <div className="mt-10 space-y-10 pb-8">
+          <PDPSectionCard id="description" title={t.product.pdpSectionDescription}>
+            <div className="max-w-3xl space-y-5 text-sm leading-[1.75] text-foreground/85">
+              {descriptionParagraphs.map((para, i) => (
+                <p key={i} className="text-pretty">
+                  {para}
+                </p>
               ))}
             </div>
-          </section>
-        )}
+          </PDPSectionCard>
+
+          <PDPSectionCard id="specifications" title={t.product.pdpModuleSpecifications}>
+            <dl className="grid gap-8 sm:grid-cols-2">
+              <div>
+                <dt className="text-[11px] font-semibold uppercase tracking-wider text-foreground/50">
+                  {t.product.specLabelCategory}
+                </dt>
+                <dd className="mt-1.5 text-sm font-medium text-foreground">{categoryLabel}</dd>
+              </div>
+              <div>
+                <dt className="text-[11px] font-semibold uppercase tracking-wider text-foreground/50">
+                  {t.product.specLabelSku}
+                </dt>
+                <dd className="mt-1.5 text-sm font-medium tabular-nums text-foreground">{product.id}</dd>
+              </div>
+              <div>
+                <dt className="text-[11px] font-semibold uppercase tracking-wider text-foreground/50">
+                  {t.product.specLabelSizes}
+                </dt>
+                <dd className="mt-1.5 text-sm font-medium text-foreground">
+                  {(product.sizes || t.product.sizes).join(", ")}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-[11px] font-semibold uppercase tracking-wider text-foreground/50">
+                  {t.product.specLabelPrice}
+                </dt>
+                <dd className="mt-1.5 text-sm font-medium tabular-nums text-foreground">
+                  ${product.price} USD
+                </dd>
+              </div>
+              <div className="sm:col-span-2">
+                <dt className="text-[11px] font-semibold uppercase tracking-wider text-foreground/50">
+                  {t.product.specLabelMaterial}
+                </dt>
+                <dd className="mt-2 text-sm leading-relaxed text-foreground/85">{material}</dd>
+              </div>
+              <div className="sm:col-span-2">
+                <dt className="text-[11px] font-semibold uppercase tracking-wider text-foreground/50">
+                  {t.product.specLabelCare}
+                </dt>
+                <dd className="mt-2 text-sm leading-relaxed text-foreground/85">{care}</dd>
+              </div>
+            </dl>
+          </PDPSectionCard>
+
+          <PDPSectionCard id="key-features" title={t.product.pdpModuleKeyFeatures}>
+            <ul className="list-none space-y-3">
+              {featureBullets.map((line, i) => (
+                <li key={i} className="flex gap-3 text-sm leading-relaxed text-foreground/85">
+                  <span
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#C9A962]"
+                    aria-hidden
+                  />
+                  <span>{line}</span>
+                </li>
+              ))}
+            </ul>
+          </PDPSectionCard>
+
+          <PDPSectionCard id="packaging-delivery" title={t.product.pdpModulePackagingDelivery}>
+            <p className="text-sm leading-relaxed text-foreground/75">{t.product.packagingIntro}</p>
+            <ul className="mt-5 list-none space-y-3 border-t border-foreground/10 pt-5">
+              <li className="flex gap-3 text-sm text-foreground/85">
+                <span className="text-[#C9A962]" aria-hidden>
+                  ✓
+                </span>
+                <span>{t.product.codNotice}</span>
+              </li>
+              <li className="flex gap-3 text-sm text-foreground/85">
+                <span className="text-[#C9A962]" aria-hidden>
+                  ✓
+                </span>
+                <span>{t.product.shippingInfo}</span>
+              </li>
+              <li className="flex gap-3 text-sm text-foreground/85">
+                <span className="text-[#C9A962]" aria-hidden>
+                  ✓
+                </span>
+                <span>{t.product.giftSuggestion}</span>
+              </li>
+              <li className="flex gap-3 text-sm text-foreground/85">
+                <span className="text-[#C9A962]" aria-hidden>
+                  ✓
+                </span>
+                <span>
+                  {isLocalFulfillment
+                    ? `${t.product.fulfillment.ksaLocalTitle}: ${t.product.fulfillment.ksaLocalEta}`
+                    : `${t.product.fulfillment.intlTitle}: ${t.product.fulfillment.intlEta}`}
+                </span>
+              </li>
+            </ul>
+            <div className="mt-6 border-t border-foreground/10 pt-6">
+              <FulfillmentBadge product={product} placement="detail" />
+            </div>
+          </PDPSectionCard>
+
+          <PDPSectionCard id="reviews" title={t.product.pdpModuleCustomerReviews}>
+            <ProductReviews productId={product.id} embedded />
+          </PDPSectionCard>
+
+          {related.length > 0 && (
+            <PDPSectionCard id="related" title={t.product.relatedTitle}>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+                {related.map((p) => (
+                  <ProductCard key={p.id} product={p} />
+                ))}
+              </div>
+            </PDPSectionCard>
+          )}
+        </div>
       </div>
 
-      {/* Mobile sticky buy bar — Shein-style */}
       <div
         className="fixed inset-x-0 bottom-0 z-40 border-t border-black/10 bg-[#FFFEF9]/95 backdrop-blur-md lg:hidden"
         style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}

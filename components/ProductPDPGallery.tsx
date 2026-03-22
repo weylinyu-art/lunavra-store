@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useLocale } from "@/contexts/LocaleContext";
 
 interface ProductPDPGalleryProps {
   images: string[];
@@ -11,6 +12,7 @@ interface ProductPDPGalleryProps {
 }
 
 export default function ProductPDPGallery({ images, altFor, overlay }: ProductPDPGalleryProps) {
+  const { t } = useLocale();
   const [active, setActive] = useState(0);
   const scrollerRef = useRef<HTMLDivElement>(null);
 
@@ -52,9 +54,12 @@ export default function ProductPDPGallery({ images, altFor, overlay }: ProductPD
 
   if (images.length === 0) return null;
 
+  const canPrev = active > 0;
+  const canNext = active < images.length - 1;
+
   return (
     <div className="flex w-full max-w-full flex-col gap-3 self-start lg:sticky lg:top-20 lg:max-h-[calc(100vh-5rem)]">
-      <div className="relative -mx-4 w-[calc(100%+2rem)] overflow-hidden bg-[#ebe8e4] sm:mx-0 sm:w-full sm:rounded-2xl lg:rounded-2xl">
+      <div className="group relative -mx-4 w-[calc(100%+2rem)] overflow-hidden bg-[#ebe8e4] sm:mx-0 sm:w-full sm:rounded-2xl lg:rounded-2xl">
         <div
           ref={scrollerRef}
           onScroll={onScroll}
@@ -81,6 +86,42 @@ export default function ProductPDPGallery({ images, altFor, overlay }: ProductPD
           <div className="pointer-events-none absolute start-0 top-0 z-[1] w-full max-w-[calc(100%-4rem)] p-3 sm:p-4">
             <div className="pointer-events-auto flex flex-wrap gap-2">{overlay}</div>
           </div>
+        ) : null}
+
+        {/* Desktop / hover-capable: prev/next on hover over main image */}
+        {images.length > 1 ? (
+          <>
+            <button
+              type="button"
+              onClick={() => goTo(active - 1)}
+              disabled={!canPrev}
+              aria-label={t.product.galleryPrev}
+              className={`absolute start-2 top-1/2 z-[2] hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/35 text-white shadow-md backdrop-blur-sm transition-all duration-200 md:flex ${
+                canPrev
+                  ? "pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 hover:bg-black/50 focus-visible:pointer-events-auto focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A962]"
+                  : "pointer-events-none invisible"
+              }`}
+            >
+              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => goTo(active + 1)}
+              disabled={!canNext}
+              aria-label={t.product.galleryNext}
+              className={`absolute end-2 top-1/2 z-[2] hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/35 text-white shadow-md backdrop-blur-sm transition-all duration-200 md:flex ${
+                canNext
+                  ? "pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 hover:bg-black/50 focus-visible:pointer-events-auto focus-visible:opacity-100 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-[#C9A962]"
+                  : "pointer-events-none invisible"
+              }`}
+            >
+              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </>
         ) : null}
 
         <div

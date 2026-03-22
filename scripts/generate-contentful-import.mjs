@@ -83,6 +83,12 @@ for (const p of products) {
     careAr: { [LOCALE]: p.careAr || "" },
     fulfillmentOrigin: { [LOCALE]: p.fulfillmentOrigin === "intl" ? "intl" : "ksa-local" },
   };
+  if (Array.isArray(p.highlights)) {
+    fields.highlights = { [LOCALE]: p.highlights };
+  }
+  if (Array.isArray(p.highlightsAr)) {
+    fields.highlightsAr = { [LOCALE]: p.highlightsAr };
+  }
   if (mainImageId) {
     fields.image = { [LOCALE]: { sys: { type: "Link", linkType: "Asset", id: mainImageId } } };
   }

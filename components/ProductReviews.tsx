@@ -14,6 +14,8 @@ interface Review {
 
 interface ProductReviewsProps {
   productId: string;
+  /** When true, no outer border / top title — for use inside PDP section cards */
+  embedded?: boolean;
 }
 
 const STORAGE_KEY = (id: string) => `nilechic-reviews-${id}`;
@@ -36,7 +38,7 @@ function saveReviews(productId: string, reviews: Review[]) {
   }
 }
 
-export default function ProductReviews({ productId }: ProductReviewsProps) {
+export default function ProductReviews({ productId, embedded = false }: ProductReviewsProps) {
   const { t } = useLocale();
   const preloaded = productReviews.filter((r) => r.productId === productId);
   const [userReviews, setUserReviews] = useState<Review[]>([]);
@@ -71,12 +73,14 @@ export default function ProductReviews({ productId }: ProductReviewsProps) {
   };
 
   return (
-    <div className="mt-10 border-t border-rose-200/50 pt-8">
-      <h2 className="font-heading text-lg font-medium text-foreground">
-        {t.productReviews.title} ({allReviews.length})
-      </h2>
+    <div className={embedded ? "" : "mt-10 border-t border-rose-200/50 pt-8"}>
+      {!embedded && (
+        <h2 className="font-heading text-lg font-medium text-foreground">
+          {t.productReviews.title} ({allReviews.length})
+        </h2>
+      )}
 
-      <div className="mt-6 space-y-6">
+      <div className={embedded ? "space-y-6" : "mt-6 space-y-6"}>
         {allReviews.map((r) => (
           <div key={r.id} className="rounded-lg bg-[#FFFEF9] p-4">
             <div className="flex items-center gap-2">

@@ -26,6 +26,10 @@ export interface Product {
   imageNotes?: string[];
   /** Omitted entries default to Saudi local for backward compatibility. */
   fulfillmentOrigin?: FulfillmentOrigin;
+  /** Optional PDP “Key Features” bullets (EN). Falls back to tags if omitted. */
+  highlights?: string[];
+  /** Optional PDP “Key Features” bullets (Arabic). */
+  highlightsAr?: string[];
 }
 
 const DEFAULT_FULFILLMENT: FulfillmentOrigin = "ksa-local";
