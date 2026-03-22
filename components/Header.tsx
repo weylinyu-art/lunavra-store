@@ -42,7 +42,7 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { count } = useCart();
+  const { itemCount } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -52,7 +52,8 @@ export default function Header() {
   const isShop = basePath === "/shop";
   const isGift = basePath === "/gift";
   const isBlog = basePath.startsWith("/blog");
-  const isCheckout = basePath === "/checkout";
+  const isCart = basePath === "/cart";
+  const isAccount = basePath === "/account";
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -100,17 +101,24 @@ export default function Header() {
           </button>
         </form>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           <Link
-            href={path("/checkout")}
-            aria-current={isCheckout ? "page" : undefined}
-            className={`relative flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962] ${navTabClass(isCheckout)}`}
+            href={path("/account")}
+            aria-current={isAccount ? "page" : undefined}
+            className={`hidden rounded-lg px-2.5 py-2 text-sm font-medium transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962] sm:inline-block ${navTabClass(isAccount)}`}
+          >
+            {t.nav.account}
+          </Link>
+          <Link
+            href={path("/cart")}
+            aria-current={isCart ? "page" : undefined}
+            className={`relative flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962] ${navTabClass(isCart)}`}
           >
             <CartIcon />
             <span className="hidden sm:inline">{t.nav.cart}</span>
-            {count > 0 && (
+            {itemCount > 0 && (
               <span className="absolute -top-0.5 -end-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#C9A962] px-1 text-[10px] font-semibold text-white">
-                {count > 99 ? "99+" : count}
+                {itemCount > 99 ? "99+" : itemCount}
               </span>
             )}
           </Link>
@@ -233,16 +241,24 @@ export default function Header() {
               {t.nav.blog}
             </Link>
             <Link
-              href={path("/checkout")}
+              href={path("/account")}
               onClick={() => setMobileMenuOpen(false)}
-              aria-current={isCheckout ? "page" : undefined}
-              className={`touch-target flex min-h-[44px] items-center gap-2 rounded-lg px-3 py-3 text-base font-medium ${mobileNavClass(isCheckout)}`}
+              aria-current={isAccount ? "page" : undefined}
+              className={`touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium ${mobileNavClass(isAccount)}`}
+            >
+              {t.nav.account}
+            </Link>
+            <Link
+              href={path("/cart")}
+              onClick={() => setMobileMenuOpen(false)}
+              aria-current={isCart ? "page" : undefined}
+              className={`touch-target flex min-h-[44px] items-center gap-2 rounded-lg px-3 py-3 text-base font-medium ${mobileNavClass(isCart)}`}
             >
               <CartIcon />
               {t.nav.cart}
-              {count > 0 && (
+              {itemCount > 0 && (
                 <span className="rounded-full bg-[#C9A962] px-2 py-0.5 text-xs font-semibold text-white">
-                  {count}
+                  {itemCount}
                 </span>
               )}
             </Link>

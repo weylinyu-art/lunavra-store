@@ -50,14 +50,6 @@ export default function ProductPage() {
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
   const [addToCartAnimating, setAddToCartAnimating] = useState(false);
 
-  const handleAddToCart = () => {
-    if (!selectedSize) return;
-    setAddToCartAnimating(true);
-    addItem(1);
-    setTimeout(() => setAddToCartAnimating(false), 400);
-    setTimeout(() => router.push(path("/checkout")), 350);
-  };
-
   if (!product) {
     return (
       <div className="mx-auto max-w-7xl px-4 py-20 text-center">
@@ -68,6 +60,14 @@ export default function ProductPage() {
       </div>
     );
   }
+
+  const handleAddToCart = () => {
+    if (!selectedSize) return;
+    setAddToCartAnimating(true);
+    addItem(product.id, selectedSize, 1);
+    setTimeout(() => setAddToCartAnimating(false), 400);
+    setTimeout(() => router.push(path("/cart")), 350);
+  };
 
   const name = locale === "ar" ? product.nameAr : product.name;
   const description = locale === "ar" ? product.descriptionAr : product.description;

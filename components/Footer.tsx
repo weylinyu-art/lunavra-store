@@ -58,6 +58,11 @@ export default function Footer() {
                   {t.nav.blog}
                 </Link>
               </li>
+              <li>
+                <Link href={path("/account")} className="block min-h-[40px] py-2 text-sm text-foreground/70 hover:text-[#C9A962] active:text-[#C9A962] sm:min-h-0 sm:py-0">
+                  {t.nav.account}
+                </Link>
+              </li>
             </ul>
           </div>
 

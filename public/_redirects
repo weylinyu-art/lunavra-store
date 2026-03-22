@@ -3,5 +3,9 @@
 /shop /en/shop 302
 /gift /en/gift 302
 /about /en/about 302
+/cart /en/cart 302
 /checkout /en/checkout 302
+/account /en/account 302
+/order/complete /en/order/complete 302
+/order/view /en/order/view 302
 /product/* /en/product/:splat 302

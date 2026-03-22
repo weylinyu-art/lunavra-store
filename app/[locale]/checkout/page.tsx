@@ -1,285 +1,289 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useLocale } from "@/contexts/LocaleContext";
+import dynamic from "next/dynamic";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { WHATSAPP_NUMBER, WHATSAPP_MESSAGES } from "@/lib/config/whatsapp";
-import {
-  countries,
-  getCountryByCode,
-  getRegion,
-  type CountryCode,
-} from "@/lib/data/locations";
-import { detectCountry } from "@/lib/geo/detect-country";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useLocale } from "@/contexts/LocaleContext";
+import { useCart } from "@/contexts/CartContext";
+import { products } from "@/lib/data/products";
+import type { OrderSnapshot } from "@/lib/orders/types";
+import { saveOrder } from "@/lib/orders/storage";
+
+const SaudiMapPicker = dynamic(() => import("@/components/SaudiMapPicker"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-64 w-full items-center justify-center rounded-xl border border-dashed border-foreground/20 bg-foreground/[0.03] text-sm text-foreground/50">
+      …
+    </div>
+  ),
+});
 
 export default function CheckoutPage() {
   const { t, path, locale } = useLocale();
-  const [orderPlaced, setOrderPlaced] = useState(false);
-  const [countryDetected, setCountryDetected] = useState(false);
+  const router = useRouter();
+  const { items, clearCart } = useCart();
+  const skipEmptyRedirect = useRef(false);
+
+  const [mapLat, setMapLat] = useState<number | null>(null);
+  const [mapLng, setMapLng] = useState<number | null>(null);
   const [formData, setFormData] = useState({
     fullName: "",
-    phone: "",
-    country: "" as CountryCode | "",
-    region: "",
+    phoneLocal: "",
+    email: "",
     city: "",
-    address: "",
+    addressDetail: "",
     orderNotes: "",
   });
 
   useEffect(() => {
-    let cancelled = false;
-    detectCountry().then((code) => {
-      if (cancelled || !code) return;
-      setFormData((prev) => {
-        if (prev.country) return prev;
-        return { ...prev, country: code };
-      });
-      setCountryDetected(true);
-    });
-    return () => { cancelled = true; };
-  }, []);
+    if (items.length === 0 && !skipEmptyRedirect.current) {
+      router.replace(path("/cart"));
+    }
+  }, [items.length, path, router]);
+
+  const handlePositionChange = (lat: number, lng: number) => {
+    setMapLat(lat);
+    setMapLng(lng);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const linesResolved = items
+    .map((line) => {
+      const p = products.find((x) => x.id === line.productId);
+      if (!p) return null;
+      const name = locale === "ar" ? p.nameAr : p.name;
+      return { line, product: p, name };
+    })
+    .filter((row): row is NonNullable<typeof row> => row !== null);
+
+  const subtotal = linesResolved.reduce((s, r) => s + r.product.price * r.line.qty, 0);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setOrderPlaced(true);
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSelect = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    field: "country" | "region" | "city"
-  ) => {
-    const value = e.target.value;
-    if (field === "country") {
-      setFormData((prev) => ({
-        ...prev,
-        country: value as CountryCode | "",
-        region: "",
-        city: "",
-      }));
-    } else if (field === "region") {
-      setFormData((prev) => ({
-        ...prev,
-        region: value,
-        city: "",
-      }));
-    } else {
-      setFormData((prev) => ({ ...prev, city: value }));
+    if (mapLat == null || mapLng == null) {
+      return;
     }
+    const snap: OrderSnapshot = {
+      lines: linesResolved.map((r) => ({
+        name: r.name,
+        qty: r.line.qty,
+        size: r.line.size,
+        lineTotal: r.product.price * r.line.qty,
+      })),
+      formData: { ...formData },
+      mapLat,
+      mapLng,
+      subtotal,
+    };
+    const orderId = saveOrder(snap);
+    skipEmptyRedirect.current = true;
+    clearCart();
+    router.push(`${path("/order/complete")}?id=${encodeURIComponent(orderId)}`);
   };
 
-  const country = formData.country ? getCountryByCode(formData.country) : null;
-  const region = formData.country && formData.region
-    ? getRegion(formData.country, formData.region)
-    : null;
-
-  const getName = (o: { nameEn: string; nameAr: string }) =>
-    locale === "ar" ? o.nameAr : o.nameEn;
-
-  const getWhatsAppUrl = () => {
-    const countryName = country ? getName(country) : "";
-    const regionName = region ? getName(region) : "";
-    const cityName = region?.cities.find((c) => c.id === formData.city);
-    const cityLabel = cityName ? getName(cityName) : formData.city;
-    const details = [countryName, regionName, cityLabel, formData.address]
-      .filter(Boolean)
-      .join(" | ");
-    const msg = WHATSAPP_MESSAGES.orderConfirmation + (details ? "\n\nAddress: " + details : "");
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-  };
-
-  if (orderPlaced) {
+  if (items.length === 0) {
     return (
-      <div className="mx-auto max-w-2xl bg-[#FDF2F4] px-4 py-20 sm:px-6 lg:px-8">
-        <div className="rounded-xl bg-[#FFFEF9] p-8 text-center shadow-sm md:p-12">
-          <h1 className="font-heading text-2xl font-light text-foreground md:text-3xl">
-            {t.checkout.thankYou}
-          </h1>
-          <p className="mt-4 text-foreground/80">
-            {t.checkout.confirmMessage}
-          </p>
-          <a
-            href={getWhatsAppUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-[#25D366] px-8 py-4 text-base font-medium text-white shadow-sm transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:text-sm hover:-translate-y-0.5 hover:bg-[#20BD5A] hover:shadow-md"
-          >
-            <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
-            {t.checkout.confirmWhatsApp}
-          </a>
-          <Link
-            href={path("/shop")}
-            className="mt-6 block text-sm text-foreground/70 hover:text-foreground"
-          >
-            Continue Shopping
-          </Link>
-        </div>
+      <div className="mx-auto max-w-2xl px-4 py-20 text-center text-foreground/60">
+        <p>{t.cart.empty}</p>
+        <Link href={path("/cart")} className="mt-4 inline-block text-[#C9A962] hover:underline">
+          {t.cart.title}
+        </Link>
       </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-2xl bg-[#FDF2F4] px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-      <header className="mb-8 sm:mb-12">
-        <h1 className="font-heading text-2xl font-light tracking-wide text-foreground sm:text-3xl">
-          {t.checkout.title}
-        </h1>
-        <p className="mt-2 text-sm text-foreground/70">
-          {t.trust.cod} — {t.trust.codDesc}
+    <div className="min-h-screen bg-[#eceae6] pb-8">
+      <div className="mx-auto max-w-lg px-4 py-6 sm:max-w-xl lg:max-w-2xl">
+        <div className="mb-6 flex items-center gap-3">
+          <Link
+            href={path("/cart")}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-foreground/10 bg-[#FFFEF9] text-foreground hover:bg-foreground/5"
+            aria-label="Back"
+          >
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </Link>
+          <h1 className="font-heading flex-1 text-center text-lg font-semibold tracking-wide text-foreground sm:text-xl">
+            {t.checkout.placeOrderTitle}
+          </h1>
+          <span className="w-10" aria-hidden />
+        </div>
+
+        <p className="mb-6 rounded-xl bg-emerald-50/80 px-4 py-3 text-center text-sm text-emerald-900/90">
+          {t.checkout.saudiOnly}
         </p>
-      </header>
 
-      <form onSubmit={handleSubmit} className="space-y-5 rounded-xl bg-[#FFFEF9] p-4 shadow-sm sm:space-y-6 sm:p-6 md:p-8">
-        <div>
-          <label htmlFor="fullName" className="block text-sm font-medium text-foreground">
-            {t.checkout.fullName}
-          </label>
-          <input
-            id="fullName"
-            name="fullName"
-            type="text"
-            required
-            value={formData.fullName}
-            onChange={handleChange}
-            className="mt-2 w-full min-h-[48px] rounded-lg border border-foreground/20 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-foreground">
-            {t.checkout.phone}
-          </label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            required
-            value={formData.phone}
-            onChange={handleChange}
-            className="mt-2 w-full min-h-[48px] rounded-lg border border-foreground/20 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
-          />
-        </div>
-
-        <div>
-          <div className="flex items-center justify-between gap-2">
-            <label htmlFor="country" className="block text-sm font-medium text-foreground">
-              {t.checkout.country}
-            </label>
-            {countryDetected && formData.country && (
-              <span className="text-xs text-foreground/60">{t.checkout.countryDetected}</span>
-            )}
-          </div>
-          <div className="mt-2 flex gap-2">
-            <select
-              id="country"
-              required
-              value={formData.country}
-              onChange={(e) => handleSelect(e, "country")}
-              className="flex-1 min-h-[48px] rounded-lg border border-foreground/20 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
-            >
-              <option value="">{t.checkout.country} —</option>
-              {countries.map((c) => (
-                <option key={c.code} value={c.code}>
-                  {getName(c)}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        {country && (
-          <>
-            <div>
-              <label htmlFor="region" className="block text-sm font-medium text-foreground">
-                {t.checkout.region}
-              </label>
-              <select
-                id="region"
-                required
-                value={formData.region}
-                onChange={(e) => handleSelect(e, "region")}
-                className="mt-2 w-full min-h-[48px] rounded-lg border border-foreground/20 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
-              >
-                <option value="">{t.checkout.region} —</option>
-                {country.regions.map((r) => (
-                  <option key={r.id} value={r.id}>
-                    {getName(r)}
-                  </option>
-                ))}
-              </select>
+        <form onSubmit={handleSubmit} className="space-y-8">
+          <section className="rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm sm:p-6">
+            <h2 className="font-heading text-base font-semibold text-foreground">{t.checkout.mapSection}</h2>
+            <p className="mt-2 text-sm leading-relaxed text-foreground/65">{t.checkout.mapHelp}</p>
+            <div className="mt-4">
+              <SaudiMapPicker lat={mapLat} lng={mapLng} onPositionChange={handlePositionChange} />
             </div>
-
-            {region && (
-              <div>
-                <label htmlFor="city" className="block text-sm font-medium text-foreground">
-                  {t.checkout.city}
+            {mapLat != null && mapLng != null && (
+              <p className="mt-2 text-xs text-foreground/50">
+                {t.checkout.coordsLabel}: {mapLat.toFixed(5)}, {mapLng.toFixed(5)}
+              </p>
+            )}
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <div className="sm:col-span-2">
+                <label htmlFor="city" className="text-xs font-semibold uppercase tracking-wide text-foreground/55">
+                  {t.checkout.city} *
                 </label>
-                <select
+                <input
                   id="city"
+                  name="city"
                   required
                   value={formData.city}
-                  onChange={(e) => handleSelect(e, "city")}
-                  className="mt-2 w-full min-h-[48px] rounded-lg border border-foreground/20 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
-                >
-                  <option value="">{t.checkout.city} —</option>
-                  {region.cities.map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {getName(c)}
-                    </option>
-                  ))}
-                </select>
+                  onChange={handleChange}
+                  className="mt-1.5 w-full min-h-[48px] rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
+                />
               </div>
-            )}
-          </>
-        )}
+              <div className="sm:col-span-2">
+                <label htmlFor="addressDetail" className="text-xs font-semibold uppercase tracking-wide text-foreground/55">
+                  {t.checkout.addressDetail} *
+                </label>
+                <textarea
+                  id="addressDetail"
+                  name="addressDetail"
+                  required
+                  rows={3}
+                  value={formData.addressDetail}
+                  onChange={handleChange}
+                  className="mt-1.5 w-full rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962]"
+                />
+              </div>
+            </div>
+          </section>
 
-        <div>
-          <label htmlFor="address" className="block text-sm font-medium text-foreground">
-            {t.checkout.address}
-          </label>
-          <input
-            id="address"
-            name="address"
-            type="text"
-            required
-            value={formData.address}
-            onChange={handleChange}
-            placeholder={locale === "ar" ? "الشارع، المبنى، الطابق..." : "Street, building, floor..."}
-            className="mt-2 w-full min-h-[48px] rounded-lg border border-foreground/20 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
-          />
-        </div>
+          <section className="rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm sm:p-6">
+            <h2 className="font-heading text-base font-semibold text-foreground">{t.checkout.contactSection}</h2>
+            <div className="mt-4 space-y-4">
+              <div>
+                <label htmlFor="fullName" className="text-xs font-semibold uppercase tracking-wide text-foreground/55">
+                  {t.checkout.fullName} *
+                </label>
+                <input
+                  id="fullName"
+                  name="fullName"
+                  type="text"
+                  required
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  className="mt-1.5 w-full min-h-[48px] rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
+                />
+              </div>
+              <div>
+                <label htmlFor="phoneLocal" className="text-xs font-semibold uppercase tracking-wide text-foreground/55">
+                  {t.checkout.phoneLocal} * (+{t.checkout.phonePrefix})
+                </label>
+                <div className="mt-1.5 flex min-h-[48px] overflow-hidden rounded-lg border border-foreground/15 bg-white">
+                  <span className="flex shrink-0 items-center border-e border-foreground/10 bg-foreground/[0.04] px-3 text-sm text-foreground/70">
+                    +{t.checkout.phonePrefix}
+                  </span>
+                  <input
+                    id="phoneLocal"
+                    name="phoneLocal"
+                    type="tel"
+                    required
+                    inputMode="numeric"
+                    autoComplete="tel-national"
+                    placeholder="5xxxxxxxx"
+                    value={formData.phoneLocal}
+                    onChange={handleChange}
+                    className="min-w-0 flex-1 px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-inset focus:ring-[#C9A962]"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="email" className="text-xs font-semibold uppercase tracking-wide text-foreground/55">
+                  {t.checkout.email} *
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="mt-1.5 w-full min-h-[48px] rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
+                />
+              </div>
+            </div>
+          </section>
 
-        <div>
-          <label htmlFor="orderNotes" className="block text-sm font-medium text-foreground">
-            {t.checkout.orderNotes}
-          </label>
-          <textarea
-            id="orderNotes"
-            name="orderNotes"
-            rows={3}
-            value={formData.orderNotes}
-            onChange={handleChange}
-            className="mt-2 w-full min-h-[48px] rounded-lg border border-foreground/20 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
-          />
-        </div>
+          <section className="rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm sm:p-6">
+            <h2 className="font-heading text-base font-semibold text-foreground">{t.checkout.paymentSection}</h2>
+            <div className="mt-4 flex items-start gap-3 rounded-xl border-2 border-[#1a7f3a] bg-emerald-50/50 p-4">
+              <input type="radio" checked readOnly className="mt-1 h-4 w-4 accent-[#1a7f3a]" aria-label={t.checkout.codOnly} />
+              <div>
+                <p className="font-medium text-foreground">{t.checkout.codOnly}</p>
+                <p className="mt-1 text-sm text-foreground/70">{t.checkout.codDescription}</p>
+              </div>
+            </div>
+          </section>
 
-        <button
-          type="submit"
-          className="flex min-h-[52px] w-full items-center justify-center rounded-lg bg-foreground py-4 text-base font-medium text-[#FFFEF9] shadow-sm transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:text-sm hover:-translate-y-0.5 hover:bg-foreground/90 hover:shadow-md"
-        >
-          {t.checkout.placeOrder}
-        </button>
-      </form>
+          <section className="rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm sm:p-6">
+            <div className="flex items-center justify-between">
+              <h2 className="font-heading text-base font-semibold text-foreground">{t.checkout.orderSummary}</h2>
+              <span className="text-sm text-foreground/60">
+                {linesResolved.length} {t.checkout.itemsInBag}
+              </span>
+            </div>
+            <ul className="mt-4 space-y-3 border-b border-foreground/10 pb-4">
+              {linesResolved.map(({ line, product, name }) => (
+                <li key={line.id} className="flex gap-3 text-sm">
+                  <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-[#FAF8F5]">
+                    <Image src={product.image} alt="" fill className="object-cover" unoptimized sizes="56px" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="line-clamp-2 font-medium leading-snug text-foreground">{name}</p>
+                    <p className="text-xs text-foreground/55">
+                      {t.cart.size} {line.size} × {line.qty}
+                    </p>
+                  </div>
+                  <span className="shrink-0 font-semibold tabular-nums text-[#C9A962]">
+                    ${(product.price * line.qty).toFixed(2)}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4 flex justify-between text-base font-semibold text-foreground">
+              <span>{t.cart.subtotal}</span>
+              <span className="tabular-nums">${subtotal.toFixed(2)}</span>
+            </div>
+            <div className="mt-4">
+              <label htmlFor="orderNotes" className="text-xs font-semibold uppercase tracking-wide text-foreground/55">
+                {t.checkout.orderNotes}
+              </label>
+              <textarea
+                id="orderNotes"
+                name="orderNotes"
+                rows={2}
+                value={formData.orderNotes}
+                onChange={handleChange}
+                className="mt-1.5 w-full rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962]"
+              />
+            </div>
+          </section>
+
+          <button
+            type="submit"
+            disabled={mapLat == null || mapLng == null}
+            title={mapLat == null || mapLng == null ? t.checkout.pinRequired : undefined}
+            className="flex min-h-[52px] w-full items-center justify-center rounded-xl bg-[#1a7f3a] py-4 text-base font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#156b30] disabled:cursor-not-allowed disabled:opacity-45"
+          >
+            {t.checkout.placeOrder}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
