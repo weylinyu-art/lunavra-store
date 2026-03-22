@@ -23,7 +23,7 @@ export const translations = {
       badgeNew: "✨ New",
       badgeTrending: "Editor’s pick",
       visualDescription:
-        "Hero: full‑bleed editorial image with frosted glass panel, headline Not Seen Always Felt and Nile tagline.",
+        "Hero: full‑bleed editorial image with soft blur and mist across the entire frame; headline Not Seen Always Felt and Nile tagline.",
     },
     featured: {
       title: "Featured",
@@ -360,7 +360,6 @@ export const translations = {
     footer: {
       tagline: "Premium lingerie for the Gulf & Egypt",
       about: "About NileChic",
-      aboutText: "Curated elegance with discreet delivery. Serving UAE, Saudi, Kuwait, Bahrain, Oman, Qatar & Egypt.",
       links: "Quick Links",
       contact: "Contact",
       whatsapp: "WhatsApp",
@@ -479,7 +478,7 @@ export const translations = {
       badgeNew: "✨ جديد",
       badgeTrending: "اختيار المحرر",
       visualDescription:
-        "بانر تحريري مع لوحة زجاج ضبابي، عنوان لا تُرى دائماً تُحسّ وشعار أناقة النيل.",
+        "بانر تحريري بضبابية خفيفة على كامل الصورة، عنوان لا تُرى دائماً تُحسّ وشعار أناقة النيل.",
     },
     featured: {
       title: "مختارات مميزة",
@@ -805,7 +804,6 @@ export const translations = {
     footer: {
       tagline: "ملابس داخلية مميزة للخليج ومصر",
       about: "عن NileChic",
-      aboutText: "أناقة مختارة مع توصيل سري. نخدم الإمارات والسعودية والكويت والبحرين وعمان وقطر ومصر.",
       links: "روابط سريعة",
       contact: "تواصل",
       whatsapp: "واتساب",

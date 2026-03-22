@@ -64,63 +64,64 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero */}
+      {/* Hero — full-bleed mist: soft-blur photo + full-screen frosted veil (not a small glass card) */}
       <section
-        className="relative flex min-h-[70vh] flex-col justify-end overflow-hidden px-4 pb-8 pt-20 sm:min-h-[78vh] sm:pb-12 sm:pt-24 md:min-h-[85vh] md:justify-center md:pb-20 md:pt-28"
+        className="relative flex min-h-[72vh] flex-col items-center justify-center overflow-hidden px-4 pb-10 pt-24 sm:min-h-[80vh] sm:pb-14 sm:pt-28 md:min-h-[88vh] md:pb-20 md:pt-32"
         aria-labelledby="hero-heading"
       >
-        <Image
-          src={HERO_BG}
-          alt=""
-          fill
-          unoptimized
-          className="object-cover object-center"
-          priority
-          sizes="100vw"
-        />
-        {/* Depth + soft vignette (content sits on frosted panel below) */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/35 to-black/40" aria-hidden />
+        <div className="absolute inset-0 overflow-hidden">
+          <Image
+            src={HERO_BG}
+            alt=""
+            fill
+            unoptimized
+            className="scale-105 object-cover object-center blur-[2px] sm:blur-[3px]"
+            priority
+            sizes="100vw"
+          />
+        </div>
+        {/* Full-area frosted veil: blurs + mutes the entire photo (reference: RodsHub-style mist) */}
+        <div className="absolute inset-0 bg-white/[0.06] backdrop-blur-md sm:backdrop-blur-lg" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/35 to-black/60" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-black/30" aria-hidden />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(0,0,0,0.35)_100%)]" aria-hidden />
         <p className="sr-only">{t.hero.visualDescription}</p>
-        <div className="relative z-10 mx-auto w-full max-w-2xl px-4 py-6 sm:max-w-3xl sm:px-6 md:py-8">
-          <div
-            className="rounded-2xl border border-white/35 bg-white/[0.13] px-5 py-7 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-xl backdrop-saturate-150 ring-1 ring-inset ring-white/15 sm:px-8 sm:py-9 md:px-10 md:py-10"
+
+        <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center px-2 text-center sm:px-4">
+          <div className="mb-4 flex flex-wrap justify-center gap-2 sm:mb-5">
+            <span className="rounded-full bg-white/15 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-white/95 sm:px-3.5">
+              {t.hero.badgeNew}
+            </span>
+            <span className="rounded-full border border-white/35 bg-white/10 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-white/95 sm:px-3.5">
+              {t.hero.badgeTrending}
+            </span>
+          </div>
+          <h1
+            id="hero-heading"
+            className="font-heading text-2xl font-light leading-[1.2] tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl md:leading-[1.1] lg:text-6xl"
           >
-            <div className="mb-3 flex flex-wrap gap-2 sm:mb-4">
-              <span className="rounded-md bg-white/15 px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-white/95 backdrop-blur-sm sm:px-3">
-                {t.hero.badgeNew}
+            {t.hero.headline.split("\n").map((line, i) => (
+              <span key={i} className={i > 0 ? "mt-1 block sm:mt-2" : "block"}>
+                {line}
               </span>
-              <span className="rounded-md border border-white/40 bg-white/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-white/95 backdrop-blur-sm sm:px-3">
-                {t.hero.badgeTrending}
-              </span>
-            </div>
-            <h1
-              id="hero-heading"
-              className="font-heading text-2xl font-light leading-[1.2] tracking-tight text-white sm:text-4xl md:text-5xl md:leading-[1.1] lg:text-6xl"
+            ))}
+          </h1>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/88 sm:mt-5 sm:text-base md:text-lg md:leading-relaxed">
+            {t.hero.subheadline}
+          </p>
+          <div className="mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
+            <Link
+              href={path("/shop")}
+              className="flex min-h-[48px] items-center justify-center rounded-lg bg-white px-8 py-3.5 text-base font-medium text-foreground shadow-lg shadow-black/20 transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:min-w-[200px] sm:py-3 sm:text-sm hover:bg-white"
             >
-              {t.hero.headline.split("\n").map((line, i) => (
-                <span key={i} className={i > 0 ? "mt-1 block sm:mt-2" : "block"}>
-                  {line}
-                </span>
-              ))}
-            </h1>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/88 sm:mt-5 sm:text-base md:text-lg">
-              {t.hero.subheadline}
-            </p>
-            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-4">
-              <Link
-                href={path("/shop")}
-                className="flex min-h-[48px] items-center justify-center rounded-lg bg-white px-8 py-3.5 text-base font-medium text-foreground transition-all duration-300 active:scale-[0.98] sm:inline-flex sm:min-h-0 sm:py-3 sm:text-sm hover:bg-white hover:shadow-lg"
-              >
-                {t.hero.shopNow}
-              </Link>
-              <Link
-                href="#collections"
-                className="flex min-h-[48px] items-center justify-center rounded-lg border border-white/55 bg-white/5 px-8 py-3.5 text-base font-medium text-white backdrop-blur-sm transition-all duration-300 active:scale-[0.98] sm:inline-flex sm:min-h-0 sm:py-3 sm:text-sm hover:border-white hover:bg-white/15"
-              >
-                {t.hero.exploreCollection}
-              </Link>
-            </div>
+              {t.hero.shopNow}
+            </Link>
+            <Link
+              href="#collections"
+              className="flex min-h-[48px] items-center justify-center rounded-lg border border-white/60 bg-white/10 px-8 py-3.5 text-base font-medium text-white transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:min-w-[200px] sm:py-3 sm:text-sm hover:border-white hover:bg-white/20"
+            >
+              {t.hero.exploreCollection}
+            </Link>
           </div>
         </div>
       </section>

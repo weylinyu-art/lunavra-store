@@ -20,7 +20,13 @@ export default function Footer() {
             <h3 className="mt-6 text-sm font-semibold uppercase tracking-wider text-foreground/80">
               {t.footer.about}
             </h3>
-            <p className="mt-2 text-sm text-foreground/70">{t.footer.aboutText}</p>
+            <div className="mt-2 space-y-2 text-sm leading-relaxed text-foreground/70">
+              {t.brandStory.bodyShort.split("\n\n").map((block, i) => (
+                <p key={i} className="whitespace-pre-line">
+                  {block}
+                </p>
+              ))}
+            </div>
           </div>
 
           <div>
