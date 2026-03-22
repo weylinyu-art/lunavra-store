@@ -103,7 +103,6 @@ export default function RootLayout({
               url: "https://nilechic.com",
               description:
                 "Elegant lingerie designed to celebrate femininity and confidence. Discreet packaging, cash on delivery. Ships to GCC & Egypt.",
-              sameAs: ["https://www.instagram.com/nilechic"],
             }),
           }}
         />

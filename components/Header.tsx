@@ -50,6 +50,8 @@ export default function Header() {
 
   const basePath = pathWithoutLocale(pathname);
   const categoryParam = searchParams.get("category");
+  const tagParam = searchParams.get("tag");
+  const shopNavActive = basePath === "/shop" && !categoryParam && !tagParam;
   const isHome = basePath === "/";
   const isShop = basePath === "/shop";
   const isGift = basePath === "/gift";
@@ -64,13 +66,16 @@ export default function Header() {
     if (q) router.push(path(`/search?q=${encodeURIComponent(q)}`));
   };
 
-  const categories = [
+  /** Core categories: gift is placed after sleepwear, before bridal (clearer shopping path). */
+  const categoryNav = [
     { slug: "lingerie-sets", name: t.categories.lingerieSets },
     { slug: "bras", name: t.categories.bras },
     { slug: "panties", name: t.categories.panties },
     { slug: "sleepwear", name: t.categories.sleepwear },
     { slug: "bridal", name: t.categories.bridal },
-  ];
+  ] as const;
+  const categoriesBeforeGift = categoryNav.slice(0, 4);
+  const categoriesAfterGift = categoryNav.slice(4);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-neutral-200/80 bg-white/95 backdrop-blur-md shadow-sm">
@@ -151,7 +156,7 @@ export default function Header() {
       {/* Category row */}
       <nav
         className="border-t border-neutral-200/60 bg-white/95"
-        aria-label="Categories"
+        aria-label="Primary"
       >
         <div className="mx-auto flex max-w-7xl items-center justify-start gap-1 overflow-x-auto px-4 py-2 sm:gap-4 sm:px-6 lg:px-8 scrollbar-hide">
           <Link
@@ -161,8 +166,15 @@ export default function Header() {
           >
             {t.nav.home}
           </Link>
-          {categories.map((cat) => {
-            const active = isShop && categoryParam === cat.slug && !searchParams.get("tag");
+          <Link
+            href={path("/shop")}
+            aria-current={shopNavActive ? "page" : undefined}
+            className={`flex min-h-[44px] shrink-0 items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-colors sm:min-h-0 ${navTabClass(shopNavActive)}`}
+          >
+            {t.nav.shop}
+          </Link>
+          {categoriesBeforeGift.map((cat) => {
+            const active = isShop && categoryParam === cat.slug && !tagParam;
             return (
               <Link
                 key={cat.slug}
@@ -181,6 +193,19 @@ export default function Header() {
           >
             {t.nav.gift}
           </Link>
+          {categoriesAfterGift.map((cat) => {
+            const active = isShop && categoryParam === cat.slug && !tagParam;
+            return (
+              <Link
+                key={cat.slug}
+                href={path(`/shop?category=${cat.slug}`)}
+                aria-current={active ? "page" : undefined}
+                className={`flex min-h-[44px] shrink-0 items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-colors sm:min-h-0 ${navTabClass(active)}`}
+              >
+                {cat.name}
+              </Link>
+            );
+          })}
           <Link
             href={path("/blog")}
             aria-current={isBlog ? "page" : undefined}
@@ -222,8 +247,16 @@ export default function Header() {
             >
               {t.nav.home}
             </Link>
-            {categories.map((cat) => {
-              const active = isShop && categoryParam === cat.slug && !searchParams.get("tag");
+            <Link
+              href={path("/shop")}
+              onClick={() => setMobileMenuOpen(false)}
+              aria-current={shopNavActive ? "page" : undefined}
+              className={`touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium ${mobileNavClass(shopNavActive)}`}
+            >
+              {t.nav.shop}
+            </Link>
+            {categoriesBeforeGift.map((cat) => {
+              const active = isShop && categoryParam === cat.slug && !tagParam;
               return (
                 <Link
                   key={cat.slug}
@@ -244,6 +277,20 @@ export default function Header() {
             >
               {t.nav.gift}
             </Link>
+            {categoriesAfterGift.map((cat) => {
+              const active = isShop && categoryParam === cat.slug && !tagParam;
+              return (
+                <Link
+                  key={cat.slug}
+                  href={path(`/shop?category=${cat.slug}`)}
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-current={active ? "page" : undefined}
+                  className={`touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium ${mobileNavClass(active)}`}
+                >
+                  {cat.name}
+                </Link>
+              );
+            })}
             <Link
               href={path("/blog")}
               onClick={() => setMobileMenuOpen(false)}

@@ -12,16 +12,6 @@ import { featuredCopy, featuredProductIds } from "@/lib/content/featured-copy";
 const HERO_BG =
   "https://images.unsplash.com/photo-1762195026689-fc8dea166b73?w=1920&h=1080&fit=crop";
 
-/** Six unique tiles for social strip (avoid duplicate assets). */
-const SOCIAL_TILES = [
-  "https://images.unsplash.com/photo-1762195026689-fc8dea166b73?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1750032542760-d161088a94a8?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1684712739479-2d95b85a165b?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1709422122379-79776f76bd87?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1584137294091-5de5bcdf12c8?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1515372039744-b8f02a3d4460?w=400&h=400&fit=crop",
-];
-
 const PRODUCT_ROW = 4;
 
 function pickNewArrivalsRow(): Product[] {
@@ -87,42 +77,48 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(0,0,0,0.35)_100%)]" aria-hidden />
         <p className="sr-only">{t.hero.visualDescription}</p>
 
-        <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center px-2 text-center sm:px-4">
-          <div className="mb-4 flex flex-wrap justify-center gap-2 sm:mb-5">
-            <span className="rounded-full bg-white/15 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-white/95 sm:px-3.5">
-              {t.hero.badgeNew}
-            </span>
-            <span className="rounded-full border border-white/35 bg-white/10 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-white/95 sm:px-3.5">
-              {t.hero.badgeTrending}
-            </span>
-          </div>
+        <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-3 text-center sm:px-6">
           <h1
             id="hero-heading"
-            className="font-heading text-2xl font-light leading-[1.2] tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl md:leading-[1.1] lg:text-6xl"
+            className="font-heading max-w-[min(100%,40rem)] text-[clamp(1.85rem,5.5vw,3.45rem)] font-light leading-[1.1] tracking-[-0.035em] text-white [text-shadow:0_2px_40px_rgba(0,0,0,0.38)] sm:text-[clamp(2.25rem,5vw,3.75rem)] sm:tracking-[-0.04em] md:whitespace-nowrap"
           >
-            {t.hero.headline.split("\n").map((line, i) => (
-              <span key={i} className={i > 0 ? "mt-1 block sm:mt-2" : "block"}>
-                {line}
-              </span>
-            ))}
+            {t.hero.headline}
           </h1>
-          <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/88 sm:mt-5 sm:text-base md:text-lg md:leading-relaxed">
+          <div
+            className="mx-auto mt-5 h-px w-20 bg-gradient-to-r from-transparent via-white/45 to-transparent sm:mt-6 sm:w-24"
+            aria-hidden
+          />
+          <p className="mt-5 max-w-xl text-sm font-normal leading-relaxed tracking-wide text-white/85 sm:mt-6 sm:text-base md:text-lg md:leading-relaxed">
             {t.hero.subheadline}
           </p>
-          <div className="mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
+          <div className="mt-8 flex w-full max-w-lg flex-col gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
             <Link
               href={path("/shop")}
-              className="flex min-h-[48px] items-center justify-center rounded-lg bg-white px-8 py-3.5 text-base font-medium text-foreground shadow-lg shadow-black/20 transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:min-w-[200px] sm:py-3 sm:text-sm hover:bg-white"
+              className="flex min-h-[48px] items-center justify-center rounded-lg bg-white px-8 py-3.5 text-base font-medium text-foreground shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:min-w-[200px] sm:py-3 sm:text-sm hover:bg-white"
             >
               {t.hero.shopNow}
             </Link>
             <Link
               href="#collections"
-              className="flex min-h-[48px] items-center justify-center rounded-lg border border-white/60 bg-white/10 px-8 py-3.5 text-base font-medium text-white transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:min-w-[200px] sm:py-3 sm:text-sm hover:border-white hover:bg-white/20"
+              className="flex min-h-[48px] items-center justify-center rounded-lg border border-white/55 bg-white/[0.07] px-8 py-3.5 text-base font-medium text-white backdrop-blur-[2px] transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:min-w-[200px] sm:py-3 sm:text-sm hover:border-white/80 hover:bg-white/15"
             >
               {t.hero.exploreCollection}
             </Link>
           </div>
+          <ul className="mt-10 flex w-full max-w-2xl flex-col items-center gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-10 sm:gap-y-3">
+            {t.hero.highlights.map((line, i) => (
+              <li
+                key={i}
+                className="flex max-w-md items-start gap-2.5 text-start text-[13px] leading-snug text-white/88 sm:max-w-[15rem] sm:text-sm"
+              >
+                <span
+                  className="mt-[0.35rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#d4b896] shadow-[0_0_0_1px_rgba(255,255,255,0.25)]"
+                  aria-hidden
+                />
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -199,7 +195,7 @@ export default function HomePage() {
                 const fc = featuredCopy[copyLocale][product.id] ?? featuredCopy.en[product.id];
                 if (!fc) return null;
                 return (
-                  <FeaturedProductCard key={product.id} product={product} teaser={fc.teaser} hoverHint={fc.hoverHint} />
+                  <FeaturedProductCard key={product.id} product={product} teaser={fc.teaser} hoverHint={fc.hoverHint} cleanImage />
                 );
               })}
             </div>
@@ -214,7 +210,7 @@ export default function HomePage() {
             </div>
             <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4 lg:grid-cols-4">
               {newRow.map((product) => (
-                <ProductCard key={`new-${product.id}`} product={product} showNewBadge />
+                <ProductCard key={`new-${product.id}`} product={product} showNewBadge cleanImage />
               ))}
             </div>
           </div>
@@ -228,7 +224,7 @@ export default function HomePage() {
             </div>
             <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4 lg:grid-cols-4">
               {bestSellers.map((product) => (
-                <ProductCard key={`bs-${product.id}`} product={product} />
+                <ProductCard key={`bs-${product.id}`} product={product} cleanImage />
               ))}
             </div>
           </div>
@@ -291,7 +287,7 @@ export default function HomePage() {
           </div>
           <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-4 lg:grid-cols-4">
             {giftProducts.map((product) => (
-              <ProductCard key={product.id} product={product} giftMode />
+              <ProductCard key={product.id} product={product} giftMode cleanImage />
             ))}
           </div>
           <div className="mt-8 text-center">
@@ -383,7 +379,7 @@ export default function HomePage() {
               <h3 className="font-heading text-lg font-medium text-foreground sm:text-xl">{featuredLook.name}</h3>
               <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {lookProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+                  <ProductCard key={product.id} product={product} cleanImage />
                 ))}
               </div>
               <Link
@@ -394,35 +390,6 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Social strip — shorter, no endless scroll */}
-      <section className="bg-white px-4 py-12 sm:py-16" aria-labelledby="instagram-heading">
-        <h2 id="instagram-heading" className="font-heading text-center text-xl font-light tracking-wide text-foreground sm:text-2xl">
-          {t.instagram.title}
-        </h2>
-        <p className="mt-1.5 text-center text-sm text-foreground/65">{t.instagram.handle}</p>
-        <div className="mx-auto mt-8 grid max-w-4xl grid-cols-3 gap-2 sm:mt-10 sm:grid-cols-6 sm:gap-3">
-          {SOCIAL_TILES.map((src, i) => (
-            <a
-              key={src}
-              href="https://instagram.com/nilechic"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative aspect-square overflow-hidden rounded-lg bg-neutral-100"
-            >
-              <Image
-                src={src}
-                alt=""
-                width={400}
-                height={400}
-                unoptimized
-                className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-              />
-              <span className="sr-only">Instagram {i + 1}</span>
-            </a>
-          ))}
         </div>
       </section>
     </>

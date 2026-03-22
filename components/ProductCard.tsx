@@ -11,6 +11,8 @@ interface ProductCardProps {
   product: Product;
   showNewBadge?: boolean;
   giftMode?: boolean;
+  /** No pills, fulfillment badge, or gift ribbon — e.g. homepage editorial grids */
+  cleanImage?: boolean;
 }
 
 function GiftRibbon() {
@@ -37,7 +39,7 @@ function GiftRibbon() {
   );
 }
 
-export default function ProductCard({ product, showNewBadge, giftMode }: ProductCardProps) {
+export default function ProductCard({ product, showNewBadge, giftMode, cleanImage }: ProductCardProps) {
   const { locale, path, t } = useLocale();
   const name = locale === "ar" ? product.nameAr : product.name;
   const [isHovered, setIsHovered] = useState(false);
@@ -57,7 +59,7 @@ export default function ProductCard({ product, showNewBadge, giftMode }: Product
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className={`relative aspect-[3/4] overflow-hidden bg-neutral-50 ${giftMode ? "gift-card-image" : ""}`}>
-          {giftMode && <GiftRibbon />}
+          {giftMode && !cleanImage && <GiftRibbon />}
           <Image
             src={displayImage}
             alt={name}
@@ -66,31 +68,35 @@ export default function ProductCard({ product, showNewBadge, giftMode }: Product
             className={`object-cover transition-all duration-500 ease-out ${giftMode ? "group-hover:scale-[1.03]" : "group-hover:scale-105"}`}
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
-          <div className={`absolute flex flex-wrap gap-2 ${giftMode ? "top-3 start-3" : "top-3 start-3"}`}>
-            {!giftMode && (product.tags?.includes("new") || showNewBadge) && (
-              <span className="rounded-full bg-neutral-200 px-3 py-1 text-xs font-medium uppercase tracking-wider text-foreground shadow-sm">
-                {t.newArrivals.tag}
-              </span>
-            )}
-            {!giftMode && product.tags?.includes("popular") && (
-              <span className="rounded-full bg-neutral-700 px-3 py-1 text-xs font-medium uppercase tracking-wider text-white shadow-sm">
-                {t.bestSellers.tagPopular}
-              </span>
-            )}
-            {!giftMode && product.tags?.includes("best-seller") && (
-              <span className="rounded-full bg-neutral-900 px-3 py-1 text-xs font-medium uppercase tracking-wider text-white shadow-sm">
-                {t.bestSellers.tag}
-              </span>
-            )}
-            {!giftMode && product.tags?.includes("romantic-gift") && (
-              <span className="rounded-full bg-foreground/80 px-3 py-1 text-xs font-medium uppercase tracking-wider text-white shadow-sm">
-                {t.romanticGifts.tag}
-              </span>
-            )}
-          </div>
-          <div className="absolute bottom-3 start-3 z-[5]">
-            <FulfillmentBadge product={product} placement="card" />
-          </div>
+          {!cleanImage && (
+            <div className={`absolute flex flex-wrap gap-2 ${giftMode ? "top-3 start-3" : "top-3 start-3"}`}>
+              {!giftMode && (product.tags?.includes("new") || showNewBadge) && (
+                <span className="rounded-full bg-neutral-200 px-3 py-1 text-xs font-medium uppercase tracking-wider text-foreground shadow-sm">
+                  {t.newArrivals.tag}
+                </span>
+              )}
+              {!giftMode && product.tags?.includes("popular") && (
+                <span className="rounded-full bg-neutral-700 px-3 py-1 text-xs font-medium uppercase tracking-wider text-white shadow-sm">
+                  {t.bestSellers.tagPopular}
+                </span>
+              )}
+              {!giftMode && product.tags?.includes("best-seller") && (
+                <span className="rounded-full bg-neutral-900 px-3 py-1 text-xs font-medium uppercase tracking-wider text-white shadow-sm">
+                  {t.bestSellers.tag}
+                </span>
+              )}
+              {!giftMode && product.tags?.includes("romantic-gift") && (
+                <span className="rounded-full bg-foreground/80 px-3 py-1 text-xs font-medium uppercase tracking-wider text-white shadow-sm">
+                  {t.romanticGifts.tag}
+                </span>
+              )}
+            </div>
+          )}
+          {!cleanImage && (
+            <div className="absolute bottom-3 start-3 z-[5]">
+              <FulfillmentBadge product={product} placement="card" />
+            </div>
+          )}
         </div>
         <div className={`p-4 ${giftMode ? "border-t border-neutral-900/20 bg-gradient-to-b from-white to-neutral-50" : ""}`}>
           <h3 className="font-heading text-lg font-medium text-foreground transition-colors group-hover:text-neutral-900">

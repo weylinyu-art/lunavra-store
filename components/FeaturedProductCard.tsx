@@ -11,9 +11,10 @@ interface FeaturedProductCardProps {
   product: Product;
   teaser: string;
   hoverHint: string;
+  cleanImage?: boolean;
 }
 
-export default function FeaturedProductCard({ product, teaser, hoverHint }: FeaturedProductCardProps) {
+export default function FeaturedProductCard({ product, teaser, hoverHint, cleanImage }: FeaturedProductCardProps) {
   const { locale, path, t } = useLocale();
   const name = locale === "ar" ? product.nameAr : product.name;
   const [isHovered, setIsHovered] = useState(false);
@@ -36,9 +37,11 @@ export default function FeaturedProductCard({ product, teaser, hoverHint }: Feat
           className="object-cover transition-all duration-500 ease-out group-hover:scale-105"
           sizes="(max-width: 640px) 50vw, 25vw"
         />
-        <div className="pointer-events-none absolute bottom-3 start-3 z-[5]">
-          <FulfillmentBadge product={product} placement="card" />
-        </div>
+        {!cleanImage && (
+          <div className="pointer-events-none absolute bottom-3 start-3 z-[5]">
+            <FulfillmentBadge product={product} placement="card" />
+          </div>
+        )}
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent p-4 pt-16 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           aria-hidden
