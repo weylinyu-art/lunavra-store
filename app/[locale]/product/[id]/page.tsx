@@ -11,6 +11,7 @@ import { getProductSchema } from "@/lib/seo/structured-data";
 import SizeGuideModal from "@/components/SizeGuideModal";
 import ShareButtons from "@/components/ShareButtons";
 import ProductReviews from "@/components/ProductReviews";
+import ProductCard from "@/components/ProductCard";
 
 export default function ProductPage() {
   const params = useParams();
@@ -56,6 +57,15 @@ export default function ProductPage() {
   const shareTitle = name;
 
   const productSchema = getProductSchema(product, locale);
+  const notes = product.imageNotes;
+  const altFor = (i: number) => {
+    if (notes?.[i]) return `${name} — ${notes[i]}`;
+    const slot =
+      i === 0 ? t.product.imageAltFront : i === 1 ? t.product.imageAltBack : t.product.imageAltDetail;
+    return `${name} — ${slot}`;
+  };
+  const related =
+    product.relatedIds?.map((id) => products.find((p) => p.id === id)).filter((p): p is NonNullable<typeof p> => Boolean(p)) ?? [];
 
   return (
     <div className="mx-auto max-w-7xl bg-[#FAF8F5] px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
@@ -91,7 +101,7 @@ export default function ProductPage() {
               >
                 <Image
                   src={src}
-                  alt={`${name} ${i + 1}`}
+                  alt={altFor(i)}
                   fill
                   unoptimized
                   className="object-cover"
@@ -103,7 +113,7 @@ export default function ProductPage() {
           <div className="relative aspect-[3/4] flex-1 overflow-hidden rounded-xl bg-[#FFFEF9] shadow-sm">
             <Image
               src={images[selectedImage]}
-              alt={name}
+              alt={altFor(selectedImage)}
               fill
               unoptimized
               className="object-cover"
@@ -122,6 +132,15 @@ export default function ProductPage() {
               )}
             </div>
           </div>
+          {notes && notes.length > 0 && (
+            <ul className="sr-only">
+              {notes.map((note, i) => (
+                <li key={i}>
+                  {t.product.imageAltFront} {i + 1}: {note}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         {/* Product info */}
@@ -160,6 +179,7 @@ export default function ProductPage() {
                 </button>
               ))}
             </div>
+            <p className="mt-3 text-xs leading-relaxed text-foreground/65">{t.product.sizeReminder}</p>
           </div>
 
           {/* Add to cart - mobile: full width, min 48px height */}
@@ -219,6 +239,19 @@ export default function ProductPage() {
           <ProductReviews productId={product.id} />
         </div>
       </article>
+
+      {related.length > 0 && (
+        <section className="mt-14 border-t border-rose-200/50 pt-10" aria-labelledby="related-heading">
+          <h2 id="related-heading" className="font-heading text-xl font-light text-foreground sm:text-2xl">
+            {t.product.relatedTitle}
+          </h2>
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+            {related.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+        </section>
+      )}
 
       <SizeGuideModal isOpen={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />
     </div>

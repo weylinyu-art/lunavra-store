@@ -4,8 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLocale } from "@/contexts/LocaleContext";
 import ProductCard from "@/components/ProductCard";
+import FeaturedProductCard from "@/components/FeaturedProductCard";
 import { products, categories } from "@/lib/data/products";
 import { looks, getLookProducts } from "@/lib/data/looks";
+import { featuredCopy, featuredProductIds } from "@/lib/content/featured-copy";
 
 const HERO_BG =
   "https://images.unsplash.com/photo-1762195026689-fc8dea166b73?w=1920&h=1080&fit=crop";
@@ -22,13 +24,17 @@ const INSTAGRAM_IMAGES = [
 ];
 
 export default function HomePage() {
-  const { t, path } = useLocale();
+  const { t, path, locale } = useLocale();
   const newArrivals = products.filter((p) => p.tags?.includes("new")).slice(0, 8);
   const bestSellers = products.filter((p) => p.tags?.includes("best-seller") || p.tags?.includes("popular"));
   const giftProducts = products.filter((p) => p.tags?.includes("romantic-gift")).slice(0, 8);
   const allProducts = products.slice(0, 28);
   const featuredLook = looks[0];
   const lookProducts = getLookProducts(featuredLook);
+  const copyLocale = locale === "ar" ? "ar" : "en";
+  const featuredItems = featuredProductIds
+    .map((id) => products.find((p) => p.id === id))
+    .filter((p): p is NonNullable<typeof p> => Boolean(p));
 
   return (
     <>
@@ -47,6 +53,7 @@ export default function HomePage() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/35 to-transparent md:from-black/50 md:via-black/25 md:to-black/20" aria-hidden />
+        <p className="sr-only">{t.hero.visualDescription}</p>
         <div className="relative z-10 mx-auto w-full max-w-3xl">
           <div className="mb-2 flex flex-wrap gap-2 sm:mb-3">
             <span className="rounded px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-white/90 sm:px-3">
@@ -70,25 +77,69 @@ export default function HomePage() {
               {t.hero.shopNow}
             </Link>
             <Link
-              href={path("/gift")}
+              href={path("/shop")}
               className="flex min-h-[48px] items-center justify-center rounded-lg border border-white/60 px-8 py-3.5 text-base font-medium text-white transition-all duration-300 active:scale-[0.98] sm:inline-flex sm:min-h-0 sm:py-3 sm:text-sm hover:border-white hover:bg-white/10"
             >
-              {t.hero.giftForWife}
+              {t.hero.exploreCollection}
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 2. Quick Categories - mobile: 2 cols, larger tap targets */}
+      {/* 2. Core trust — payment, discreet, returns, size guide */}
+      <section className="bg-[#FFFEF9] px-4 py-10 sm:py-14 md:py-20" aria-labelledby="core-trust-heading">
+        <h2 id="core-trust-heading" className="font-heading text-center text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
+          {t.trust.title}
+        </h2>
+        <div className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+          {[
+            { title: t.trust.paymentSecurity, desc: t.trust.paymentSecurityDesc, emoji: "🔒" },
+            { title: t.trust.discreet, desc: t.trust.discreetDesc, emoji: "📦" },
+            { title: t.trust.easyReturns, desc: t.trust.easyReturnsDesc, emoji: "↩" },
+            { title: t.trust.sizeGuideTrust, desc: t.trust.sizeGuideTrustDesc, emoji: "📏" },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className="hover-lift rounded-2xl border border-[#E8C4C4]/40 bg-[#FDF2F4]/80 p-6 text-center transition-all duration-300"
+            >
+              <span className="text-3xl" aria-hidden>
+                {item.emoji}
+              </span>
+              <h3 className="font-heading mt-3 text-lg font-medium text-foreground">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/80">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 3. Featured products */}
+      <section className="bg-gradient-to-b from-[#FAF8F5] to-[#FFFEF9] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="featured-heading">
+        <div className="mx-auto max-w-6xl">
+          <h2 id="featured-heading" className="font-heading text-center text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
+            {t.featured.title}
+          </h2>
+          <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-foreground/75 sm:text-base">{t.featured.subtitle}</p>
+          <div className="mt-8 grid grid-cols-1 gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
+            {featuredItems.map((product) => {
+              const fc = featuredCopy[copyLocale][product.id] ?? featuredCopy.en[product.id];
+              if (!fc) return null;
+              return (
+                <FeaturedProductCard key={product.id} product={product} teaser={fc.teaser} hoverHint={fc.hoverHint} />
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Category quick links (four) */}
       <section className="bg-[#FDF2F4] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="categories-heading">
         <h2 id="categories-heading" className="font-heading text-center text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
           {t.categories.title}
         </h2>
-        <div className="mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-3 sm:mt-12 sm:gap-4 md:grid-cols-4 lg:grid-cols-5">
+        <div className="mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-3 sm:mt-12 sm:gap-4 md:grid-cols-4">
           {[
             { slug: "lingerie-sets", name: t.categories.lingerieSets },
             { slug: "bras", name: t.categories.bras },
-            { slug: "panties", name: t.categories.panties },
             { slug: "sleepwear", name: t.categories.sleepwear },
             { slug: "bridal", name: t.categories.bridal },
           ].map((cat) => {
@@ -118,7 +169,92 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. Flash Picks / New Arrivals */}
+      {/* 5. Brand story */}
+      <section className="bg-[#FFFEF9] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="brand-story-heading">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2 lg:gap-12 lg:items-center">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#FDF2F4]">
+            <Image
+              src="https://images.unsplash.com/photo-1584137294091-5de5bcdf12c8?w=1200&h=900&fit=crop&q=80"
+              alt=""
+              fill
+              unoptimized
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+            <p className="sr-only">{t.brandStory.visualDescription}</p>
+          </div>
+          <div>
+            <h2 id="brand-story-heading" className="font-heading text-2xl font-light tracking-wide text-foreground sm:text-3xl">
+              {t.brandStory.title}
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-foreground/80 sm:text-base">{t.brandStory.body}</p>
+            <Link
+              href={path("/about")}
+              className="mt-6 inline-flex min-h-[44px] items-center justify-center rounded-lg bg-foreground px-8 py-3 text-sm font-medium text-[#FFFEF9] transition-colors hover:bg-foreground/90"
+            >
+              {t.brandStory.cta}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Blog / style guide highlights */}
+      <section className="bg-gradient-to-b from-[#FAF8F5] to-[#FDF2F4] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="journal-heading">
+        <div className="mx-auto max-w-6xl">
+          <h2 id="journal-heading" className="font-heading text-center text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
+            {t.blogSection.title}
+          </h2>
+          <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-foreground/75 sm:text-base">{t.blogSection.subtitle}</p>
+          <p className="sr-only">{t.blogSection.metaSeoLine}</p>
+          <div className="mt-8 grid gap-6 sm:mt-12 md:grid-cols-3">
+            {[
+              {
+                title: t.blogHighlights.oneTitle,
+                keyword: t.blogHighlights.oneKeyword,
+                desc: t.blogHighlights.oneDesc,
+                slug: t.blogHighlights.oneSlug,
+              },
+              {
+                title: t.blogHighlights.twoTitle,
+                keyword: t.blogHighlights.twoKeyword,
+                desc: t.blogHighlights.twoDesc,
+                slug: t.blogHighlights.twoSlug,
+              },
+              {
+                title: t.blogHighlights.threeTitle,
+                keyword: t.blogHighlights.threeKeyword,
+                desc: t.blogHighlights.threeDesc,
+                slug: t.blogHighlights.threeSlug,
+              },
+            ].map((article) => (
+              <article
+                key={article.slug}
+                className="flex flex-col rounded-2xl border border-[#E8C4C4]/40 bg-[#FFFEF9] p-6 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <p className="text-[10px] font-medium uppercase tracking-widest text-[#C9A962]">{article.keyword}</p>
+                <h3 className="font-heading mt-2 text-lg font-medium leading-snug text-foreground">{article.title}</h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-foreground/75">{article.desc}</p>
+                <Link
+                  href={path(`/blog/${article.slug}`)}
+                  className="mt-5 inline-flex min-h-[44px] items-center justify-center text-sm font-medium text-[#C9A962] hover:underline"
+                >
+                  {t.blogSection.readArticle}
+                </Link>
+              </article>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              href={path("/blog")}
+              className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-[#C9A962]/50 px-8 py-3 text-sm font-medium text-foreground transition-colors hover:border-[#C9A962] hover:bg-[#C9A962]/10"
+            >
+              {t.blogSection.discoverMore}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Flash Picks / New Arrivals */}
       <section className="bg-gradient-to-b from-[#FFFEF9] to-[#FAF8F5] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="flash-heading">
         <div className="mx-auto max-w-6xl">
           <h2 id="flash-heading" className="font-heading text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
@@ -240,41 +376,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Why Choose NileChic Trust */}
-      <section className="bg-[#FFFEF9] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="trust-heading">
-        <h2 id="trust-heading" className="font-heading text-center text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
-          {t.trust.title}
-        </h2>
-        <div className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-4 sm:mt-12 sm:gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          <div className="hover-lift rounded-2xl border border-[#E8C4C4]/50 bg-[#FDF2F4] p-6 text-center transition-all duration-300">
-            <span className="text-4xl">📦</span>
-            <h3 className="font-heading mt-4 text-lg font-medium text-foreground">{t.trust.discreet}</h3>
-            <p className="mt-2 text-sm text-foreground/80">{t.trust.discreetDesc}</p>
-          </div>
-          <div className="hover-lift rounded-2xl border border-[#C9A962]/30 bg-[#FAF8F5] p-6 text-center transition-all duration-300">
-            <span className="text-4xl">💵</span>
-            <h3 className="font-heading mt-4 text-lg font-medium text-foreground">{t.trust.cod}</h3>
-            <p className="mt-2 text-sm text-foreground/80">{t.trust.codDesc}</p>
-          </div>
-          <div className="hover-lift rounded-2xl border border-[#E8C4C4]/50 bg-[#FDF2F4] p-6 text-center transition-all duration-300">
-            <span className="text-4xl">📋</span>
-            <h3 className="font-heading mt-4 text-lg font-medium text-foreground">{t.trust.localStock}</h3>
-            <p className="mt-2 text-sm text-foreground/80">{t.trust.localStockDesc}</p>
-          </div>
-          <div className="hover-lift rounded-2xl border border-[#C9A962]/30 bg-[#FAF8F5] p-6 text-center transition-all duration-300">
-            <span className="text-4xl">🚚</span>
-            <h3 className="font-heading mt-4 text-lg font-medium text-foreground">{t.trust.fastDelivery}</h3>
-            <p className="mt-2 text-sm text-foreground/80">{t.trust.fastDeliveryDesc}</p>
-          </div>
-          <div className="hover-lift rounded-2xl border border-[#E8C4C4]/50 bg-[#FDF2F4] p-6 text-center transition-all duration-300 sm:col-span-2 lg:col-span-1">
-            <span className="text-4xl">🌍</span>
-            <h3 className="font-heading mt-4 text-lg font-medium text-foreground">{t.trust.regions}</h3>
-            <p className="mt-2 text-sm text-foreground/80">{t.trust.regionsDesc}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. Instagram Horizontal Scroll */}
+      {/* Instagram Horizontal Scroll */}
       <section className="bg-[#FAF8F5] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="instagram-heading">
         <h2 id="instagram-heading" className="font-heading text-center text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
           {t.instagram.title}

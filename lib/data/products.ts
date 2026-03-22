@@ -17,6 +17,10 @@ export interface Product {
   materialAr?: string;
   care?: string;
   careAr?: string;
+  /** Related product IDs for PDP recommendations */
+  relatedIds?: string[];
+  /** SEO / accessibility notes for gallery order (optional) */
+  imageNotes?: string[];
 }
 
 function loadProducts(): Product[] {

@@ -132,6 +132,12 @@ export default function Header() {
           >
             {t.nav.gift}
           </Link>
+          <Link
+            href={path("/blog")}
+            className="flex shrink-0 items-center rounded-lg px-3 py-2.5 text-sm font-medium text-foreground/80 transition-colors min-h-[44px] hover:bg-[#C9A962]/10 hover:text-[#C9A962] active:bg-[#C9A962]/10 sm:min-h-0"
+          >
+            {t.nav.blog}
+          </Link>
         </div>
       </nav>
 
@@ -173,6 +179,9 @@ export default function Header() {
             ))}
             <Link href={path("/gift")} onClick={() => setMobileMenuOpen(false)} className="touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium text-foreground active:bg-rose-100/50">
               {t.nav.gift}
+            </Link>
+            <Link href={path("/blog")} onClick={() => setMobileMenuOpen(false)} className="touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium text-foreground active:bg-rose-100/50">
+              {t.nav.blog}
             </Link>
             <Link
               href={path("/checkout")}

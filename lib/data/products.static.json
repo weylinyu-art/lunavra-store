@@ -12,8 +12,19 @@
       "https://images.unsplash.com/photo-1762195018087-7f192953951a?w=1200&h=1500&fit=crop&q=80",
       "https://images.unsplash.com/photo-1641667835427-b380290e4956?w=1200&h=1500&fit=crop&q=80"
     ],
-    "description": "An exquisite ivory lace lingerie set featuring delicate floral motifs and French lace trim. The matching bra and panty set is crafted from premium soft-touch fabric for all-day comfort. Perfect for brides or romantic occasions.",
-    "descriptionAr": "طقم ملابس داخلية عاجي دانتيل بأناقة مع زخارف زهرية رقيقة وتفاصيل فرنسية. مصنوع من أقمشة فاخرة مريحة طوال اليوم. مثالي للعروس أو المناسبات الرومانسية.",
+    "description": "The Ivory Lace Ensemble is a full two-piece story in tone-on-tone botanical lace: a balconette-inspired silhouette with soft structure, paired with a mid-rise brief that smooths without masking. The cup layering uses a featherweight mesh lining for opacity where you want it, while the lace motif continues across the bridge and wings for a continuous, editorial line. Stretch side panels move with you—ideal for long evenings, travel days, or quiet confidence under tailoring. Style notes: pair with nude-to-you hosiery for seamless transitions; hand wash cold and reshape while damp to preserve the raised floral pattern.",
+    "descriptionAr": "طقم دانتيل عاجي كامل من قطعتين بنقشة نباتية متناغمة: قصة مستوحاة من البالكونيت بدعم لطيف، مع سروال بخصر متوسط يمنح نعومة دون تغطية زائدة. الطبقات الداخلية من شبك خفيف لشفافية مدروسة، والدانتيل يمتد على الجسر والأجنحة لخط تحريري متصل. لوحات جانبية مرنة تتحرك معك—مثالي لأمسيات طويلة أو أيام سفر أو ثقة هادئة تحت البدل. نصائح الأسلوب: مع جورب بدرجة لون بشرتك؛ غسيل بارد يدوياً وإعادة الشكل وهو رطب للحفاظ على الزخرفة.",
+    "material": "62% polyamide, 28% elastane, 10% viscose lace; mesh lining 82% polyamide, 18% elastane; nickel-free hardware.",
+    "materialAr": "62٪ بولي أميد، 28٪ إيلاستين، 10٪ فيسكوز دانتيل؛ بطانة شبك 82٪ بولي أميد، 18٪ إيلاستين؛ حلقات خالية من النيكل.",
+    "care": "Hand wash cold with mild detergent. Do not wring. Lay flat in shade. Cool iron on reverse only, avoiding lace relief.",
+    "careAr": "غسيل يدوي بارد بمنظف لطيف. لا تعصري. جففي مسطحة في الظل. كوي بارد من الداخل فقط وتجنبي الضغط على الدانتيل.",
+    "relatedIds": ["3", "5", "7"],
+    "imageNotes": [
+      "Editorial front: full ivory lace set on model, soft side light, calm nude-pink backdrop.",
+      "Back view: wing lace placement and adjustable hook column, clean shoulder line.",
+      "Macro: floral lace gauge and scalloped edge against off-white linen.",
+      "Flat lay: ensemble folded with gold-accent hanger—minimal styling."
+    ],
     "sizes": [
       "XS",
       "S",
@@ -41,8 +52,19 @@
       "https://images.unsplash.com/photo-1492175881389-e5553ef372e0?w=1200&h=1500&fit=crop&q=80",
       "https://images.unsplash.com/photo-1641667835427-b380290e4956?w=1200&h=1500&fit=crop&q=80"
     ],
-    "description": "Luxurious champagne-colored silk lingerie set with gold accent details. The satin-finish fabric drapes beautifully and feels incredibly soft against skin. A sophisticated choice for anniversaries and special evenings.",
-    "descriptionAr": "طقم ملابس داخلية حريري بلون الشامبانيا مع تفاصيل ذهبية. قماش بلمسة حريرية يتدلى بأناقة وملمس ناعم جداً على البشرة. خيار أنيق للذكرى السنوية والأمسيات الخاصة.",
+    "description": "The Champagne Silk Set is liquid light in motion: bias-cut cups with clean binding, slender straps, and micro gold-tone hardware that catches candlelight without shouting. The silk charmeuse chosen here has a luminous face and a matte reverse—cool to the touch, warm in presence. The brief mirrors the top’s minimal seaming for a second-skin feel under dresses or robes. Fit is intentionally fluid; size for your underbust and hip, knowing silk will ease with body heat. Occasions: anniversaries, slow weekends, or gifting when you want the unboxing to feel as considered as the fabric itself.",
+    "descriptionAr": "طقم الشامبانيا الحريري كضوء سائل: أكواب بقص مائل، أحزمة رفيعة، وتفاصيل ذهبية دقيقة تلتقط الضوء بهدوء. الحرير شارموز بلمعة أمامية وظهر غير لامع—بارد للمس، دافئ في الحضور. السروال يعكس تقليل الخياطات لإحساس ثانٍ للبشرة تحت الفساتين أو الروب. المقاس مرن؛ اختاري حسب محيط الصدر والورك مع علم أن الحرير يرتخي مع حرارة الجسم. مناسبات: ذكرى سنوية، عطلات بطيئة، أو هدية عندما تريدين أن تكون العبوة بنفس روية القماش.",
+    "material": "92% silk charmeuse, 8% elastane for recovery; gold-tone alloy sliders; cotton gusset lining.",
+    "materialAr": "92٪ حرير شارموز، 8٪ إيلاستين للاستعادة؛ أبازيم سبيكة بلون ذهبي؛ بطانة قطن.",
+    "care": "Dry clean preferred. If hand washing, use silk-specific detergent, press water out in a towel, dry flat away from direct heat.",
+    "careAr": "يفضل التنظيف الجاف. عند الغسيل اليدوي استخدمي منظف حرير، اضغطي الماء داخل منشفة، جففي مسطحة بعيداً عن الحرارة المباشرة.",
+    "relatedIds": ["1", "7", "8"],
+    "imageNotes": [
+      "Front three-quarter: champagne silk drape, collarbone highlight, restrained styling.",
+      "Back: strap geometry and low scoop, gold hardware detail.",
+      "Texture close-up: charmeuse luster vs matte reverse at fold.",
+      "Gift context: folded set on marble with ribbon—editorial still life."
+    ],
     "sizes": [
       "S",
       "M",
@@ -66,8 +88,19 @@
       "https://images.unsplash.com/photo-1762195018087-7f192953951a?w=1200&h=1500&fit=crop&q=80",
       "https://images.unsplash.com/photo-1492175881389-e5553ef372e0?w=1200&h=1500&fit=crop&q=80"
     ],
-    "description": "A romantic blush pink lingerie set with delicate lace overlay and comfortable stretch fabric. The underwire bra offers gentle support while the high-waist brief provides a flattering silhouette. Ideal for everyday elegance.",
-    "descriptionAr": "طقم ملابس داخلية وردي رومانسي مع قماش دانتيل رقيق ومريح. حمالة الصدر توفر دعم لطيف والسروال عالي الخصر يعطي ظل أنيق. مثالي للأناقة اليومية.",
+    "description": "Blush Rose is the everyday romance: a lightly lined underwire bra with vertical seam architecture for forward projection, matched to a high-waist brief that lengthens the line of the torso. The lace is engineered stretch—open enough to breathe, dense enough to read as luxury under knits. Wear it when you want structure without ceremony: office days, dinner plans, or simply because color can be a mood. Fit tip: the band should sit level; if it rides, sister-size down in the band and up in the cup for the same volume.",
+    "descriptionAr": "وردي بلاش هو الرومانسية اليومية: حمالة بسلك خفيف وبطانة وبناء عمودي لإسقاط أمامي، مع سروال عالي الخصر يمدد خط الجذع. الدانتيل مرن هندسياً—منفذ للتنفس وكثافته تمنح فخامة تحت الملابس المحبوكة. ارتديه عندما تريدين بنية دون مراسم: أيام مكتب، عشاء، أو لأن اللون يمكن أن يكون مزاجاً. نصيحة المقاس: الحزام يجب أن يبقى مستوياً؛ إن زحف، جربي مقاس أخ في الحزام وأعلى في الكوب لنفس الحجم.",
+    "material": "Lace 75% polyamide, 25% elastane; cup lining 100% polyester; power mesh wings 80% polyamide, 20% elastane.",
+    "materialAr": "دانتيل 75٪ بولي أميد، 25٪ إيلاستين؛ بطانة الكوب 100٪ بوليستر؛ أجنحة شبك 80٪ بولي أميد، 20٪ إيلاستين.",
+    "care": "Machine wash cold in mesh bag on delicate; lay flat to dry. Avoid fabric softener on lace.",
+    "careAr": "غسيل آلي بارد داخل كيس شبك على برنامج delicate؛ جففي مسطحة. تجنبي منعم الأقمشة على الدانتيل.",
+    "relatedIds": ["1", "4", "6"],
+    "imageNotes": [
+      "Front: blush set on model, natural stance, soft shadow falloff.",
+      "Back: high-waist brief coverage and band position at mid-back.",
+      "Lace macro: rose motif repeat and scallop rhythm.",
+      "Side profile: cup depth and strap placement."
+    ],
     "sizes": [
       "XS",
       "S",

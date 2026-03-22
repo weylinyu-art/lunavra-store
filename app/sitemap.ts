@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { products } from "@/lib/data/products";
+import { getAllSlugs } from "@/lib/content/blog";
 
 const BASE = "https://nilechic.com";
 
@@ -7,7 +8,8 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const locales = ["en", "ar"];
-  const staticPaths = ["", "/shop", "/search", "/gift", "/about", "/checkout", "/privacy", "/faq"];
+  const staticPaths = ["", "/shop", "/search", "/gift", "/about", "/checkout", "/privacy", "/faq", "/blog"];
+  const blogSlugs = getAllSlugs();
 
   const entries: MetadataRoute.Sitemap = [];
 
@@ -26,6 +28,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: new Date(),
         changeFrequency: "weekly",
         priority: 0.6,
+      });
+    }
+    for (const slug of blogSlugs) {
+      entries.push({
+        url: `${BASE}/${locale}/blog/${slug}/`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.55,
       });
     }
   }

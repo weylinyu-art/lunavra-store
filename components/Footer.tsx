@@ -52,6 +52,11 @@ export default function Footer() {
                   {t.footer.faq}
                 </Link>
               </li>
+              <li>
+                <Link href={path("/blog")} className="block min-h-[40px] py-2 text-sm text-foreground/70 hover:text-[#C9A962] active:text-[#C9A962] sm:min-h-0 sm:py-0">
+                  {t.nav.blog}
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -98,17 +103,48 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-rose-200/50 pt-6 sm:mt-12 sm:flex-row sm:pt-8">
-          <p className="text-xs text-foreground/60">
-            © {new Date().getFullYear()} NileChic. {t.footer.rights}
-          </p>
-          <div className="flex gap-6">
-            <Link href={path("/privacy")} className="text-xs text-foreground/60 hover:text-[#C9A962]">
-              {t.footer.privacy}
-            </Link>
-            <Link href={path("/faq")} className="text-xs text-foreground/60 hover:text-[#C9A962]">
-              {t.footer.faq}
-            </Link>
+        <div className="mt-10 border-t border-rose-200/50 pt-6 sm:mt-12 sm:pt-8">
+          <div className="flex flex-col items-center justify-between gap-6 lg:flex-row">
+            <div>
+              <h3 className="text-center text-sm font-semibold uppercase tracking-wider text-foreground/80 lg:text-start">
+                {t.footer.follow}
+              </h3>
+              <div className="mt-3 flex flex-wrap justify-center gap-4 lg:justify-start">
+                <a
+                  href="https://instagram.com/nilechic"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-foreground/70 hover:text-[#C9A962]"
+                >
+                  {t.footer.socialInstagram}
+                </a>
+                <span className="cursor-not-allowed text-sm text-foreground/45" title="Placeholder">
+                  {t.footer.socialPinterest}
+                </span>
+                <span className="cursor-not-allowed text-sm text-foreground/45" title="Placeholder">
+                  {t.footer.socialFacebook}
+                </span>
+              </div>
+            </div>
+            <div className="text-center lg:text-end">
+              <p className="text-xs font-medium uppercase tracking-wider text-foreground/60">{t.footer.paymentMethods}</p>
+              <p className="mt-2 text-xs text-foreground/50" aria-label={t.footer.paymentPlaceholder}>
+                {t.footer.paymentPlaceholder}
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
+            <p className="text-xs text-foreground/60">
+              © {new Date().getFullYear()} NileChic. {t.footer.rights}
+            </p>
+            <div className="flex gap-6">
+              <Link href={path("/privacy")} className="text-xs text-foreground/60 hover:text-[#C9A962]">
+                {t.footer.privacy}
+              </Link>
+              <Link href={path("/faq")} className="text-xs text-foreground/60 hover:text-[#C9A962]">
+                {t.footer.faq}
+              </Link>
+            </div>
           </div>
         </div>
       </div>

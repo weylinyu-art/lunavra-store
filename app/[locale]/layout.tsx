@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import LocaleInit from "@/components/LocaleInit";
+import EmailSignupPopup from "@/components/EmailSignupPopup";
 
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "ar" }];
@@ -37,6 +38,7 @@ export default async function LocaleLayout({
         </Suspense>
         <main className="flex-1">{children}</main>
         <Footer />
+        <EmailSignupPopup />
         <WhatsAppButton />
       </div>
       </CartProvider>
