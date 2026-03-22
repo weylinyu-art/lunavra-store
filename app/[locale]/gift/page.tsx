@@ -1,74 +1,164 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "@/contexts/LocaleContext";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/lib/data/products";
 
+const HERO_IMAGE =
+  "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1920&h=960&fit=crop&q=80";
+
 export default function GiftPage() {
   const { t, path } = useLocale();
-  const featuredProducts = products.filter((p) => p.featured);
   const giftProducts = products.filter((p) => p.tags?.includes("romantic-gift"));
-  const displayProducts = giftProducts.length >= 4 ? giftProducts : featuredProducts;
+  const displayProducts = giftProducts.length >= 4 ? giftProducts : products.filter((p) => p.featured).slice(0, 12);
 
-  const giftCategories = [
-    { name: t.gift.forHer, slug: "for-her" },
-    { name: t.gift.forYourself, slug: "for-yourself" },
-    { name: t.gift.anniversary, slug: "anniversary" },
-    { name: t.gift.birthday, slug: "birthday" },
+  const occasions: { href: string; title: string; desc: string; accent: string }[] = [
+    {
+      href: path("/shop?tag=romantic-gift"),
+      title: t.gift.forHer,
+      desc: t.gift.forHerDesc,
+      accent: "I",
+    },
+    {
+      href: path("/shop?category=sleepwear"),
+      title: t.gift.forYourself,
+      desc: t.gift.forSelfDesc,
+      accent: "II",
+    },
+    {
+      href: path("/shop?category=bridal"),
+      title: t.gift.anniversary,
+      desc: t.gift.anniversaryDesc,
+      accent: "III",
+    },
+    {
+      href: path("/shop?category=lingerie-sets"),
+      title: t.gift.birthday,
+      desc: t.gift.birthdayDesc,
+      accent: "IV",
+    },
+  ];
+
+  const trust = [
+    { body: t.gift.trustDiscreet },
+    { body: t.gift.trustSize },
+    { body: t.gift.trustCare },
   ];
 
   return (
-    <div className="bg-[#FDF2F4]">
-      {/* Hero - full romantic copy restored */}
-      <section className="bg-gradient-to-b from-[#FAE8EC] via-[#FDF2F4] to-[#FFFEF9] px-4 py-12 text-center sm:py-20">
-        <h1 className="font-heading text-2xl font-light tracking-wide text-foreground sm:text-3xl md:text-5xl">
-          {t.gift.heroTitle}
-        </h1>
-        <p className="mt-4 max-w-xl mx-auto text-base text-foreground/85 sm:mt-6 sm:text-lg">
-          {t.romanticGifts.banner}
-        </p>
-        <p className="mt-3 max-w-2xl mx-auto text-sm text-foreground/70 sm:mt-4 sm:text-base">
-          {t.romanticGifts.message}
-        </p>
+    <div className="bg-[#FAF8F5]">
+      {/* Hero — editorial band + image */}
+      <section className="relative overflow-hidden" aria-labelledby="gift-hero-heading">
+        <div className="absolute inset-0">
+          <Image
+            src={HERO_IMAGE}
+            alt=""
+            fill
+            unoptimized
+            className="object-cover object-center"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#2C2C2C]/88 via-[#2C2C2C]/55 to-[#2C2C2C]/25" aria-hidden />
+        </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+          <div className="max-w-2xl">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#C9A962]">{t.gift.heroSubtitle}</p>
+            <h1 id="gift-hero-heading" className="font-heading mt-4 text-[clamp(1.75rem,4vw,3rem)] font-light leading-[1.15] tracking-wide text-[#FFFEF9]">
+              {t.gift.heroTitle}
+            </h1>
+            <p className="mt-5 text-base leading-relaxed text-white/88 sm:text-lg">{t.gift.heroLead}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link
+                href={path("/shop?tag=romantic-gift")}
+                className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#FFFEF9] px-8 py-3.5 text-sm font-medium text-foreground shadow-lg transition-all hover:bg-white hover:shadow-xl"
+              >
+                {t.gift.ctaShopAll}
+              </Link>
+              <Link
+                href={path("/blog/anniversary-gifting-lingerie")}
+                className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-white/50 px-8 py-3.5 text-sm font-medium text-white transition-all hover:border-white hover:bg-white/10"
+              >
+                {t.gift.ctaJournal}
+              </Link>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        {/* Gift categories - mobile: 2 cols, touch-friendly */}
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-          {giftCategories.map((cat) => (
+      {/* Occasions — modular grid */}
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8" aria-labelledby="gift-occasions-heading">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 id="gift-occasions-heading" className="font-heading text-2xl font-light tracking-wide text-foreground sm:text-3xl">
+            {t.gift.occasionIntro}
+          </h2>
+        </div>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-5">
+          {occasions.map((item) => (
             <Link
-              key={cat.slug}
-              href={path(`/shop?gift=${cat.slug}`)}
-              className="hover-lift flex min-h-[80px] flex-col items-center justify-center rounded-xl bg-[#FFFEF9] p-6 shadow-sm transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:p-8"
+              key={item.href}
+              href={item.href}
+              className="group flex flex-col rounded-2xl border border-rose-200/50 bg-[#FFFEF9] p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#C9A962]/40 hover:shadow-[0_12px_40px_rgba(201,169,98,0.12)]"
             >
-              <span className="font-medium text-foreground">{cat.name}</span>
+              <span className="font-heading text-xs font-medium tabular-nums text-[#C9A962]/80">{item.accent}</span>
+              <h3 className="font-heading mt-3 text-lg font-medium text-foreground transition-colors group-hover:text-[#C9A962]">
+                {item.title}
+              </h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-foreground/70">{item.desc}</p>
+              <span className="mt-5 text-xs font-semibold uppercase tracking-wider text-[#C9A962]">→</span>
             </Link>
           ))}
         </div>
+      </section>
 
-        {/* Gift products with distinctive styling */}
-        <section className="mt-10 sm:mt-16" aria-labelledby="gift-products-heading">
-          <h2 id="gift-products-heading" className="font-heading text-2xl font-light tracking-wide text-foreground">
-            {t.romanticGifts.title}
+      {/* Trust — slim band */}
+      <section className="border-y border-rose-200/40 bg-[#FFFEF9]/90" aria-labelledby="gift-trust-heading">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <h2 id="gift-trust-heading" className="text-center font-heading text-lg font-light text-foreground sm:text-xl">
+            {t.gift.trustTitle}
           </h2>
-          <p className="mt-4 text-lg text-foreground/80">{t.romanticGifts.banner}</p>
-          <p className="mt-2 text-foreground/70">{t.romanticGifts.message}</p>
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-6 lg:grid-cols-4">
-            {displayProducts.map((product) => (
-              <ProductCard key={product.id} product={product} giftMode />
+          <ul className="mx-auto mt-8 grid max-w-5xl gap-6 sm:grid-cols-3 sm:gap-8">
+            {trust.map((item, i) => (
+              <li key={i} className="text-center">
+                <p className="text-sm leading-relaxed text-foreground/80 sm:text-[0.9375rem]">{item.body}</p>
+              </li>
             ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Curated products */}
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8" aria-labelledby="gift-products-heading">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 id="gift-products-heading" className="font-heading text-2xl font-light tracking-wide text-foreground sm:text-3xl">
+              {t.gift.curatedTitle}
+            </h2>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-foreground/72 sm:text-base">{t.gift.curatedSubtitle}</p>
           </div>
-          <div className="mt-10 text-center">
-            <Link
-              href={path("/shop")}
-              className="inline-block rounded-lg bg-foreground px-8 py-3.5 text-sm font-medium text-[#FFFEF9] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-foreground/90 hover:shadow-md"
-            >
-              {t.hero.shopNow}
-            </Link>
-          </div>
-        </section>
-      </div>
+          <Link
+            href={path("/shop?tag=romantic-gift")}
+            className="mt-2 shrink-0 text-sm font-medium text-[#C9A962] hover:underline sm:mt-0"
+          >
+            {t.gift.ctaShopAll} →
+          </Link>
+        </div>
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-6 lg:grid-cols-4">
+          {displayProducts.map((product) => (
+            <ProductCard key={product.id} product={product} giftMode />
+          ))}
+        </div>
+        <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <Link
+            href={path("/shop")}
+            className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-foreground px-10 py-3.5 text-sm font-medium text-[#FFFEF9] shadow-sm transition-all hover:bg-foreground/90 sm:w-auto"
+          >
+            {t.gift.ctaExplore}
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

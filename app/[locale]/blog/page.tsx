@@ -88,13 +88,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ loca
           </h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {editorPicks.map((post) => (
-              <JournalPostCard
-                key={post.slug}
-                post={post}
-                locale={locale}
-                readLabel={t.journal.readArticle}
-                minutesLabel={t.journal.minutesRead}
-              />
+              <JournalPostCard key={post.slug} post={post} locale={locale} />
             ))}
           </div>
         </section>
@@ -128,13 +122,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ loca
 
               <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6">
                 {posts.map((post) => (
-                  <JournalPostCard
-                    key={post.slug}
-                    post={post}
-                    locale={locale}
-                    readLabel={t.journal.readArticle}
-                    minutesLabel={t.journal.minutesRead}
-                  />
+                  <JournalPostCard key={post.slug} post={post} locale={locale} />
                 ))}
               </div>
             </section>
