@@ -9,7 +9,11 @@ function parseInline(text: string, locale: Locale) {
     if (m) {
       const href = pathWithLocale(locale, `/product/${m[2]}`);
       return (
-        <Link key={i} href={href} className="font-medium text-neutral-900 underline decoration-neutral-400/50 underline-offset-[3px] transition-colors hover:decoration-neutral-900">
+        <Link
+          key={i}
+          href={href}
+          className="font-medium text-rose-900/95 underline decoration-rose-300/70 underline-offset-[3px] transition-colors hover:text-rose-950 hover:decoration-rose-500/80"
+        >
           {m[1]}
         </Link>
       );
@@ -26,7 +30,7 @@ export default function BlogBody({ body, locale }: { body: string; locale: Local
         const line = block.trim();
         if (line.startsWith("### ")) {
           return (
-            <h3 key={i} className="font-heading pt-2 text-[1.125rem] font-semibold leading-snug tracking-wide text-foreground sm:text-xl">
+            <h3 key={i} className="font-heading pt-2 text-[1.125rem] font-semibold leading-snug tracking-wide text-rose-950/95 sm:text-xl">
               {parseInline(line.slice(4), locale)}
             </h3>
           );
@@ -35,14 +39,14 @@ export default function BlogBody({ body, locale }: { body: string; locale: Local
           return (
             <h2
               key={i}
-              className="font-heading mt-12 border-b border-neutral-200/80 pb-3 text-[1.35rem] font-light leading-tight tracking-wide text-foreground first:mt-0 sm:mt-14 sm:text-[1.5rem]"
+              className="font-heading mt-12 border-b border-rose-200/50 pb-3 text-[1.35rem] font-light leading-tight tracking-wide text-rose-950/95 first:mt-0 sm:mt-14 sm:text-[1.5rem]"
             >
               {parseInline(line.slice(3), locale)}
             </h2>
           );
         }
         return (
-          <p key={i} className="text-[1.0625rem] leading-[1.82] tracking-[0.01em] text-foreground/88 sm:text-[1.075rem]">
+          <p key={i} className="text-[1.0625rem] leading-[1.82] tracking-[0.01em] text-stone-800/90 sm:text-[1.075rem]">
             {parseInline(line, locale)}
           </p>
         );

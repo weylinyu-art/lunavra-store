@@ -150,3 +150,12 @@ html[dir="rtl"] body {
 .animate-add-to-cart {
   animation: add-to-cart 0.35s ease-out;
 }
+
+/* Journal / blog — warm editorial shell (distinct from site-wide neutral UI) */
+.journal-shell {
+  background-color: #faf6f3;
+  background-image:
+    radial-gradient(ellipse 100% 60% at 50% -15%, rgba(232, 184, 168, 0.22), transparent 55%),
+    radial-gradient(ellipse 55% 40% at 100% 5%, rgba(244, 214, 205, 0.35), transparent 50%),
+    linear-gradient(180deg, #faf8f5 0%, #f4ebe6 55%, #f7f1ed 100%);
+}
