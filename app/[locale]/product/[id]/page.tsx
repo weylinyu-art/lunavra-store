@@ -28,7 +28,7 @@ function PDPSectionCard({
   return (
     <section
       id={id}
-      className="rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm sm:p-8"
+      className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-sm sm:p-8"
     >
       <h2 className="font-heading border-b border-foreground/10 pb-4 text-xl font-semibold tracking-wide text-foreground">
         {title}
@@ -54,7 +54,7 @@ export default function ProductPage() {
     return (
       <div className="mx-auto max-w-7xl px-4 py-20 text-center">
         <h1 className="text-2xl font-light text-foreground">Product not found</h1>
-        <Link href={path("/shop")} className="mt-4 inline-block text-[#C9A962] hover:underline">
+        <Link href={path("/shop")} className="mt-4 inline-block text-neutral-900 hover:underline">
           Back to Shop
         </Link>
       </div>
@@ -120,18 +120,18 @@ export default function ProductPage() {
     <>
       <span
         className={`rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-white shadow-sm sm:text-xs ${
-          isLocalFulfillment ? "bg-emerald-900/92" : "bg-foreground/88"
+          isLocalFulfillment ? "bg-neutral-900" : "bg-foreground/88"
         }`}
       >
         {fulfillmentPill}
       </span>
       {product.tags?.includes("new") && (
-        <span className="rounded-full bg-[#E8C4C4] px-2.5 py-1 text-[11px] font-medium text-foreground shadow-sm sm:text-xs">
+        <span className="rounded-full bg-neutral-200 px-2.5 py-1 text-[11px] font-medium text-foreground shadow-sm sm:text-xs">
           ✨ New
         </span>
       )}
       {product.tags?.includes("best-seller") && (
-        <span className="rounded-full bg-[#C9A962] px-2.5 py-1 text-[11px] font-medium text-white shadow-sm sm:text-xs">
+        <span className="rounded-full bg-neutral-900 px-2.5 py-1 text-[11px] font-medium text-white shadow-sm sm:text-xs">
           🔥 Best Seller
         </span>
       )}
@@ -144,7 +144,7 @@ export default function ProductPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#eceae6] pb-28 lg:pb-10">
+    <div className="min-h-screen bg-neutral-100 pb-28 lg:pb-10">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
@@ -154,11 +154,11 @@ export default function ProductPage() {
         {/* Top row: breadcrumb + share (reference layout) */}
         <div className="flex flex-col gap-4 py-4 sm:flex-row sm:items-start sm:justify-between">
           <nav className="order-2 text-xs text-foreground/65 sm:order-1 sm:text-sm">
-            <Link href={path("/")} className="transition-colors hover:text-[#C9A962]">
+            <Link href={path("/")} className="transition-colors hover:text-neutral-900">
               {t.nav.home}
             </Link>
             <span className="mx-1.5 sm:mx-2">/</span>
-            <Link href={path("/shop")} className="transition-colors hover:text-[#C9A962]">
+            <Link href={path("/shop")} className="transition-colors hover:text-neutral-900">
               {t.nav.shop}
             </Link>
             <span className="mx-1.5 sm:mx-2">/</span>
@@ -183,19 +183,19 @@ export default function ProductPage() {
             )}
           </div>
 
-          <div className="mt-0 border-t border-black/[0.06] bg-[#FFFEF9] px-4 py-6 shadow-[0_-4px_24px_rgba(0,0,0,0.04)] sm:mt-0 sm:rounded-2xl sm:border sm:border-black/[0.06] sm:shadow-md lg:mt-0 lg:max-w-none lg:self-start lg:border lg:py-8">
+          <div className="mt-0 border-t border-black/[0.06] bg-white px-4 py-6 shadow-[0_-4px_24px_rgba(0,0,0,0.04)] sm:mt-0 sm:rounded-2xl sm:border sm:border-black/[0.06] sm:shadow-md lg:mt-0 lg:max-w-none lg:self-start lg:border lg:py-8">
             <h1 className="font-heading text-xl font-medium leading-snug tracking-wide text-foreground sm:text-2xl">
               {name}
             </h1>
 
             <div className="mt-3 flex flex-wrap items-end gap-2">
-              <span className="text-2xl font-semibold tabular-nums text-[#C9A962] sm:text-3xl">${product.price}</span>
+              <span className="text-2xl font-semibold tabular-nums text-neutral-900 sm:text-3xl">${product.price}</span>
               <span className="text-xs text-foreground/50">USD</span>
             </div>
 
             <div className="mt-4 flex items-center gap-2 rounded-xl bg-foreground/[0.04] px-3 py-2.5 text-sm text-foreground/80">
               <span
-                className={`inline-block h-2 w-2 shrink-0 rounded-full ${isLocalFulfillment ? "bg-emerald-600" : "bg-foreground/50"}`}
+                className={`inline-block h-2 w-2 shrink-0 rounded-full ${isLocalFulfillment ? "bg-neutral-900" : "bg-foreground/50"}`}
                 aria-hidden
               />
               <span className="leading-snug">{fulfillmentEta}</span>
@@ -230,7 +230,7 @@ export default function ProductPage() {
                 <button
                   type="button"
                   onClick={() => setSizeGuideOpen(true)}
-                  className="text-xs font-medium text-[#C9A962] underline-offset-2 hover:underline"
+                  className="text-xs font-medium text-neutral-900 underline-offset-2 hover:underline"
                 >
                   {t.product.sizeGuide}
                 </button>
@@ -243,8 +243,8 @@ export default function ProductPage() {
                     onClick={() => setSelectedSize(size)}
                     className={`flex min-h-[44px] min-w-[2.75rem] items-center justify-center rounded-lg border px-3.5 py-2 text-sm font-medium transition-all sm:min-h-0 ${
                       selectedSize === size
-                        ? "border-[#C9A962] bg-[#C9A962]/12 text-[#9a7b32]"
-                        : "border-foreground/15 bg-white hover:border-[#C9A962]/60"
+                        ? "border-neutral-900 bg-neutral-900/12 text-[#9a7b32]"
+                        : "border-foreground/15 bg-white hover:border-neutral-400/60"
                     }`}
                   >
                     {size}
@@ -258,7 +258,7 @@ export default function ProductPage() {
               type="button"
               onClick={handleAddToCart}
               disabled={!selectedSize}
-              className={`mt-6 hidden min-h-[50px] w-full items-center justify-center rounded-xl bg-foreground py-3.5 text-base font-semibold text-[#FFFEF9] shadow-sm transition-all active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-45 lg:flex ${
+              className={`mt-6 hidden min-h-[50px] w-full items-center justify-center rounded-xl bg-foreground py-3.5 text-base font-semibold text-white shadow-sm transition-all active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-45 lg:flex ${
                 addToCartAnimating ? "scale-[0.98]" : "hover:bg-foreground/92"
               }`}
             >
@@ -267,14 +267,14 @@ export default function ProductPage() {
 
             <Link
               href={path("/gift")}
-              className="mt-4 hidden text-center text-sm text-[#C9A962] underline-offset-2 hover:underline lg:block"
+              className="mt-4 hidden text-center text-sm text-neutral-900 underline-offset-2 hover:underline lg:block"
             >
               {t.romanticGifts.exploreGifts}
             </Link>
 
             <Link
               href={path("/gift")}
-              className="mt-6 block text-center text-sm text-[#C9A962] underline-offset-2 hover:underline lg:hidden"
+              className="mt-6 block text-center text-sm text-neutral-900 underline-offset-2 hover:underline lg:hidden"
             >
               {t.romanticGifts.exploreGifts}
             </Link>
@@ -343,7 +343,7 @@ export default function ProductPage() {
               {featureBullets.map((line, i) => (
                 <li key={i} className="flex gap-3 text-sm leading-relaxed text-foreground/85">
                   <span
-                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#C9A962]"
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-neutral-900"
                     aria-hidden
                   />
                   <span>{line}</span>
@@ -356,25 +356,25 @@ export default function ProductPage() {
             <p className="text-sm leading-relaxed text-foreground/75">{t.product.packagingIntro}</p>
             <ul className="mt-5 list-none space-y-3 border-t border-foreground/10 pt-5">
               <li className="flex gap-3 text-sm text-foreground/85">
-                <span className="text-[#C9A962]" aria-hidden>
+                <span className="text-neutral-900" aria-hidden>
                   ✓
                 </span>
                 <span>{t.product.codNotice}</span>
               </li>
               <li className="flex gap-3 text-sm text-foreground/85">
-                <span className="text-[#C9A962]" aria-hidden>
+                <span className="text-neutral-900" aria-hidden>
                   ✓
                 </span>
                 <span>{t.product.shippingInfo}</span>
               </li>
               <li className="flex gap-3 text-sm text-foreground/85">
-                <span className="text-[#C9A962]" aria-hidden>
+                <span className="text-neutral-900" aria-hidden>
                   ✓
                 </span>
                 <span>{t.product.giftSuggestion}</span>
               </li>
               <li className="flex gap-3 text-sm text-foreground/85">
-                <span className="text-[#C9A962]" aria-hidden>
+                <span className="text-neutral-900" aria-hidden>
                   ✓
                 </span>
                 <span>
@@ -406,20 +406,20 @@ export default function ProductPage() {
       </div>
 
       <div
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-black/10 bg-[#FFFEF9]/95 backdrop-blur-md lg:hidden"
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-black/10 bg-white/95 backdrop-blur-md lg:hidden"
         style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
       >
         <div className="mx-auto flex max-w-lg items-stretch gap-3 px-4 pt-3">
           <div className="flex min-w-0 flex-1 flex-col justify-center">
             <span className="line-clamp-1 text-xs text-foreground/55">{name}</span>
-            <span className="text-lg font-semibold tabular-nums text-[#C9A962]">${product.price}</span>
+            <span className="text-lg font-semibold tabular-nums text-neutral-900">${product.price}</span>
           </div>
           <button
             type="button"
             onClick={handleAddToCart}
             disabled={!selectedSize}
             title={!selectedSize ? t.product.selectSizeFirst : undefined}
-            className={`flex min-h-[48px] min-w-[10rem] flex-[1.2] items-center justify-center rounded-xl bg-foreground px-4 text-sm font-semibold text-[#FFFEF9] shadow-sm transition-all active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-45 ${
+            className={`flex min-h-[48px] min-w-[10rem] flex-[1.2] items-center justify-center rounded-xl bg-foreground px-4 text-sm font-semibold text-white shadow-sm transition-all active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-45 ${
               addToCartAnimating ? "scale-[0.98]" : ""
             }`}
           >

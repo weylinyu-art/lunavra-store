@@ -64,7 +64,7 @@ export default function SocialLoginButtons() {
                 type="button"
                 disabled={!firebaseReady || busy !== null}
                 onClick={() => handle(id)}
-                className="flex w-full min-h-[48px] items-center justify-center gap-2 rounded-xl border border-foreground/12 bg-white px-4 py-3 text-sm font-medium text-foreground shadow-sm transition hover:border-[#C9A962]/45 hover:bg-[#C9A962]/6 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex w-full min-h-[48px] items-center justify-center gap-2 rounded-xl border border-foreground/12 bg-white px-4 py-3 text-sm font-medium text-foreground shadow-sm transition hover:border-neutral-400/45 hover:bg-neutral-900/6 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {busy === id ? <span className="text-foreground/70">{login.signingIn}</span> : <span>{label}</span>}
               </button>

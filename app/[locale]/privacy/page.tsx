@@ -8,7 +8,7 @@ export default function PrivacyPage() {
   const isAr = locale === "ar";
 
   return (
-    <div className="mx-auto max-w-3xl bg-[#FDF2F4] px-4 py-16 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-3xl bg-neutral-100 px-4 py-16 sm:px-6 lg:px-8">
       <header className="mb-12">
         <h1 className="font-heading text-4xl font-light tracking-wide text-foreground md:text-5xl">
           {isAr ? "سياسة الخصوصية" : "Privacy Policy"}

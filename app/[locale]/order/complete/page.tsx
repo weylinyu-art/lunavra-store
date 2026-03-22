@@ -51,7 +51,7 @@ function OrderCompleteInner() {
     return (
       <div className="mx-auto max-w-lg px-4 py-20 text-center">
         <p className="text-foreground/80">{t.order.notFound}</p>
-        <Link href={path("/")} className="mt-6 inline-block text-[#C9A962] hover:underline">
+        <Link href={path("/")} className="mt-6 inline-block text-neutral-900 hover:underline">
           {t.order.backHome}
         </Link>
       </div>
@@ -62,26 +62,26 @@ function OrderCompleteInner() {
   const viewOrderHref = `${path("/order/view")}?id=${encodeURIComponent(order.id)}`;
 
   return (
-    <div className="min-h-screen bg-[#eceae6] px-4 py-10">
-      <div className="mx-auto max-w-md rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-8 text-center shadow-sm">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#1a7f3a] text-3xl text-white">
+    <div className="min-h-screen bg-neutral-100 px-4 py-10">
+      <div className="mx-auto max-w-md rounded-2xl border border-black/[0.06] bg-white p-8 text-center shadow-sm">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-neutral-900 text-3xl text-white">
           ✓
         </div>
         <h1 className="mt-6 font-heading text-xl font-semibold text-foreground">{t.order.successTitle}</h1>
         <p className="mt-3 text-sm text-foreground/70">
           {t.order.emailSent}{" "}
-          <span className="font-medium text-[#c45c5c]">{email}</span>
+          <span className="font-medium text-neutral-700">{email}</span>
         </p>
         <p className="mt-4 text-left text-sm leading-relaxed text-foreground/65">{t.order.expectNote}</p>
         <p className="mt-4 text-left text-xs text-foreground/50">{t.order.localOnly}</p>
 
         {!authLoading && !user && (
-          <div className="mt-6 rounded-xl border border-[#C9A962]/25 bg-[#C9A962]/8 p-4 text-left">
+          <div className="mt-6 rounded-xl border border-neutral-200 bg-neutral-900/8 p-4 text-left">
             <p className="text-sm font-medium text-foreground">{t.order.saveAccountTitle}</p>
             <p className="mt-1.5 text-xs leading-relaxed text-foreground/65">{t.order.saveAccountBody}</p>
             <Link
               href={path("/login?return=/account")}
-              className="mt-4 inline-flex min-h-[40px] items-center justify-center rounded-lg bg-foreground px-4 text-sm font-medium text-[#FFFEF9] transition hover:bg-foreground/90"
+              className="mt-4 inline-flex min-h-[40px] items-center justify-center rounded-lg bg-foreground px-4 text-sm font-medium text-white transition hover:bg-foreground/90"
             >
               {t.order.saveAccountCta}
             </Link>
@@ -91,7 +91,7 @@ function OrderCompleteInner() {
         <div className="mt-8 grid grid-cols-2 gap-3">
           <Link
             href={path("/")}
-            className="flex min-h-[48px] items-center justify-center rounded-xl bg-[#1a7f3a] px-4 text-sm font-semibold text-white hover:bg-[#156b30]"
+            className="flex min-h-[48px] items-center justify-center rounded-xl bg-neutral-900 px-4 text-sm font-semibold text-white hover:bg-neutral-800"
           >
             {t.order.backHome}
           </Link>

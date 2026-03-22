@@ -12,14 +12,14 @@ import { pathWithoutLocale } from "@/lib/i18n/paths";
 
 function navTabClass(active: boolean) {
   return active
-    ? "bg-[#C9A962]/12 font-semibold text-[#C9A962] ring-1 ring-inset ring-[#C9A962]/35"
-    : "text-foreground/80 hover:bg-[#C9A962]/10 hover:text-[#C9A962]";
+    ? "bg-neutral-900/12 font-semibold text-neutral-900 ring-1 ring-inset ring-neutral-300/50"
+    : "text-foreground/80 hover:bg-neutral-900/10 hover:text-neutral-900";
 }
 
 function mobileNavClass(active: boolean) {
   return active
-    ? "bg-[#C9A962]/12 font-semibold text-[#C9A962] ring-1 ring-inset ring-[#C9A962]/30"
-    : "text-foreground active:bg-rose-100/50";
+    ? "bg-neutral-900/12 font-semibold text-neutral-900 ring-1 ring-inset ring-neutral-300/50"
+    : "text-foreground active:bg-neutral-100";
 }
 
 function SearchIcon() {
@@ -73,19 +73,19 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-rose-200/50 bg-[#FFFEF9]/98 backdrop-blur-md shadow-sm">
+    <header className="sticky top-0 z-50 w-full border-b border-neutral-200/80 bg-white/95 backdrop-blur-md shadow-sm">
       {/* Top bar: Logo + Slogan + Free shipping + Lang */}
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Link
           href={path("/")}
-          className="group min-w-0 shrink-0 rounded-lg outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[#C9A962]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFFEF9]"
+          className="group min-w-0 shrink-0 rounded-lg outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-neutral-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
         >
           <BrandLogo variant="header" showSlogan />
         </Link>
 
         <form
           onSubmit={handleSearch}
-          className="hidden sm:flex flex-1 max-w-md mx-4 items-center gap-0 rounded-lg border border-foreground/20 bg-white overflow-hidden focus-within:border-[#C9A962] focus-within:ring-1 focus-within:ring-[#C9A962]"
+          className="hidden sm:flex flex-1 max-w-md mx-4 items-center gap-0 rounded-lg border border-foreground/20 bg-white overflow-hidden focus-within:border-neutral-400 focus-within:ring-1 focus-within:ring-neutral-400"
         >
           <input
             type="search"
@@ -97,7 +97,7 @@ export default function Header() {
           />
           <button
             type="submit"
-            className="flex h-10 w-10 shrink-0 items-center justify-center bg-foreground text-[#FFFEF9] transition-colors hover:bg-foreground/90"
+            className="flex h-10 w-10 shrink-0 items-center justify-center bg-foreground text-white transition-colors hover:bg-foreground/90"
             aria-label="Search"
           >
             <SearchIcon />
@@ -109,7 +109,7 @@ export default function Header() {
             <Link
               href={path("/login?return=/account")}
               aria-current={isLogin ? "page" : undefined}
-              className={`hidden rounded-lg px-2.5 py-2 text-sm font-medium transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962] sm:inline-block ${navTabClass(isLogin)}`}
+              className={`hidden rounded-lg px-2.5 py-2 text-sm font-medium transition-colors hover:bg-neutral-900/10 hover:text-neutral-900 sm:inline-block ${navTabClass(isLogin)}`}
             >
               {t.nav.signIn}
             </Link>
@@ -117,19 +117,19 @@ export default function Header() {
           <Link
             href={path("/account")}
             aria-current={isAccount ? "page" : undefined}
-            className={`hidden rounded-lg px-2.5 py-2 text-sm font-medium transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962] sm:inline-block ${navTabClass(isAccount)}`}
+            className={`hidden rounded-lg px-2.5 py-2 text-sm font-medium transition-colors hover:bg-neutral-900/10 hover:text-neutral-900 sm:inline-block ${navTabClass(isAccount)}`}
           >
             {t.nav.account}
           </Link>
           <Link
             href={path("/cart")}
             aria-current={isCart ? "page" : undefined}
-            className={`relative flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962] ${navTabClass(isCart)}`}
+            className={`relative flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-neutral-900/10 hover:text-neutral-900 ${navTabClass(isCart)}`}
           >
             <CartIcon />
             <span className="hidden sm:inline">{t.nav.cart}</span>
             {itemCount > 0 && (
-              <span className="absolute -top-0.5 -end-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#C9A962] px-1 text-[10px] font-semibold text-white">
+              <span className="absolute -top-0.5 -end-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-neutral-900 px-1 text-[10px] font-semibold text-white">
                 {itemCount > 99 ? "99+" : itemCount}
               </span>
             )}
@@ -150,7 +150,7 @@ export default function Header() {
 
       {/* Category row */}
       <nav
-        className="border-t border-rose-200/30 bg-[#FFFEF9]/95"
+        className="border-t border-neutral-200/60 bg-white/95"
         aria-label="Categories"
       >
         <div className="mx-auto flex max-w-7xl items-center justify-start gap-1 overflow-x-auto px-4 py-2 sm:gap-4 sm:px-6 lg:px-8 scrollbar-hide">
@@ -193,7 +193,7 @@ export default function Header() {
 
       {/* Mobile menu: touch-optimized */}
       {mobileMenuOpen && (
-        <div className="border-t border-rose-200/50 bg-[#FFFEF9] px-4 py-4 md:hidden">
+        <div className="border-t border-neutral-200/80 bg-white px-4 py-4 md:hidden">
           <form onSubmit={handleSearch} className="mb-4 flex gap-0 rounded-lg border border-foreground/20 bg-white overflow-hidden">
             <input
               type="search"
@@ -206,7 +206,7 @@ export default function Header() {
             <button
               type="submit"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex h-12 w-12 shrink-0 items-center justify-center bg-foreground text-[#FFFEF9]"
+              className="flex h-12 w-12 shrink-0 items-center justify-center bg-foreground text-white"
               aria-label="Search"
             >
               <SearchIcon />
@@ -279,12 +279,12 @@ export default function Header() {
               <CartIcon />
               {t.nav.cart}
               {itemCount > 0 && (
-                <span className="rounded-full bg-[#C9A962] px-2 py-0.5 text-xs font-semibold text-white">
+                <span className="rounded-full bg-neutral-900 px-2 py-0.5 text-xs font-semibold text-white">
                   {itemCount}
                 </span>
               )}
             </Link>
-            <div className="mt-4 flex items-center gap-2 border-t border-rose-200/30 pt-4">
+            <div className="mt-4 flex items-center gap-2 border-t border-neutral-200/60 pt-4">
               <LanguageSwitcher onNavigate={() => setMobileMenuOpen(false)} />
             </div>
           </div>

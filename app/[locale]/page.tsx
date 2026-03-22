@@ -59,7 +59,7 @@ export default function HomePage() {
             <span className="rounded px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-white/90 sm:px-3">
               {t.hero.badgeNew}
             </span>
-            <span className="rounded px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-[#C9A962] sm:px-3">
+            <span className="rounded border border-white/35 bg-white/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-white/95 sm:px-3">
               {t.hero.badgeTrending}
             </span>
           </div>
@@ -72,7 +72,7 @@ export default function HomePage() {
           <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-4">
             <Link
               href={path("/shop")}
-              className="flex min-h-[48px] items-center justify-center rounded-lg bg-[#FFFEF9] px-8 py-3.5 text-base font-medium text-foreground transition-all duration-300 active:scale-[0.98] sm:inline-flex sm:min-h-0 sm:py-3 sm:text-sm hover:bg-white hover:shadow-lg"
+              className="flex min-h-[48px] items-center justify-center rounded-lg bg-white px-8 py-3.5 text-base font-medium text-foreground transition-all duration-300 active:scale-[0.98] sm:inline-flex sm:min-h-0 sm:py-3 sm:text-sm hover:bg-white hover:shadow-lg"
             >
               {t.hero.shopNow}
             </Link>
@@ -87,23 +87,23 @@ export default function HomePage() {
       </section>
 
       {/* 2. Core trust — payment, discreet, returns, size guide */}
-      <section className="bg-[#FFFEF9] px-4 py-10 sm:py-14 md:py-20" aria-labelledby="core-trust-heading">
+      <section className="bg-white px-4 py-10 sm:py-14 md:py-20" aria-labelledby="core-trust-heading">
         <h2 id="core-trust-heading" className="font-heading text-center text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
           {t.trust.title}
         </h2>
         <div className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           {[
-            { title: t.trust.paymentSecurity, desc: t.trust.paymentSecurityDesc, emoji: "🔒" },
-            { title: t.trust.discreet, desc: t.trust.discreetDesc, emoji: "📦" },
-            { title: t.trust.easyReturns, desc: t.trust.easyReturnsDesc, emoji: "↩" },
-            { title: t.trust.sizeGuideTrust, desc: t.trust.sizeGuideTrustDesc, emoji: "📏" },
+            { title: t.trust.paymentSecurity, desc: t.trust.paymentSecurityDesc, mark: "01" },
+            { title: t.trust.discreet, desc: t.trust.discreetDesc, mark: "02" },
+            { title: t.trust.easyReturns, desc: t.trust.easyReturnsDesc, mark: "03" },
+            { title: t.trust.sizeGuideTrust, desc: t.trust.sizeGuideTrustDesc, mark: "04" },
           ].map((item) => (
             <div
               key={item.title}
-              className="hover-lift rounded-2xl border border-[#E8C4C4]/40 bg-[#FDF2F4]/80 p-6 text-center transition-all duration-300"
+              className="hover-lift rounded-2xl border border-neutral-200/90 bg-white p-6 text-center shadow-sm transition-all duration-300"
             >
-              <span className="text-3xl" aria-hidden>
-                {item.emoji}
+              <span className="font-heading text-2xl font-light tabular-nums text-foreground/25" aria-hidden>
+                {item.mark}
               </span>
               <h3 className="font-heading mt-3 text-lg font-medium text-foreground">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-foreground/80">{item.desc}</p>
@@ -113,7 +113,7 @@ export default function HomePage() {
       </section>
 
       {/* 3. Featured products */}
-      <section className="bg-gradient-to-b from-[#FAF8F5] to-[#FFFEF9] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="featured-heading">
+      <section className="bg-gradient-to-b from-neutral-50 to-white px-4 py-10 sm:py-16 md:py-24" aria-labelledby="featured-heading">
         <div className="mx-auto max-w-6xl">
           <h2 id="featured-heading" className="font-heading text-center text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
             {t.featured.title}
@@ -132,7 +132,7 @@ export default function HomePage() {
       </section>
 
       {/* 4. Category quick links (four) */}
-      <section className="bg-[#FDF2F4] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="categories-heading">
+      <section className="bg-neutral-100 px-4 py-10 sm:py-16 md:py-24" aria-labelledby="categories-heading">
         <h2 id="categories-heading" className="font-heading text-center text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
           {t.categories.title}
         </h2>
@@ -148,7 +148,7 @@ export default function HomePage() {
               <Link
                 key={cat.slug}
                 href={path(`/shop?category=${cat.slug}`)}
-                className="hover-lift group relative aspect-square overflow-hidden rounded-xl bg-[#FFFEF9] shadow-sm transition-all duration-300"
+                className="hover-lift group relative aspect-square overflow-hidden rounded-xl bg-white shadow-sm transition-all duration-300"
               >
                 {categoryData?.image && (
                   <Image
@@ -170,9 +170,9 @@ export default function HomePage() {
       </section>
 
       {/* 5. Brand story */}
-      <section className="bg-[#FFFEF9] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="brand-story-heading">
+      <section className="bg-white px-4 py-10 sm:py-16 md:py-24" aria-labelledby="brand-story-heading">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2 lg:gap-12 lg:items-center">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#FDF2F4]">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100">
             <Image
               src="https://images.unsplash.com/photo-1584137294091-5de5bcdf12c8?w=1200&h=900&fit=crop&q=80"
               alt=""
@@ -190,7 +190,7 @@ export default function HomePage() {
             <p className="mt-4 text-sm leading-relaxed text-foreground/80 sm:text-base">{t.brandStory.body}</p>
             <Link
               href={path("/about")}
-              className="mt-6 inline-flex min-h-[44px] items-center justify-center rounded-lg bg-foreground px-8 py-3 text-sm font-medium text-[#FFFEF9] transition-colors hover:bg-foreground/90"
+              className="mt-6 inline-flex min-h-[44px] items-center justify-center rounded-lg bg-foreground px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-foreground/90"
             >
               {t.brandStory.cta}
             </Link>
@@ -199,7 +199,7 @@ export default function HomePage() {
       </section>
 
       {/* 6. Blog / style guide highlights */}
-      <section className="bg-gradient-to-b from-[#FAF8F5] to-[#FDF2F4] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="journal-heading">
+      <section className="bg-gradient-to-b from-neutral-50 to-neutral-100 px-4 py-10 sm:py-16 md:py-24" aria-labelledby="journal-heading">
         <div className="mx-auto max-w-6xl">
           <h2 id="journal-heading" className="font-heading text-center text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
             {t.blogSection.title}
@@ -229,14 +229,14 @@ export default function HomePage() {
             ].map((article) => (
               <article
                 key={article.slug}
-                className="flex flex-col rounded-2xl border border-[#E8C4C4]/40 bg-[#FFFEF9] p-6 shadow-sm transition-shadow hover:shadow-md"
+                className="flex flex-col rounded-2xl border border-neutral-200/80 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
               >
-                <p className="text-[10px] font-medium uppercase tracking-widest text-[#C9A962]">{article.keyword}</p>
+                <p className="text-[10px] font-medium uppercase tracking-widest text-neutral-900">{article.keyword}</p>
                 <h3 className="font-heading mt-2 text-lg font-medium leading-snug text-foreground">{article.title}</h3>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-foreground/75">{article.desc}</p>
                 <Link
                   href={path(`/blog/${article.slug}`)}
-                  className="mt-5 inline-flex min-h-[44px] items-center justify-center text-sm font-medium text-[#C9A962] hover:underline"
+                  className="mt-5 inline-flex min-h-[44px] items-center justify-center text-sm font-medium text-neutral-900 hover:underline"
                 >
                   {t.blogSection.readArticle}
                 </Link>
@@ -246,7 +246,7 @@ export default function HomePage() {
           <div className="mt-10 text-center">
             <Link
               href={path("/blog")}
-              className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-[#C9A962]/50 px-8 py-3 text-sm font-medium text-foreground transition-colors hover:border-[#C9A962] hover:bg-[#C9A962]/10"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-neutral-300 px-8 py-3 text-sm font-medium text-foreground transition-colors hover:border-neutral-400 hover:bg-neutral-900/10"
             >
               {t.blogSection.discoverMore}
             </Link>
@@ -255,7 +255,7 @@ export default function HomePage() {
       </section>
 
       {/* 7. Flash Picks / New Arrivals */}
-      <section className="bg-gradient-to-b from-[#FFFEF9] to-[#FAF8F5] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="flash-heading">
+      <section className="bg-gradient-to-b from-white to-neutral-50 px-4 py-10 sm:py-16 md:py-24" aria-labelledby="flash-heading">
         <div className="mx-auto max-w-6xl">
           <h2 id="flash-heading" className="font-heading text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
             {t.flashPicks.title}
@@ -270,7 +270,7 @@ export default function HomePage() {
       </section>
 
       {/* 4. Trending Now / Best Sellers */}
-      <section className="bg-[#FDF2F4] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="trending-heading">
+      <section className="bg-neutral-100 px-4 py-10 sm:py-16 md:py-24" aria-labelledby="trending-heading">
         <div className="mx-auto max-w-6xl">
           <h2 id="trending-heading" className="font-heading text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
             {t.bestSellers.title}
@@ -284,7 +284,7 @@ export default function HomePage() {
           <div className="mt-8 text-center sm:mt-10">
             <Link
               href={path("/shop")}
-              className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-[#C9A962]/50 px-8 py-3 text-base font-medium text-foreground transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:py-2.5 sm:text-sm hover:-translate-y-0.5 hover:border-[#C9A962] hover:bg-[#C9A962]/5"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-neutral-300 px-8 py-3 text-base font-medium text-foreground transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:py-2.5 sm:text-sm hover:-translate-y-0.5 hover:border-neutral-400 hover:bg-neutral-900/5"
             >
               {t.hero.shopNow}
             </Link>
@@ -293,7 +293,7 @@ export default function HomePage() {
       </section>
 
       {/* 5. Gift Picks / Gift for Wife */}
-      <section className="bg-gradient-to-b from-[#FAF8F5] to-[#FFFEF9] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="gifts-heading">
+      <section className="bg-gradient-to-b from-neutral-50 to-white px-4 py-10 sm:py-16 md:py-24" aria-labelledby="gifts-heading">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
             <h2 id="gifts-heading" className="font-heading text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-4xl">
@@ -309,7 +309,7 @@ export default function HomePage() {
           <div className="mt-8 text-center sm:mt-10">
             <Link
               href={path("/gift")}
-              className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-foreground px-8 py-3.5 text-base font-medium text-[#FFFEF9] shadow-sm transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:text-sm hover:-translate-y-0.5 hover:bg-foreground/90 hover:shadow-md"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-foreground px-8 py-3.5 text-base font-medium text-white shadow-sm transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:text-sm hover:-translate-y-0.5 hover:bg-foreground/90 hover:shadow-md"
             >
               {t.romanticGifts.exploreGifts}
             </Link>
@@ -318,7 +318,7 @@ export default function HomePage() {
       </section>
 
       {/* 6. Product Grid */}
-      <section className="bg-[#FDF2F4] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="more-heading">
+      <section className="bg-neutral-100 px-4 py-10 sm:py-16 md:py-24" aria-labelledby="more-heading">
         <div className="mx-auto max-w-6xl">
           <h2 id="more-heading" className="font-heading text-center text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
             {t.shop.title}
@@ -332,7 +332,7 @@ export default function HomePage() {
           <div className="mt-8 text-center sm:mt-10">
             <Link
               href={path("/shop")}
-              className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-[#C9A962]/50 px-8 py-3 text-base font-medium text-foreground transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:py-2.5 sm:text-sm hover:-translate-y-0.5 hover:border-[#C9A962] hover:bg-[#C9A962]/5"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-neutral-300 px-8 py-3 text-base font-medium text-foreground transition-all duration-300 active:scale-[0.98] sm:min-h-0 sm:py-2.5 sm:text-sm hover:-translate-y-0.5 hover:border-neutral-400 hover:bg-neutral-900/5"
             >
               {t.hero.shopNow}
             </Link>
@@ -341,7 +341,7 @@ export default function HomePage() {
       </section>
 
       {/* 7. Shop the Look */}
-      <section className="bg-[#FAF8F5] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="look-heading">
+      <section className="bg-neutral-50 px-4 py-10 sm:py-16 md:py-24" aria-labelledby="look-heading">
         <div className="mx-auto max-w-6xl">
           <h2 id="look-heading" className="font-heading text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
             {t.shopTheLook.title}
@@ -367,7 +367,7 @@ export default function HomePage() {
               </div>
               <Link
                 href={path(`/shop?category=${lookProducts[0]?.category ?? "lingerie-sets"}`)}
-                className="mt-4 inline-flex min-h-[44px] items-center justify-center rounded-lg bg-foreground px-6 py-3 text-base font-medium text-[#FFFEF9] transition-all duration-300 active:scale-[0.98] sm:mt-6 sm:min-h-0 sm:text-sm hover:-translate-y-0.5 hover:bg-foreground/90"
+                className="mt-4 inline-flex min-h-[44px] items-center justify-center rounded-lg bg-foreground px-6 py-3 text-base font-medium text-white transition-all duration-300 active:scale-[0.98] sm:mt-6 sm:min-h-0 sm:text-sm hover:-translate-y-0.5 hover:bg-foreground/90"
               >
                 {t.shopTheLook.cta}
               </Link>
@@ -377,7 +377,7 @@ export default function HomePage() {
       </section>
 
       {/* Instagram Horizontal Scroll */}
-      <section className="bg-[#FAF8F5] px-4 py-10 sm:py-16 md:py-24" aria-labelledby="instagram-heading">
+      <section className="bg-neutral-50 px-4 py-10 sm:py-16 md:py-24" aria-labelledby="instagram-heading">
         <h2 id="instagram-heading" className="font-heading text-center text-xl font-light tracking-wide text-foreground sm:text-2xl md:text-3xl">
           {t.instagram.title}
         </h2>

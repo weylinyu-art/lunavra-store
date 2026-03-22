@@ -25,10 +25,10 @@ export default function BrandLogo({ variant = "header", showSlogan = false, clas
   return (
     <div className={`min-w-0 ${className}`}>
       {/* border-s follows inline-start → correct side in LTR & RTL */}
-      <div className="border-s-[3px] border-[#C9A962] ps-3">
+      <div className="border-s-[3px] border-neutral-900 ps-3">
         <span className={`font-heading ${wordClasses} font-semibold tracking-tight`}>
           <span className="text-foreground">Nile</span>
-          <span className="text-[#C9A962]">Chic</span>
+          <span className="text-neutral-900">Chic</span>
         </span>
       </div>
       {showSlogan && (

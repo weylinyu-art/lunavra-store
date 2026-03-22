@@ -21,7 +21,7 @@ export default function FulfillmentBadge({ product, placement = "card" }: Fulfil
     return (
       <div
         className={`rounded-lg border p-4 ${
-          isLocal ? "border-emerald-800/20 bg-emerald-50/90" : "border-foreground/12 bg-[#FFFEF9]"
+          isLocal ? "border-neutral-300/80 bg-neutral-50" : "border-foreground/12 bg-white"
         }`}
         role="region"
         aria-label={isLocal ? F.ksaLocalTitle : F.intlTitle}
@@ -49,7 +49,7 @@ export default function FulfillmentBadge({ product, placement = "card" }: Fulfil
     <div className="pointer-events-none flex max-w-[95%] flex-col gap-1">
       <div
         className={`inline-flex w-fit max-w-full rounded-md px-2 py-1 text-[10px] font-semibold uppercase tracking-wide shadow-md ring-1 ring-black/5 sm:text-[11px] ${
-          isLocal ? "bg-emerald-900/92 text-white" : "bg-foreground/88 text-[#FFFEF9]"
+          isLocal ? "bg-neutral-900 text-white" : "bg-foreground/88 text-white"
         }`}
       >
         {isLocal ? F.ksaLocalBadge : F.intlBadge}

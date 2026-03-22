@@ -21,10 +21,10 @@ export default function FeaturedProductCard({ product, teaser, hoverHint }: Feat
   const displayImage = hasAlternate && isHovered ? product.images[1] : product.image;
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-xl bg-[#FFFEF9] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(201,169,98,0.18)]">
+    <article className="group flex flex-col overflow-hidden rounded-xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(201,169,98,0.18)]">
       <Link
         href={path(`/product/${product.id}`)}
-        className="relative block aspect-[3/4] overflow-hidden bg-[#FAF8F5]"
+        className="relative block aspect-[3/4] overflow-hidden bg-neutral-50"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -49,10 +49,10 @@ export default function FeaturedProductCard({ product, teaser, hoverHint }: Feat
       <div className="flex flex-1 flex-col p-4 sm:p-5">
         <h3 className="font-heading text-lg font-medium text-foreground">{name}</h3>
         <p className="mt-2 flex-1 text-sm leading-relaxed text-foreground/75">{teaser}</p>
-        <p className="mt-3 font-semibold text-[#C9A962]">${product.price}</p>
+        <p className="mt-3 font-semibold text-neutral-900">${product.price}</p>
         <Link
           href={path(`/product/${product.id}`)}
-          className="mt-4 inline-flex min-h-[44px] items-center justify-center rounded-lg border border-[#C9A962]/50 px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-[#C9A962] hover:bg-[#C9A962]/10"
+          className="mt-4 inline-flex min-h-[44px] items-center justify-center rounded-lg border border-neutral-300 px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-neutral-400 hover:bg-neutral-900/10"
         >
           {t.featured.cta}
         </Link>

@@ -69,13 +69,13 @@ export default async function BlogArticlePage({ params }: Props) {
         {/* Main column */}
         <article className="min-w-0">
           <nav className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-foreground/60">
-            <Link href={pathWithLocale(locale, "/")} className="transition-colors hover:text-[#C9A962]">
+            <Link href={pathWithLocale(locale, "/")} className="transition-colors hover:text-neutral-900">
               {t.nav.home}
             </Link>
             <span className="text-foreground/35" aria-hidden>
               /
             </span>
-            <Link href={pathWithLocale(locale, "/blog")} className="transition-colors hover:text-[#C9A962]">
+            <Link href={pathWithLocale(locale, "/blog")} className="transition-colors hover:text-neutral-900">
               {t.nav.blog}
             </Link>
             <span className="text-foreground/35" aria-hidden>
@@ -84,8 +84,8 @@ export default async function BlogArticlePage({ params }: Props) {
             <span className="line-clamp-2 text-foreground/80">{post.title}</span>
           </nav>
 
-          <header className="mt-8 rounded-2xl border border-rose-200/40 bg-[#FFFEF9] px-5 py-8 sm:px-8 sm:py-10">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#C9A962]">{post.seoKeyword}</p>
+          <header className="mt-8 rounded-2xl border border-neutral-200/60 bg-white px-5 py-8 sm:px-8 sm:py-10">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-900">{post.seoKeyword}</p>
             <p className="mt-3 text-xs font-medium uppercase tracking-wider text-foreground/50">{sectionLabel}</p>
             <h1 className="font-heading mt-3 text-[clamp(1.5rem,4vw,2.35rem)] font-light leading-[1.2] tracking-wide text-foreground">
               {post.title}
@@ -98,7 +98,7 @@ export default async function BlogArticlePage({ params }: Props) {
           </div>
 
           {related.length > 0 && (
-            <section className="mx-auto mt-16 max-w-[42rem] border-t border-rose-200/45 pt-12" aria-labelledby="related-products-heading">
+            <section className="mx-auto mt-16 max-w-[42rem] border-t border-neutral-200/70 pt-12" aria-labelledby="related-products-heading">
               <h2 id="related-products-heading" className="font-heading text-xl font-light text-foreground">
                 {t.product.relatedTitle}
               </h2>
@@ -109,9 +109,9 @@ export default async function BlogArticlePage({ params }: Props) {
                     <li key={p.id}>
                       <Link
                         href={pathWithLocale(locale, `/product/${p.id}`)}
-                        className="group block overflow-hidden rounded-xl border border-rose-200/40 bg-[#FFFEF9] transition-shadow hover:shadow-md"
+                        className="group block overflow-hidden rounded-xl border border-neutral-200/60 bg-white transition-shadow hover:shadow-md"
                       >
-                        <div className="relative aspect-[3/4] bg-[#FAF8F5]">
+                        <div className="relative aspect-[3/4] bg-neutral-50">
                           <Image
                             src={p.image}
                             alt={name}
@@ -122,8 +122,8 @@ export default async function BlogArticlePage({ params }: Props) {
                           />
                         </div>
                         <div className="p-3">
-                          <p className="font-heading text-sm font-medium text-foreground group-hover:text-[#C9A962]">{name}</p>
-                          <p className="mt-1 text-sm font-semibold text-[#C9A962]">${p.price}</p>
+                          <p className="font-heading text-sm font-medium text-foreground group-hover:text-neutral-900">{name}</p>
+                          <p className="mt-1 text-sm font-semibold text-neutral-900">${p.price}</p>
                         </div>
                       </Link>
                     </li>
@@ -133,18 +133,18 @@ export default async function BlogArticlePage({ params }: Props) {
             </section>
           )}
 
-          <footer className="mx-auto mt-16 max-w-[42rem] rounded-2xl bg-gradient-to-br from-[#FDF2F4] to-[#FFFEF9] px-6 py-8 text-center sm:px-10">
+          <footer className="mx-auto mt-16 max-w-[42rem] rounded-2xl bg-gradient-to-br from-neutral-100 to-white px-6 py-8 text-center sm:px-10">
             <p className="text-sm leading-relaxed text-foreground/80 sm:text-base">{t.blogSection.articleOutro}</p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
               <Link
                 href={pathWithLocale(locale, "/shop")}
-                className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-foreground px-8 py-3 text-sm font-medium text-[#FFFEF9] transition-colors hover:bg-foreground/90"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-foreground px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-foreground/90"
               >
                 {t.hero.shopNow}
               </Link>
               <Link
                 href={pathWithLocale(locale, "/blog")}
-                className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-[#C9A962]/50 px-8 py-3 text-sm font-medium text-foreground hover:bg-[#C9A962]/10"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-neutral-300 px-8 py-3 text-sm font-medium text-foreground hover:bg-neutral-900/10"
               >
                 {t.blogSection.discoverMore}
               </Link>
@@ -155,15 +155,15 @@ export default async function BlogArticlePage({ params }: Props) {
         {/* Sidebar — desktop */}
         <aside className="mt-14 hidden lg:mt-0 lg:block">
           <div className="sticky top-28 space-y-10">
-            <div className="rounded-2xl border border-rose-200/45 bg-[#FFFEF9] p-5">
+            <div className="rounded-2xl border border-neutral-200/70 bg-white p-5">
               <h2 className="font-heading text-sm font-semibold uppercase tracking-wider text-foreground/70">
                 {t.journal.moreInSection}
               </h2>
               <p className="mt-1 text-xs text-foreground/55">{sectionLabel}</p>
-              <ul className="mt-4 space-y-3 border-t border-rose-200/35 pt-4">
+              <ul className="mt-4 space-y-3 border-t border-neutral-200/50 pt-4">
                 {moreInSection.length === 0 ? (
                   <li className="text-sm text-foreground/55">
-                    <Link href={pathWithLocale(locale, "/blog")} className="text-[#C9A962] hover:underline">
+                    <Link href={pathWithLocale(locale, "/blog")} className="text-neutral-900 hover:underline">
                       {t.blogSection.discoverMore}
                     </Link>
                   </li>
@@ -172,7 +172,7 @@ export default async function BlogArticlePage({ params }: Props) {
                     <li key={p.slug}>
                       <Link
                         href={pathWithLocale(locale, `/blog/${p.slug}`)}
-                        className="line-clamp-2 text-sm leading-snug text-foreground/85 transition-colors hover:text-[#C9A962]"
+                        className="line-clamp-2 text-sm leading-snug text-foreground/85 transition-colors hover:text-neutral-900"
                       >
                         {p.title}
                       </Link>
@@ -184,7 +184,7 @@ export default async function BlogArticlePage({ params }: Props) {
 
             <Link
               href={pathWithLocale(locale, `/blog#journal-${sectionId}`)}
-              className="flex w-full items-center justify-center rounded-xl border border-[#C9A962]/40 bg-[#FAF8F5] px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-[#C9A962] hover:bg-[#C9A962]/10"
+              className="flex w-full items-center justify-center rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-neutral-400 hover:bg-neutral-900/10"
             >
               {t.journal.browseTopic}
             </Link>
@@ -193,14 +193,14 @@ export default async function BlogArticlePage({ params }: Props) {
       </div>
 
       {/* Mobile: more in topic below */}
-      <section className="mt-12 border-t border-rose-200/40 pt-10 lg:hidden" aria-labelledby="more-mobile-heading">
+      <section className="mt-12 border-t border-neutral-200/60 pt-10 lg:hidden" aria-labelledby="more-mobile-heading">
         <h2 id="more-mobile-heading" className="font-heading text-lg font-medium text-foreground">
           {t.journal.moreInSection}
         </h2>
         <ul className="mt-4 space-y-3">
           {moreInSection.slice(0, 4).map((p) => (
             <li key={p.slug}>
-              <Link href={pathWithLocale(locale, `/blog/${p.slug}`)} className="text-sm text-[#C9A962] hover:underline">
+              <Link href={pathWithLocale(locale, `/blog/${p.slug}`)} className="text-sm text-neutral-900 hover:underline">
                 {p.title}
               </Link>
             </li>

@@ -40,7 +40,7 @@ function OrderViewInner() {
     return (
       <div className="mx-auto max-w-lg px-4 py-16 text-center">
         <p className="text-foreground/80">{t.order.notFound}</p>
-        <Link href={path("/account")} className="mt-6 inline-block text-[#C9A962] hover:underline">
+        <Link href={path("/account")} className="mt-6 inline-block text-neutral-900 hover:underline">
           {t.account.title}
         </Link>
       </div>
@@ -67,12 +67,12 @@ function OrderViewInner() {
   });
 
   return (
-    <div className="min-h-screen bg-[#eceae6] px-4 py-6">
+    <div className="min-h-screen bg-neutral-100 px-4 py-6">
       <div className="mx-auto max-w-lg sm:max-w-xl">
         <div className="mb-6 flex items-center gap-3">
           <Link
             href={path("/account")}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-foreground/10 bg-[#FFFEF9] hover:bg-foreground/5"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-foreground/10 bg-white hover:bg-foreground/5"
             aria-label="Back"
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -83,7 +83,7 @@ function OrderViewInner() {
           <span className="w-10" />
         </div>
 
-        <div className="space-y-4 rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm">
+        <div className="space-y-4 rounded-2xl border border-black/[0.06] bg-white p-5 shadow-sm">
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-foreground/10 pb-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-foreground/50">{t.order.orderNo}</p>
@@ -111,7 +111,7 @@ function OrderViewInner() {
           </p>
         </div>
 
-        <div className="mt-4 rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm">
+        <div className="mt-4 rounded-2xl border border-black/[0.06] bg-white p-5 shadow-sm">
           <h2 className="font-heading text-base font-semibold text-foreground">{t.order.shippingTo}</h2>
           <p className="mt-3 text-sm text-foreground/85">{snap.formData.fullName}</p>
           <p className="text-sm text-foreground/85">{phoneFull}</p>
@@ -124,7 +124,7 @@ function OrderViewInner() {
           </p>
         </div>
 
-        <div className="mt-4 rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm">
+        <div className="mt-4 rounded-2xl border border-black/[0.06] bg-white p-5 shadow-sm">
           <h2 className="font-heading text-base font-semibold text-foreground">{t.order.bag}</h2>
           <ul className="mt-4 space-y-4">
             {snap.lines.map((line, i) => (
@@ -135,7 +135,7 @@ function OrderViewInner() {
                     {t.cart.size} {line.size} × {line.qty}
                   </p>
                 </div>
-                <span className="shrink-0 font-semibold tabular-nums text-[#C9A962]">${line.lineTotal.toFixed(2)}</span>
+                <span className="shrink-0 font-semibold tabular-nums text-neutral-900">${line.lineTotal.toFixed(2)}</span>
               </li>
             ))}
           </ul>
@@ -156,7 +156,7 @@ function OrderViewInner() {
 
         <Link
           href={path("/")}
-          className="mt-4 block text-center text-sm text-[#C9A962] hover:underline"
+          className="mt-4 block text-center text-sm text-neutral-900 hover:underline"
         >
           {t.order.backHome}
         </Link>

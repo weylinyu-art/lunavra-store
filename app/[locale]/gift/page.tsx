@@ -48,7 +48,7 @@ export default function GiftPage() {
   ];
 
   return (
-    <div className="bg-[#FAF8F5]">
+    <div className="bg-neutral-50">
       {/* Hero — editorial band + image */}
       <section className="relative overflow-hidden" aria-labelledby="gift-hero-heading">
         <div className="absolute inset-0">
@@ -65,15 +65,15 @@ export default function GiftPage() {
         </div>
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
           <div className="max-w-2xl">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#C9A962]">{t.gift.heroSubtitle}</p>
-            <h1 id="gift-hero-heading" className="font-heading mt-4 text-[clamp(1.75rem,4vw,3rem)] font-light leading-[1.15] tracking-wide text-[#FFFEF9]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-neutral-900">{t.gift.heroSubtitle}</p>
+            <h1 id="gift-hero-heading" className="font-heading mt-4 text-[clamp(1.75rem,4vw,3rem)] font-light leading-[1.15] tracking-wide text-white">
               {t.gift.heroTitle}
             </h1>
             <p className="mt-5 text-base leading-relaxed text-white/88 sm:text-lg">{t.gift.heroLead}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href={path("/shop?tag=romantic-gift")}
-                className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#FFFEF9] px-8 py-3.5 text-sm font-medium text-foreground shadow-lg transition-all hover:bg-white hover:shadow-xl"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-white px-8 py-3.5 text-sm font-medium text-foreground shadow-lg transition-all hover:bg-white hover:shadow-xl"
               >
                 {t.gift.ctaShopAll}
               </Link>
@@ -100,21 +100,21 @@ export default function GiftPage() {
             <Link
               key={item.href}
               href={item.href}
-              className="group flex flex-col rounded-2xl border border-rose-200/50 bg-[#FFFEF9] p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#C9A962]/40 hover:shadow-[0_12px_40px_rgba(201,169,98,0.12)]"
+              className="group flex flex-col rounded-2xl border border-neutral-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-300 hover:shadow-[0_12px_40px_rgba(201,169,98,0.12)]"
             >
-              <span className="font-heading text-xs font-medium tabular-nums text-[#C9A962]/80">{item.accent}</span>
-              <h3 className="font-heading mt-3 text-lg font-medium text-foreground transition-colors group-hover:text-[#C9A962]">
+              <span className="font-heading text-xs font-medium tabular-nums text-neutral-900/80">{item.accent}</span>
+              <h3 className="font-heading mt-3 text-lg font-medium text-foreground transition-colors group-hover:text-neutral-900">
                 {item.title}
               </h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-foreground/70">{item.desc}</p>
-              <span className="mt-5 text-xs font-semibold uppercase tracking-wider text-[#C9A962]">→</span>
+              <span className="mt-5 text-xs font-semibold uppercase tracking-wider text-neutral-900">→</span>
             </Link>
           ))}
         </div>
       </section>
 
       {/* Trust — slim band */}
-      <section className="border-y border-rose-200/40 bg-[#FFFEF9]/90" aria-labelledby="gift-trust-heading">
+      <section className="border-y border-neutral-200/60 bg-white/90" aria-labelledby="gift-trust-heading">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <h2 id="gift-trust-heading" className="text-center font-heading text-lg font-light text-foreground sm:text-xl">
             {t.gift.trustTitle}
@@ -140,7 +140,7 @@ export default function GiftPage() {
           </div>
           <Link
             href={path("/shop?tag=romantic-gift")}
-            className="mt-2 shrink-0 text-sm font-medium text-[#C9A962] hover:underline sm:mt-0"
+            className="mt-2 shrink-0 text-sm font-medium text-neutral-900 hover:underline sm:mt-0"
           >
             {t.gift.ctaShopAll} →
           </Link>
@@ -153,7 +153,7 @@ export default function GiftPage() {
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href={path("/shop")}
-            className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-foreground px-10 py-3.5 text-sm font-medium text-[#FFFEF9] shadow-sm transition-all hover:bg-foreground/90 sm:w-auto"
+            className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-foreground px-10 py-3.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-foreground/90 sm:w-auto"
           >
             {t.gift.ctaExplore}
           </Link>

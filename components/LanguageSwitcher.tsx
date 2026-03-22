@@ -47,7 +47,7 @@ export default function LanguageSwitcher({ onNavigate }: LanguageSwitcherProps) 
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 rounded-lg border border-foreground/20 bg-[#FFFEF9] px-2.5 py-1.5 text-xs font-medium text-foreground/80 transition-colors hover:border-[#C9A962]/50 hover:text-[#C9A962]"
+        className="flex items-center gap-1.5 rounded-lg border border-foreground/20 bg-white px-2.5 py-1.5 text-xs font-medium text-foreground/80 transition-colors hover:border-neutral-300 hover:text-neutral-900"
         aria-expanded={open}
         aria-haspopup="listbox"
         aria-label="Select language"
@@ -65,7 +65,7 @@ export default function LanguageSwitcher({ onNavigate }: LanguageSwitcherProps) 
 
       {open && (
         <ul
-          className="absolute end-0 top-full z-50 mt-1 min-w-[7rem] overflow-hidden rounded-lg border border-rose-200/50 bg-[#FFFEF9] py-1 shadow-lg"
+          className="absolute end-0 top-full z-50 mt-1 min-w-[7rem] overflow-hidden rounded-lg border border-neutral-200/80 bg-white py-1 shadow-lg"
           role="listbox"
         >
           {options.map((opt) => (
@@ -75,8 +75,8 @@ export default function LanguageSwitcher({ onNavigate }: LanguageSwitcherProps) 
                 onClick={() => handleSelect(opt.locale)}
                 className={`block px-3 py-2 text-sm transition-colors ${
                   opt.locale === locale
-                    ? "bg-[#C9A962]/15 font-medium text-[#C9A962]"
-                    : "text-foreground/80 hover:bg-rose-100/50 hover:text-foreground"
+                    ? "bg-neutral-900/15 font-medium text-neutral-900"
+                    : "text-foreground/80 hover:bg-neutral-100 hover:text-foreground"
                 }`}
               >
                 {opt.label}

@@ -1,19 +1,24 @@
 @import "tailwindcss";
 
+/* Editorial monochrome: high contrast, minimal accent — closer to premium fashion retail */
 :root {
-  --background: #FDF2F4;
-  --background-alt: #FAE8EC;
-  --foreground: #2C2C2C;
-  --foreground-muted: #5C5C5C;
-  --accent-pink: #E8C4C4;
-  --accent-pink-deep: #D4A5A5;
-  --accent-gold: #C9A962;
-  --accent-gold-light: #E5D4A1;
-  --ivory: #FFFEF9;
-  --ivory-warm: #FAF8F5;
-  --ivory-dark: #F5F0E8;
-  --rose: #F8E8E8;
-  --champagne: #F5E6D3;
+  --background: #f5f5f4;
+  --background-alt: #e7e5e4;
+  --foreground: #0a0a0a;
+  --foreground-muted: #525252;
+  --border-subtle: #e5e5e5;
+  --surface: #ffffff;
+  --surface-muted: #fafafa;
+  /* Legacy names kept for gradual migration; values are neutral */
+  --accent-pink: #d4d4d4;
+  --accent-pink-deep: #a3a3a3;
+  --accent-gold: #171717;
+  --accent-gold-light: #404040;
+  --ivory: #ffffff;
+  --ivory-warm: #fafafa;
+  --ivory-dark: #f5f5f4;
+  --rose: #f5f5f4;
+  --champagne: #e7e5e4;
   --font-heading: var(--font-cormorant), Georgia, "Times New Roman", serif;
   --font-body: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
 }
@@ -33,7 +38,6 @@
 
 html {
   scroll-behavior: smooth;
-  /* Prevent zoom on input focus on iOS */
   font-size: 16px;
 }
 
@@ -41,12 +45,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body);
-  /* Safe area for notched devices */
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
 }
 
-/* Mobile: touch-friendly tap targets & reading */
 @media (max-width: 767px) {
   html {
     -webkit-text-size-adjust: 100%;
@@ -57,7 +59,6 @@ body {
   }
 }
 
-/* Headings use serif */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
@@ -66,21 +67,19 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
-/* RTL: Arabic layout - mirrored */
 html[dir="rtl"] body {
   text-align: right;
   font-family: var(--font-arabic), var(--font-body), sans-serif;
 }
 
-/* Premium hover animations */
 @keyframes subtle-lift {
   from {
     transform: translateY(0);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   }
   to {
     transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(201, 169, 98, 0.12);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
   }
 }
 
@@ -101,7 +100,7 @@ html[dir="rtl"] body {
 
 .hover-lift:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(201, 169, 98, 0.12);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
 }
 
 .hover-gold {
@@ -109,11 +108,10 @@ html[dir="rtl"] body {
 }
 
 .hover-gold:hover {
-  color: var(--accent-gold);
-  border-color: var(--accent-gold);
+  color: var(--foreground);
+  border-color: var(--foreground);
 }
 
-/* Hide scrollbar for horizontal scroll */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -122,20 +120,18 @@ html[dir="rtl"] body {
   scrollbar-width: none;
 }
 
-/* Gift card: distinctive product styling in gift context */
 .gift-card-image::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(201, 169, 98, 0.08) 0%, transparent 40%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.06) 0%, transparent 45%);
   pointer-events: none;
 }
 
-/* Mobile: touch targets min 44px, tap highlight */
 @media (max-width: 767px) {
   a, button {
-    -webkit-tap-highlight-color: rgba(201, 169, 98, 0.2);
-    tap-highlight-color: rgba(201, 169, 98, 0.2);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.08);
+    tap-highlight-color: rgba(0, 0, 0, 0.08);
   }
   .touch-target {
     min-height: 44px;
@@ -143,7 +139,6 @@ html[dir="rtl"] body {
   }
 }
 
-/* Add to cart bounce */
 @keyframes add-to-cart {
   0%, 100% {
     transform: scale(1);

@@ -16,7 +16,7 @@ export default function FAQPage() {
   );
 
   return (
-    <div className="mx-auto max-w-3xl bg-[#FDF2F4] px-4 py-16 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-3xl bg-neutral-100 px-4 py-16 sm:px-6 lg:px-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -35,7 +35,7 @@ export default function FAQPage() {
 
       <dl className="space-y-8">
         {faqItems.map((item, i) => (
-          <div key={i} className="rounded-xl bg-[#FFFEF9] p-6 shadow-sm">
+          <div key={i} className="rounded-xl bg-white p-6 shadow-sm">
             <dt className="font-heading text-lg font-medium text-foreground">
               {isAr ? item.questionAr : item.question}
             </dt>

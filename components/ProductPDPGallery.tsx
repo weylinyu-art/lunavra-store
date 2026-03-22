@@ -98,7 +98,7 @@ export default function ProductPDPGallery({ images, altFor, overlay }: ProductPD
               aria-label={t.product.galleryPrev}
               className={`absolute start-2 top-1/2 z-[2] hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/35 text-white shadow-md backdrop-blur-sm transition-all duration-200 md:flex ${
                 canPrev
-                  ? "pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 hover:bg-black/50 focus-visible:pointer-events-auto focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A962]"
+                  ? "pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 hover:bg-black/50 focus-visible:pointer-events-auto focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
                   : "pointer-events-none invisible"
               }`}
             >
@@ -113,7 +113,7 @@ export default function ProductPDPGallery({ images, altFor, overlay }: ProductPD
               aria-label={t.product.galleryNext}
               className={`absolute end-2 top-1/2 z-[2] hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/35 text-white shadow-md backdrop-blur-sm transition-all duration-200 md:flex ${
                 canNext
-                  ? "pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 hover:bg-black/50 focus-visible:pointer-events-auto focus-visible:opacity-100 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-[#C9A962]"
+                  ? "pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 hover:bg-black/50 focus-visible:pointer-events-auto focus-visible:opacity-100 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
                   : "pointer-events-none invisible"
               }`}
             >
@@ -163,7 +163,7 @@ export default function ProductPDPGallery({ images, altFor, overlay }: ProductPD
               aria-selected={active === i}
               onClick={() => goTo(i)}
               className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border-2 transition-colors sm:h-[4.25rem] sm:w-[4.25rem] ${
-                active === i ? "border-[#C9A962] ring-2 ring-[#C9A962]/25" : "border-transparent hover:border-foreground/15"
+                active === i ? "border-neutral-900 ring-2 ring-neutral-300/40" : "border-transparent hover:border-foreground/15"
               }`}
             >
               <Image src={src} alt={altFor(i)} fill unoptimized className="object-cover" sizes="72px" />

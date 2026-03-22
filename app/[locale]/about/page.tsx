@@ -13,7 +13,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-4xl bg-[#FDF2F4] px-4 py-16 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-4xl bg-neutral-100 px-4 py-16 sm:px-6 lg:px-8">
       <header className="mb-16 text-center">
         <h1 className="font-heading text-4xl font-light tracking-wide text-foreground md:text-5xl">
           {t.about.title}
@@ -52,7 +52,7 @@ export default function AboutPage() {
           {values.map((v) => (
             <div
               key={v.key}
-              className="hover-lift rounded-xl bg-[#FFFEF9] p-6 text-center shadow-sm transition-all duration-300"
+              className="hover-lift rounded-xl bg-white p-6 text-center shadow-sm transition-all duration-300"
             >
               <span className="font-medium text-foreground">{v.name}</span>
             </div>

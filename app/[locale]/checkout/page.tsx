@@ -133,7 +133,7 @@ export default function CheckoutPage() {
     return (
       <div className="mx-auto max-w-2xl px-4 py-20 text-center text-foreground/60">
         <p>{t.cart.empty}</p>
-        <Link href={path("/cart")} className="mt-4 inline-block text-[#C9A962] hover:underline">
+        <Link href={path("/cart")} className="mt-4 inline-block text-neutral-900 hover:underline">
           {t.cart.title}
         </Link>
       </div>
@@ -141,12 +141,12 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#eceae6] pb-8">
+    <div className="min-h-screen bg-neutral-100 pb-8">
       <div className="mx-auto max-w-lg px-4 py-6 sm:max-w-xl lg:max-w-2xl">
         <div className="mb-6 flex items-center gap-3">
           <Link
             href={path("/cart")}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-foreground/10 bg-[#FFFEF9] text-foreground hover:bg-foreground/5"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-foreground/10 bg-white text-foreground hover:bg-foreground/5"
             aria-label="Back"
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -159,12 +159,12 @@ export default function CheckoutPage() {
           <span className="w-10" aria-hidden />
         </div>
 
-        <p className="mb-6 rounded-xl bg-emerald-50/80 px-4 py-3 text-center text-sm text-emerald-900/90">
+        <p className="mb-6 rounded-xl border border-neutral-200/80 bg-neutral-50 px-4 py-3 text-center text-sm text-neutral-800">
           {t.checkout.saudiOnly}
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-8">
-          <section className="rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm sm:p-6">
+          <section className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-sm sm:p-6">
             <h2 className="font-heading text-base font-semibold text-foreground">{t.checkout.mapSection}</h2>
             <p className="mt-2 text-sm leading-relaxed text-foreground/65">{t.checkout.mapHelp}</p>
             <p className="mt-1.5 text-xs leading-relaxed text-foreground/50">{t.checkout.mapAddressAuto}</p>
@@ -177,10 +177,10 @@ export default function CheckoutPage() {
                   {t.checkout.coordsLabel}: {mapLat.toFixed(5)}, {mapLng.toFixed(5)}
                 </p>
                 {geocodingLoading && (
-                  <p className="text-xs text-[#C9A962]">{t.checkout.geocodingLoading}</p>
+                  <p className="text-xs text-neutral-500">{t.checkout.geocodingLoading}</p>
                 )}
                 {geocodingError && !geocodingLoading && (
-                  <p className="text-xs text-rose-700/90">{t.checkout.geocodingError}</p>
+                  <p className="text-xs text-neutral-600">{t.checkout.geocodingError}</p>
                 )}
               </div>
             )}
@@ -195,7 +195,7 @@ export default function CheckoutPage() {
                   required
                   value={formData.city}
                   onChange={handleChange}
-                  className="mt-1.5 w-full min-h-[48px] rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
+                  className="mt-1.5 w-full min-h-[48px] rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-400 sm:min-h-0"
                 />
               </div>
               <div className="sm:col-span-2">
@@ -209,13 +209,13 @@ export default function CheckoutPage() {
                   rows={3}
                   value={formData.addressDetail}
                   onChange={handleChange}
-                  className="mt-1.5 w-full rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962]"
+                  className="mt-1.5 w-full rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-400"
                 />
               </div>
             </div>
           </section>
 
-          <section className="rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm sm:p-6">
+          <section className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-sm sm:p-6">
             <h2 className="font-heading text-base font-semibold text-foreground">{t.checkout.contactSection}</h2>
             <div className="mt-4 space-y-4">
               <div>
@@ -229,7 +229,7 @@ export default function CheckoutPage() {
                   required
                   value={formData.fullName}
                   onChange={handleChange}
-                  className="mt-1.5 w-full min-h-[48px] rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
+                  className="mt-1.5 w-full min-h-[48px] rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-400 sm:min-h-0"
                 />
               </div>
               <div>
@@ -250,7 +250,7 @@ export default function CheckoutPage() {
                     placeholder="5xxxxxxxx"
                     value={formData.phoneLocal}
                     onChange={handleChange}
-                    className="min-w-0 flex-1 px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-inset focus:ring-[#C9A962]"
+                    className="min-w-0 flex-1 px-4 py-3 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-inset focus:ring-neutral-400"
                   />
                 </div>
               </div>
@@ -265,16 +265,16 @@ export default function CheckoutPage() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="mt-1.5 w-full min-h-[48px] rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962] sm:min-h-0"
+                  className="mt-1.5 w-full min-h-[48px] rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-400 sm:min-h-0"
                 />
               </div>
             </div>
           </section>
 
-          <section className="rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm sm:p-6">
+          <section className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-sm sm:p-6">
             <h2 className="font-heading text-base font-semibold text-foreground">{t.checkout.paymentSection}</h2>
-            <div className="mt-4 flex items-start gap-3 rounded-xl border-2 border-[#1a7f3a] bg-emerald-50/50 p-4">
-              <input type="radio" checked readOnly className="mt-1 h-4 w-4 accent-[#1a7f3a]" aria-label={t.checkout.codOnly} />
+            <div className="mt-4 flex items-start gap-3 rounded-xl border-2 border-neutral-900 bg-neutral-50 p-4">
+              <input type="radio" checked readOnly className="mt-1 h-4 w-4 accent-neutral-900" aria-label={t.checkout.codOnly} />
               <div>
                 <p className="font-medium text-foreground">{t.checkout.codOnly}</p>
                 <p className="mt-1 text-sm text-foreground/70">{t.checkout.codDescription}</p>
@@ -282,7 +282,7 @@ export default function CheckoutPage() {
             </div>
           </section>
 
-          <section className="rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-5 shadow-sm sm:p-6">
+          <section className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-sm sm:p-6">
             <div className="flex items-center justify-between">
               <h2 className="font-heading text-base font-semibold text-foreground">{t.checkout.orderSummary}</h2>
               <span className="text-sm text-foreground/60">
@@ -292,7 +292,7 @@ export default function CheckoutPage() {
             <ul className="mt-4 space-y-3 border-b border-foreground/10 pb-4">
               {linesResolved.map(({ line, product, name }) => (
                 <li key={line.id} className="flex gap-3 text-sm">
-                  <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-[#FAF8F5]">
+                  <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-neutral-50">
                     <Image src={product.image} alt="" fill className="object-cover" unoptimized sizes="56px" />
                   </div>
                   <div className="min-w-0 flex-1">
@@ -301,7 +301,7 @@ export default function CheckoutPage() {
                       {t.cart.size} {line.size} × {line.qty}
                     </p>
                   </div>
-                  <span className="shrink-0 font-semibold tabular-nums text-[#C9A962]">
+                  <span className="shrink-0 font-semibold tabular-nums text-neutral-900">
                     ${(product.price * line.qty).toFixed(2)}
                   </span>
                 </li>
@@ -321,7 +321,7 @@ export default function CheckoutPage() {
                 rows={2}
                 value={formData.orderNotes}
                 onChange={handleChange}
-                className="mt-1.5 w-full rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-[#C9A962] focus:outline-none focus:ring-1 focus:ring-[#C9A962]"
+                className="mt-1.5 w-full rounded-lg border border-foreground/15 bg-white px-4 py-3 text-base text-foreground focus:border-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-400"
               />
             </div>
           </section>
@@ -330,7 +330,7 @@ export default function CheckoutPage() {
             type="submit"
             disabled={mapLat == null || mapLng == null}
             title={mapLat == null || mapLng == null ? t.checkout.pinRequired : undefined}
-            className="flex min-h-[52px] w-full items-center justify-center rounded-xl bg-[#1a7f3a] py-4 text-base font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#156b30] disabled:cursor-not-allowed disabled:opacity-45"
+            className="flex min-h-[52px] w-full items-center justify-center rounded-xl bg-neutral-900 py-4 text-base font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-45"
           >
             {t.checkout.placeOrder}
           </button>

@@ -30,20 +30,20 @@ function LoginContent() {
       <p className="mt-2 text-center text-sm text-foreground/65">{login.subtitle}</p>
 
       {lastError && (
-        <div className="mt-6 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-900">
+        <div className="mt-6 rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-900">
           <p>{login.error}</p>
           <p className="mt-1 font-mono text-xs opacity-90">{lastError}</p>
           <button
             type="button"
             onClick={clearError}
-            className="mt-2 text-xs font-medium text-rose-800 underline"
+            className="mt-2 text-xs font-medium text-neutral-800 underline"
           >
             {login.dismissError}
           </button>
         </div>
       )}
 
-      <div className="mt-8 rounded-2xl border border-black/[0.06] bg-[#FFFEF9] p-6 shadow-sm">
+      <div className="mt-8 rounded-2xl border border-black/[0.06] bg-white p-6 shadow-sm">
         {loading ? (
           <p className="text-center text-sm text-foreground/60">{login.loading}</p>
         ) : user ? (
@@ -58,10 +58,10 @@ function LoginContent() {
       </p>
 
       <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm">
-        <Link href={path("/")} className="font-medium text-[#C9A962] hover:underline">
+        <Link href={path("/")} className="font-medium text-neutral-900 hover:underline">
           {login.backHome}
         </Link>
-        <Link href={path("/account")} className="font-medium text-foreground/70 hover:text-[#C9A962] hover:underline">
+        <Link href={path("/account")} className="font-medium text-foreground/70 hover:text-neutral-900 hover:underline">
           {login.goAccount}
         </Link>
       </div>
@@ -73,7 +73,7 @@ export default function LoginPage() {
   const { t } = useLocale();
 
   return (
-    <div className="min-h-screen bg-[#eceae6] px-4 py-10">
+    <div className="min-h-screen bg-neutral-100 px-4 py-10">
       <div className="mx-auto max-w-lg">
         <Suspense
           fallback={

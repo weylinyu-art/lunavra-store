@@ -49,7 +49,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ loca
     <div className="mx-auto max-w-7xl px-4 pb-20 pt-10 sm:px-6 lg:px-10">
       {/* Masthead */}
       <header className="mx-auto max-w-3xl text-center">
-        <p className="text-[10px] font-medium uppercase tracking-[0.35em] text-[#C9A962]">NileChic</p>
+        <p className="text-[10px] font-medium uppercase tracking-[0.35em] text-neutral-900">NileChic</p>
         <h1 className="font-heading mt-3 text-[clamp(1.75rem,4vw,2.75rem)] font-light leading-tight tracking-wide text-foreground">
           {t.blogSection.title}
         </h1>
@@ -60,7 +60,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ loca
 
       {/* Topic jump — horizontal modular nav */}
       <nav
-        className="mt-10 flex flex-wrap items-center justify-center gap-2 border-y border-rose-200/40 bg-[#FFFEF9]/90 py-4 sm:gap-3"
+        className="mt-10 flex flex-wrap items-center justify-center gap-2 border-y border-neutral-200/60 bg-white/90 py-4 sm:gap-3"
         aria-label={t.journal.browseTopic}
       >
         <span className="w-full text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground/45 sm:w-auto sm:pe-2">
@@ -72,7 +72,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ loca
             <a
               key={id}
               href={`#journal-${id}`}
-              className="rounded-full border border-rose-200/60 bg-[#FAF8F5] px-4 py-2 text-xs font-medium text-foreground/85 transition-colors hover:border-[#C9A962]/50 hover:bg-[#C9A962]/10 hover:text-foreground"
+              className="rounded-full border border-neutral-200/70 bg-neutral-50 px-4 py-2 text-xs font-medium text-foreground/85 transition-colors hover:border-neutral-300 hover:bg-neutral-900/10 hover:text-foreground"
             >
               {title}
             </a>
@@ -105,7 +105,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ loca
             <section
               key={id}
               id={`journal-${id}`}
-              className="scroll-mt-28 border-t border-rose-200/35 pt-14 first:border-t-0 first:pt-0 sm:pt-16"
+              className="scroll-mt-28 border-t border-neutral-200/50 pt-14 first:border-t-0 first:pt-0 sm:pt-16"
             >
               <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
                 <div className="max-w-2xl">
@@ -114,7 +114,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ loca
                 </div>
                 <Link
                   href={pathWithLocale(locale, `/shop`)}
-                  className="shrink-0 text-sm font-medium text-[#C9A962] hover:underline"
+                  className="shrink-0 text-sm font-medium text-neutral-900 hover:underline"
                 >
                   {t.hero.shopNow} →
                 </Link>

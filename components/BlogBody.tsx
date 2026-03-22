@@ -9,7 +9,7 @@ function parseInline(text: string, locale: Locale) {
     if (m) {
       const href = pathWithLocale(locale, `/product/${m[2]}`);
       return (
-        <Link key={i} href={href} className="font-medium text-[#C9A962] underline decoration-[#C9A962]/40 underline-offset-[3px] transition-colors hover:decoration-[#C9A962]">
+        <Link key={i} href={href} className="font-medium text-neutral-900 underline decoration-neutral-400/50 underline-offset-[3px] transition-colors hover:decoration-neutral-900">
           {m[1]}
         </Link>
       );
@@ -35,7 +35,7 @@ export default function BlogBody({ body, locale }: { body: string; locale: Local
           return (
             <h2
               key={i}
-              className="font-heading mt-12 border-b border-rose-200/50 pb-3 text-[1.35rem] font-light leading-tight tracking-wide text-foreground first:mt-0 sm:mt-14 sm:text-[1.5rem]"
+              className="font-heading mt-12 border-b border-neutral-200/80 pb-3 text-[1.35rem] font-light leading-tight tracking-wide text-foreground first:mt-0 sm:mt-14 sm:text-[1.5rem]"
             >
               {parseInline(line.slice(3), locale)}
             </h2>

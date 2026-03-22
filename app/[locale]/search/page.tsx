@@ -15,11 +15,11 @@ function SearchContent() {
 
   if (!q.trim()) {
     return (
-      <div className="rounded-xl bg-[#FFFEF9] p-8 text-center shadow-sm sm:p-12">
+      <div className="rounded-xl bg-white p-8 text-center shadow-sm sm:p-12">
         <p className="text-foreground/80">{t.search.enterQuery}</p>
         <Link
           href={path("/shop")}
-          className="mt-4 inline-block text-[#C9A962] font-medium hover:underline"
+          className="mt-4 inline-block text-neutral-900 font-medium hover:underline"
         >
           {t.search.browseAll}
         </Link>
@@ -38,11 +38,11 @@ function SearchContent() {
         ))}
       </div>
       {results.length === 0 && (
-        <div className="mt-12 rounded-xl bg-[#FFFEF9] p-8 text-center shadow-sm">
+        <div className="mt-12 rounded-xl bg-white p-8 text-center shadow-sm">
           <p className="text-foreground/80">{t.search.noResults}</p>
           <Link
             href={path("/shop")}
-            className="mt-4 inline-block rounded-lg bg-foreground px-6 py-2.5 text-sm font-medium text-[#FFFEF9] transition-colors hover:bg-foreground/90"
+            className="mt-4 inline-block rounded-lg bg-foreground px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-foreground/90"
           >
             {t.search.browseAll}
           </Link>
@@ -56,13 +56,13 @@ export default function SearchPage() {
   const { t } = useLocale();
 
   return (
-    <div className="mx-auto max-w-7xl bg-[#FDF2F4] px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <div className="mx-auto max-w-7xl bg-neutral-100 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       <header className="mb-8">
         <h1 className="font-heading text-2xl font-light tracking-wide text-foreground sm:text-3xl">
           {t.search.title}
         </h1>
       </header>
-      <Suspense fallback={<div className="animate-pulse h-32 bg-[#FFFEF9] rounded-xl" />}>
+      <Suspense fallback={<div className="animate-pulse h-32 bg-white rounded-xl" />}>
         <SearchContent />
       </Suspense>
     </div>

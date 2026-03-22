@@ -35,7 +35,7 @@ export default async function LocaleLayout({
         <LocaleInit />
       </Suspense>
       <div className="flex min-h-screen flex-col">
-        <Suspense fallback={<header className="h-16 border-b border-rose-200/50" />}>
+        <Suspense fallback={<header className="h-16 border-b border-neutral-200/80" />}>
           <Header />
         </Suspense>
         <main className="flex-1">{children}</main>

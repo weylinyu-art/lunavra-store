@@ -42,7 +42,7 @@ function ShopContent() {
       <div className="flex flex-wrap gap-2">
         <Link
           href={path("/shop")}
-          className={`min-h-[44px] rounded-lg border px-4 py-2.5 text-sm font-medium transition-all duration-300 sm:min-h-0 ${!categoryParam && !tagParam ? "border-transparent bg-foreground text-[#FFFEF9] shadow-sm" : "border-transparent bg-[#FFFEF9] text-foreground shadow-sm hover:border-[#C9A962] hover:bg-[#C9A962]/10 hover:text-[#C9A962]"}`}
+          className={`min-h-[44px] rounded-lg border px-4 py-2.5 text-sm font-medium transition-all duration-300 sm:min-h-0 ${!categoryParam && !tagParam ? "border-transparent bg-foreground text-white shadow-sm" : "border-transparent bg-white text-foreground shadow-sm hover:border-neutral-400 hover:bg-neutral-900/10 hover:text-neutral-900"}`}
         >
           {t.shop.all}
         </Link>
@@ -50,14 +50,14 @@ function ShopContent() {
           <Link
             key={cat.id}
             href={path(`/shop?category=${cat.slug}`)}
-            className={`min-h-[44px] rounded-lg border px-4 py-2.5 text-sm font-medium transition-all duration-300 sm:min-h-0 ${categoryParam === cat.slug && !tagParam ? "border-[#C9A962] bg-[#C9A962]/10 text-[#C9A962]" : "border-transparent bg-[#FFFEF9] text-foreground shadow-sm hover:border-[#C9A962] hover:bg-[#C9A962]/10 hover:text-[#C9A962]"}`}
+            className={`min-h-[44px] rounded-lg border px-4 py-2.5 text-sm font-medium transition-all duration-300 sm:min-h-0 ${categoryParam === cat.slug && !tagParam ? "border-neutral-900 bg-neutral-900/10 text-neutral-900" : "border-transparent bg-white text-foreground shadow-sm hover:border-neutral-400 hover:bg-neutral-900/10 hover:text-neutral-900"}`}
           >
             {categoryLabels[cat.slug] || cat.slug}
           </Link>
         ))}
         <Link
           href={path("/shop?tag=romantic-gift")}
-          className={`min-h-[44px] rounded-lg border px-4 py-2.5 text-sm font-medium transition-all duration-300 sm:min-h-0 ${tagParam === "romantic-gift" ? "border-[#C9A962] bg-[#C9A962]/10 text-[#C9A962]" : "border-transparent bg-[#FFFEF9] text-foreground shadow-sm hover:border-[#C9A962] hover:bg-[#C9A962]/10 hover:text-[#C9A962]"}`}
+          className={`min-h-[44px] rounded-lg border px-4 py-2.5 text-sm font-medium transition-all duration-300 sm:min-h-0 ${tagParam === "romantic-gift" ? "border-neutral-900 bg-neutral-900/10 text-neutral-900" : "border-transparent bg-white text-foreground shadow-sm hover:border-neutral-400 hover:bg-neutral-900/10 hover:text-neutral-900"}`}
         >
           {t.romanticGifts.tag}
         </Link>
@@ -109,8 +109,8 @@ function ShopPageHeader() {
 
 export default function ShopPage() {
   return (
-    <div className="mx-auto max-w-7xl bg-[#FDF2F4] px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-      <Suspense fallback={<div className="mb-8 h-24 animate-pulse rounded-xl bg-[#FFFEF9]/80" />}>
+    <div className="mx-auto max-w-7xl bg-neutral-100 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+      <Suspense fallback={<div className="mb-8 h-24 animate-pulse rounded-xl bg-white/80" />}>
         <ShopPageHeader />
       </Suspense>
 

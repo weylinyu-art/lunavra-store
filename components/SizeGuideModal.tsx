@@ -15,7 +15,7 @@ export default function SizeGuideModal({ isOpen, onClose }: SizeGuideModalProps)
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="size-guide-title">
       <div className="absolute inset-0 bg-black/50" onClick={onClose} aria-hidden />
-      <div className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl bg-[#FFFEF9] p-6 shadow-xl">
+      <div className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl bg-white p-6 shadow-xl">
         <div className="flex items-center justify-between">
           <h2 id="size-guide-title" className="font-heading text-xl font-medium text-foreground">
             {t.sizeGuide.title}
