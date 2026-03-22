@@ -9,7 +9,7 @@ export const translations = {
       cart: "Cart",
     },
     header: {
-      slogan: "Premium lingerie, quietly confident",
+      slogan: "Refined intimates, thoughtfully made.",
       freeShipping: "Free shipping on orders over $100",
     },
     hero: {
@@ -340,7 +340,7 @@ export const translations = {
       cart: "السلة",
     },
     header: {
-      slogan: "ملابس داخلية فاخرة بثقة هادئة",
+      slogan: "ملابس داخلية راقية، بعناية في كل تفصيلة.",
       freeShipping: "شحن مجاني للطلبات فوق 100$",
     },
     hero: {

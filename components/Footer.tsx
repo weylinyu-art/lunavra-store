@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useLocale } from "@/contexts/LocaleContext";
+import BrandLogo from "@/components/BrandLogo";
 import { CONTACT_EMAIL, WHATSAPP_DISPLAY, WHATSAPP_NUMBER } from "@/lib/config/whatsapp";
 
 export default function Footer() {
@@ -13,8 +14,8 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
         <div className="grid gap-8 sm:gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link href={path("/")} className="text-xl font-light tracking-[0.2em] text-foreground">
-              NileChic
+            <Link href={path("/")} className="inline-block rounded-lg outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[#C9A962]/40">
+              <BrandLogo variant="footer" />
             </Link>
             <h3 className="mt-6 text-sm font-semibold uppercase tracking-wider text-foreground/80">
               {t.footer.about}

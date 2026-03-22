@@ -1,11 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLocale } from "@/contexts/LocaleContext";
 import { useCart } from "@/contexts/CartContext";
 import { useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import BrandLogo from "@/components/BrandLogo";
+import { pathWithoutLocale } from "@/lib/i18n/paths";
+
+function navTabClass(active: boolean) {
+  return active
+    ? "bg-[#C9A962]/12 font-semibold text-[#C9A962] ring-1 ring-inset ring-[#C9A962]/35"
+    : "text-foreground/80 hover:bg-[#C9A962]/10 hover:text-[#C9A962]";
+}
+
+function mobileNavClass(active: boolean) {
+  return active
+    ? "bg-[#C9A962]/12 font-semibold text-[#C9A962] ring-1 ring-inset ring-[#C9A962]/30"
+    : "text-foreground active:bg-rose-100/50";
+}
 
 function SearchIcon() {
   return (
@@ -26,9 +40,19 @@ function CartIcon() {
 export default function Header() {
   const { t, path } = useLocale();
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { count } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const basePath = pathWithoutLocale(pathname);
+  const categoryParam = searchParams.get("category");
+  const isHome = basePath === "/";
+  const isShop = basePath === "/shop";
+  const isGift = basePath === "/gift";
+  const isBlog = basePath.startsWith("/blog");
+  const isCheckout = basePath === "/checkout";
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,13 +72,11 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-rose-200/50 bg-[#FFFEF9]/98 backdrop-blur-md shadow-sm">
       {/* Top bar: Logo + Slogan + Free shipping + Lang */}
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <Link href={path("/")} className="flex flex-col min-w-0 shrink-0">
-          <span className="text-xl font-light tracking-[0.2em] text-foreground transition-colors duration-200 hover:text-[#C9A962] sm:text-2xl">
-            NileChic
-          </span>
-          <span className="mt-0.5 truncate text-xs text-foreground/70 sm:text-sm">
-            {t.header.slogan}
-          </span>
+        <Link
+          href={path("/")}
+          className="group min-w-0 shrink-0 rounded-lg outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[#C9A962]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFFEF9]"
+        >
+          <BrandLogo variant="header" showSlogan />
         </Link>
 
         <form
@@ -81,7 +103,8 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Link
             href={path("/checkout")}
-            className="relative flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962]"
+            aria-current={isCheckout ? "page" : undefined}
+            className={`relative flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-[#C9A962]/10 hover:text-[#C9A962] ${navTabClass(isCheckout)}`}
           >
             <CartIcon />
             <span className="hidden sm:inline">{t.nav.cart}</span>
@@ -113,28 +136,35 @@ export default function Header() {
         <div className="mx-auto flex max-w-7xl items-center justify-start gap-1 overflow-x-auto px-4 py-2 sm:gap-4 sm:px-6 lg:px-8 scrollbar-hide">
           <Link
             href={path("/")}
-            className="flex shrink-0 items-center rounded-lg px-3 py-2.5 text-sm font-medium text-foreground/80 transition-colors min-h-[44px] hover:bg-[#C9A962]/10 hover:text-[#C9A962] active:bg-[#C9A962]/10 sm:min-h-0"
+            aria-current={isHome ? "page" : undefined}
+            className={`flex min-h-[44px] shrink-0 items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-colors sm:min-h-0 ${navTabClass(isHome)}`}
           >
             {t.nav.home}
           </Link>
-          {categories.map((cat) => (
-            <Link
-              key={cat.slug}
-              href={path(`/shop?category=${cat.slug}`)}
-              className="flex shrink-0 items-center rounded-lg px-3 py-2.5 text-sm font-medium text-foreground/80 transition-colors min-h-[44px] hover:bg-[#C9A962]/10 hover:text-[#C9A962] active:bg-[#C9A962]/10 sm:min-h-0"
-            >
-              {cat.name}
-            </Link>
-          ))}
+          {categories.map((cat) => {
+            const active = isShop && categoryParam === cat.slug && !searchParams.get("tag");
+            return (
+              <Link
+                key={cat.slug}
+                href={path(`/shop?category=${cat.slug}`)}
+                aria-current={active ? "page" : undefined}
+                className={`flex min-h-[44px] shrink-0 items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-colors sm:min-h-0 ${navTabClass(active)}`}
+              >
+                {cat.name}
+              </Link>
+            );
+          })}
           <Link
             href={path("/gift")}
-            className="flex shrink-0 items-center rounded-lg px-3 py-2.5 text-sm font-medium text-foreground/80 transition-colors min-h-[44px] hover:bg-[#C9A962]/10 hover:text-[#C9A962] active:bg-[#C9A962]/10 sm:min-h-0"
+            aria-current={isGift ? "page" : undefined}
+            className={`flex min-h-[44px] shrink-0 items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-colors sm:min-h-0 ${navTabClass(isGift)}`}
           >
             {t.nav.gift}
           </Link>
           <Link
             href={path("/blog")}
-            className="flex shrink-0 items-center rounded-lg px-3 py-2.5 text-sm font-medium text-foreground/80 transition-colors min-h-[44px] hover:bg-[#C9A962]/10 hover:text-[#C9A962] active:bg-[#C9A962]/10 sm:min-h-0"
+            aria-current={isBlog ? "page" : undefined}
+            className={`flex min-h-[44px] shrink-0 items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-colors sm:min-h-0 ${navTabClass(isBlog)}`}
           >
             {t.nav.blog}
           </Link>
@@ -164,29 +194,49 @@ export default function Header() {
           </form>
           <div className="flex flex-col gap-1">
             <p className="mb-3 px-1 text-sm text-foreground/70">🚚 {t.header.freeShipping}</p>
-            <Link href={path("/")} onClick={() => setMobileMenuOpen(false)} className="touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium text-foreground active:bg-rose-100/50">
+            <Link
+              href={path("/")}
+              onClick={() => setMobileMenuOpen(false)}
+              aria-current={isHome ? "page" : undefined}
+              className={`touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium ${mobileNavClass(isHome)}`}
+            >
               {t.nav.home}
             </Link>
-            {categories.map((cat) => (
-              <Link
-                key={cat.slug}
-                href={path(`/shop?category=${cat.slug}`)}
-                onClick={() => setMobileMenuOpen(false)}
-                className="touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium text-foreground active:bg-rose-100/50"
-              >
-                {cat.name}
-              </Link>
-            ))}
-            <Link href={path("/gift")} onClick={() => setMobileMenuOpen(false)} className="touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium text-foreground active:bg-rose-100/50">
+            {categories.map((cat) => {
+              const active = isShop && categoryParam === cat.slug && !searchParams.get("tag");
+              return (
+                <Link
+                  key={cat.slug}
+                  href={path(`/shop?category=${cat.slug}`)}
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-current={active ? "page" : undefined}
+                  className={`touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium ${mobileNavClass(active)}`}
+                >
+                  {cat.name}
+                </Link>
+              );
+            })}
+            <Link
+              href={path("/gift")}
+              onClick={() => setMobileMenuOpen(false)}
+              aria-current={isGift ? "page" : undefined}
+              className={`touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium ${mobileNavClass(isGift)}`}
+            >
               {t.nav.gift}
             </Link>
-            <Link href={path("/blog")} onClick={() => setMobileMenuOpen(false)} className="touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium text-foreground active:bg-rose-100/50">
+            <Link
+              href={path("/blog")}
+              onClick={() => setMobileMenuOpen(false)}
+              aria-current={isBlog ? "page" : undefined}
+              className={`touch-target flex min-h-[44px] items-center rounded-lg px-3 py-3 text-base font-medium ${mobileNavClass(isBlog)}`}
+            >
               {t.nav.blog}
             </Link>
             <Link
               href={path("/checkout")}
               onClick={() => setMobileMenuOpen(false)}
-              className="touch-target flex min-h-[44px] items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-foreground active:bg-rose-100/50"
+              aria-current={isCheckout ? "page" : undefined}
+              className={`touch-target flex min-h-[44px] items-center gap-2 rounded-lg px-3 py-3 text-base font-medium ${mobileNavClass(isCheckout)}`}
             >
               <CartIcon />
               {t.nav.cart}
