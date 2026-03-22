@@ -15,16 +15,15 @@ export const translations = {
       freeShipping: "Free shipping on orders over $100",
     },
     hero: {
-      headline: "Quiet luxury, worn close to the skin",
-      subheadline:
-        "European‑American minimalism meets meticulous fit. Discover lace, silk, and tailored silhouettes—shipped with discreet packaging and thoughtful service.",
+      headline: "Not Seen.\nAlways Felt.",
+      subheadline: "Flowing with the elegance of the Nile.",
       shopNow: "Shop Now",
       giftForWife: "Gift for Wife",
       exploreCollection: "Explore Collection",
       badgeNew: "✨ New",
       badgeTrending: "Editor’s pick",
       visualDescription:
-        "Full‑bleed hero: soft window light on blush‑nude tones, black negative space, a single editorial figure in refined lace—calm, premium, uncluttered.",
+        "Hero: full‑bleed editorial image with frosted glass panel, headline Not Seen Always Felt and Nile tagline.",
     },
     featured: {
       title: "Featured",
@@ -33,10 +32,20 @@ export const translations = {
     },
     brandStory: {
       title: "The NileChic edit",
-      body:
-        "NileChic is a study in restraint: nude‑pink palettes, off‑white light, and black line work inspired by contemporary European ateliers and American ease. We design intimates for adults who want confidence without noise—lace that breathes, silk that falls cleanly, and fits refined through real wear tests. This is lingerie as a daily ritual: private, precise, and entirely yours.",
+      /** Homepage brand block — short narrative + closing line */
+      bodyShort:
+        "NileChic is designed for the woman who values elegance in its most private form.\n\nEvery piece blends softness, comfort, and refined design —\nso you don’t just wear it, you feel it.\n\nNot seen. Always felt.",
+      /** About page — full brand manifesto (paragraphs preserve line breaks with whitespace-pre-line) */
+      bodyFullParagraphs: [
+        "Not Seen. Always Felt.\nFlowing with the elegance of the Nile.",
+        "There is a quiet kind of confidence —\none that does not seek attention,\nyet transforms everything it touches.",
+        "At NileChic, we believe true elegance is never loud.\nIt lives beneath the surface,\nin the way you carry yourself,\nin the way you feel in your own skin.",
+        "Our pieces are designed for that unseen moment —\nwhere comfort meets confidence,\nand intimacy becomes a form of self-expression.",
+        "Inspired by the timeless flow of the Nile,\nwe create lingerie that moves with you —\nsoft, effortless, and enduring.",
+        "Because what is not seen\nis often what is felt the most.",
+      ],
       visualDescription:
-        "Brand panel: split layout with textured linen backdrop, folded ivory lace, a gold accent thread detail, and generous whitespace—editorial, tactile, calm.",
+        "Brand panel: editorial image beside short brand story text and link to the full story on About.",
       cta: "Read our story",
     },
     blogSection: {
@@ -416,12 +425,6 @@ export const translations = {
       missionText:
         "NileChic was born from a simple belief: every woman deserves to feel beautiful and confident. We craft elegant lingerie that celebrates femininity with the finest fabrics and timeless designs.",
       story: "Our Story",
-      storyText:
-        "NileChic began where the Nile meets the Gulf—at the crossroads of cultures that value both elegance and discretion. Our founder, inspired by the grace of Middle Eastern women and the luxury of European design, set out to create intimate wear that honours femininity without compromise.",
-      storyPara2:
-        "We started small: a few carefully curated pieces, a commitment to quality fabrics, and an unwavering promise of privacy. Word spread. Mothers told daughters. Friends recommended NileChic to friends. Today we serve women across the GCC and Egypt, each order wrapped in plain packaging, each piece made to celebrate the woman who wears it.",
-      storyPara3:
-        "We believe luxury should be accessible and private. That's why we offer cash on delivery—no upfront payment, no digital trail. Why every box we ship could pass for any ordinary parcel. And why, behind every stitch, is a team that understands what it means to shop for yourself with confidence.",
       values: "Our Values",
       quality: "Quality",
       privacy: "Privacy",
@@ -468,16 +471,15 @@ export const translations = {
       freeShipping: "شحن مجاني للطلبات فوق 100$",
     },
     hero: {
-      headline: "فخامة هادئة تلامس بشرتك",
-      subheadline:
-        "بساطة أوروبية وأمريكية مع مقاسات دقيقة. دانتيل وحرير وقصّات أنيقة—تغليف سري وخدمة مدروسة.",
+      headline: "لا تُرى.\nدائماً تُحسّ.",
+      subheadline: "تنساب بأناقة النيل.",
       shopNow: "تسوقي الآن",
       giftForWife: "هدية لزوجتك",
       exploreCollection: "استكشفي المجموعة",
       badgeNew: "✨ جديد",
       badgeTrending: "اختيار المحرر",
       visualDescription:
-        "بانر بطيف ضوء النافذة على درجات عارية وردية، مساحات سوداء هادئة، إطلالة تحريرية بلمعة راقية.",
+        "بانر تحريري مع لوحة زجاج ضبابي، عنوان لا تُرى دائماً تُحسّ وشعار أناقة النيل.",
     },
     featured: {
       title: "مختارات مميزة",
@@ -486,10 +488,18 @@ export const translations = {
     },
     brandStory: {
       title: "تحرير NileChic",
-      body:
-        "NileChic دراسة في الترشيق: لوحات وردية عارية، ضوء أوف وايت، وخطوط سوداء مستوحاة من الأتيليهات الأوروبية والراحة الأمريكية. نصمم ملابس داخلية للبالغين الذين يريدون الثقة دون ضجيج—دانتيل يتنفس، حرير يتدلى بوضوح، ومقاسات محسّنة بالاختبار. هذه ملابس داخلية كطقس يومي: خاصة، دقيقة، ولِكِ وحدك.",
+      bodyShort:
+        "صُممت NileChic للمرأة التي تُقدّر الأناقة في أخصّ صورها.\n\nتمزج كل قطعة بين النعومة والراحة والتصميم الراقي —\nحتى لا ترتديها فحسب، بل تشعرين بها.\n\nلا تُرى. دائماً تُحسّ.",
+      bodyFullParagraphs: [
+        "لا تُرى.\nدائماً تُحسّ.\nتنساب بأناقة النيل.",
+        "ثقة هادئة لا صخب فيها —\nلا تطلب الأنظار،\nلكنها تُغيّر كل ما تلمسه.",
+        "في NileChic نؤمن أن الأناقة الحقيقية لا تُصرَخ.\nتعيش تحت السطح،\nفي كيفية حملك لذاتك،\nوفي ما تشعرين به على بشرتك.",
+        "قصصنا مصممة لتلك اللحظة غير المرئية —\nحيث تلتقي الراحة بالثقة،\nوتصبح الحميمية شكلاً من التعبير عن الذات.",
+        "مستوحاة من انسياب النيل الخالد،\nنصنع ملابس داخلية تتحرك معكِ —\nناعمة، بلا عناء، وتدوم.",
+        "لأن ما لا يُرى\nغالباً ما يُحسّ أكثر.",
+      ],
       visualDescription:
-        "لوحة العلامة: خلفية كتان، دانتيل عاجي مطوي، خيط ذهبي دقيق، ومساحة بيضاء سخية—تحريرية وهادئة.",
+        "لوحة العلامة: صورة تحريرية بجانب نص قصير وروابط لصفحة من نحن.",
       cta: "اقرئي قصتنا",
     },
     blogSection: {
@@ -860,12 +870,6 @@ export const translations = {
       missionText:
         "وُلدت NileChic من إيمان بسيط: كل امرأة تستحق أن تشعر بالجمال والثقة. نصنع ملابس داخلية أنيقة تحتفي بالأنوثة بأفضل الأقمشة وتصاميم خالدة.",
       story: "قصتنا",
-      storyText:
-        "بدأت NileChic حيث يلتقي النيل بالخليج—عند مفترق ثقافات تقدّر الأناقة والسرية. مؤسستنا، مستوحاة من نعمة نساء الشرق الأوسط وفخامة التصميم الأوروبي، سعت لصنع ملابس داخلية تكرم الأنوثة دون تنازل.",
-      storyPara2:
-        "بدأنا صغاراً: قطع قليلة مختارة بعناية، التزام بأقمشة عالية الجودة، ووعد ثابت بالخصوصية. انتشر الكلمة. الأمهات أخبرن البنات. الصديقات أوصين بـ NileChic. اليوم نخدم نساء دول الخليج ومصر، كل طلب مُغلّف بعبوة عادية، كل قطعة مصنوعة للاحتفاء بالمرأة التي ترتديها.",
-      storyPara3:
-        "نؤمن أن الفخامة يجب أن تكون متاحة وخاصة. لذلك نقدم الدفع عند الاستلام—بدون دفع مقدماً، دون أثر رقمي. لماذا كل صندوق نشحنه يبدو كأي طرود عادي. ولماذا، خلف كل غرزة، فريق يفهم ما يعني التسوق لنفسك بثقة.",
       values: "قيمنا",
       quality: "الجودة",
       privacy: "الخصوصية",

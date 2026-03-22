@@ -33,15 +33,13 @@ export default function AboutPage() {
         <h2 id="story-heading" className="font-heading text-2xl font-light text-foreground">
           {t.about.story}
         </h2>
-        <p className="mt-4 leading-relaxed text-foreground/80">
-          {t.about.storyText}
-        </p>
-        <p className="mt-4 leading-relaxed text-foreground/80">
-          {t.about.storyPara2}
-        </p>
-        <p className="mt-4 leading-relaxed text-foreground/80">
-          {t.about.storyPara3}
-        </p>
+        <div className="mt-6 space-y-6">
+          {t.brandStory.bodyFullParagraphs.map((para, i) => (
+            <p key={i} className="leading-relaxed text-foreground/80 whitespace-pre-line">
+              {para}
+            </p>
+          ))}
+        </div>
       </section>
 
       <section aria-labelledby="values-heading">
